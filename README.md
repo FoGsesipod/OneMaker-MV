@@ -1,5 +1,6 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.
+HUGE Thanks to Rph and Draught!
 
 ## Screenshots
 ![Sample0](https://github.com/user-attachments/assets/7c7dba64-c0d4-4d68-a542-06da93b634b8)
