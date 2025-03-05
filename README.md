@@ -22,4 +22,6 @@ The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a numb
 ![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0)
 
 ## To Build QT5Core.dll Yourself
-Take `qresource.cpp` and replace it in [This Repository](https://github.com/rochus-keller/Qt-5.4.2), then build that as normal.
+Download https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
+requires visual stuido 2013, which you can get from https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332 
+Then replace `qresource.cpp` from this repositroy into the QT 5.4.2 archive.    
