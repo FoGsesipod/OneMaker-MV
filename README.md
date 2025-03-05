@@ -12,7 +12,7 @@ HUGE Thanks to Rph and Draught!
 ![Sample6](https://github.com/user-attachments/assets/10bcce6e-6457-451d-8435-cf608169eee2)
 
 ## To Install:
-Place the contents of OneMaker MV into the steam/RPG Maker MV folder.  
+Place the contents of OneMaker MV into the steam/steamapps/common/RPGMaker MV/ folder.  
 NOTE: Parallaxes are disabled **in the editor** (they will still work in game).  
 To get maps to display use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/releases/tag/0.1.0).  
 (Maps that use tiled 1.0.4+ wont render using that tool *yet*).  
