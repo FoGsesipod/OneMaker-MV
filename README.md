@@ -1,6 +1,6 @@
 # OneMaker-MV
-Injects UI modifications to RPGMaker MV, designed for modding OMORI.
-HUGE Thanks to Rph and Draught!
+Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
+HUGE Thanks to Rph and Draught!  
 
 ## Screenshots
 ![Sample0](https://github.com/user-attachments/assets/7c7dba64-c0d4-4d68-a542-06da93b634b8)
@@ -19,9 +19,9 @@ To get maps to display use [The Omori Map Renderer](https://github.com/rphsoftwa
 
 To manually add maps use Export As Image in tiled, select a `scaled` folder in your playtest.  
 The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a number).  
-![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0)
+![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0).  
 
 ## To Build QT5Core.dll Yourself
-Download https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
-requires visual stuido 2013, which you can get from https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332 
-Then replace `qresource.cpp` from this repositroy into the QT 5.4.2 archive.    
+Download [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip) and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
+Requires visual stuido 2013, which you can get from [Archive.org](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
+Then replace `qresource.cpp` from this repositroy into the QT 5.4.2 archive.  
