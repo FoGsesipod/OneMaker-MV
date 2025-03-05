@@ -82,9 +82,9 @@ ScrollView {
             clip: true
 
             Image {
-                property string imageName: "map" + DataManager.makeIdText(root.mapId, 2)
-                property string folder: DataManager.projectUrl + "scaled"
-                source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : ""
+                property string imageName: "map" + DataManager.makeIdText(root.mapId, 2) // Obtain mapXXX.png format
+                property string folder: DataManager.projectUrl + "scaled" // Directory changed to scaled folder
+                source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : "" // Changed path to use mapXXX.png format in scaled folder
                 fillMode: Image.Tile
                 horizontalAlignment: Image.AlignLeft
                 verticalAlignment: Image.AlignTop
@@ -93,7 +93,7 @@ ScrollView {
                 width: body.width / scale
                 height: body.height / scale
                 scale: body.tileScale
-                visible: true
+                visible: true // Force set to true
                 z: -1
             }
 

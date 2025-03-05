@@ -22,7 +22,7 @@ GroupBox {
     property int buttonWidth: 100
     property int buttonHeight: 56
 
-    property int maxEventPages: 30
+    property int maxEventPages: 30 // Increased by 10
     property string clipboardFormat: "BattleEventPage"
 
     property alias currentPageIndex: tabView.currentIndex
@@ -45,8 +45,8 @@ GroupBox {
 
         TabView {
             id: tabView
-            width: 830
-            height: 426
+            width: 830 // Increased by 200
+            height: 426 // Increased by 100
 
             TabColumn {
                 spacing: 12
@@ -73,8 +73,8 @@ GroupBox {
                 }
                 EventCommandListBox {
                     id: eventListBox
-                    width: 812
-                    height: 342
+                    width: 812 // Increased by 200
+                    height: 342 // Increased by 100
                     troopId: root.troopId
                 }
             }

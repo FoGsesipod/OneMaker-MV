@@ -50,8 +50,8 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 720
-            height: 277
+            width: 720 // Increased by 200
+            height: 277 // Increased by 100
             dragDrop: true
 
             ListBoxColumn {
@@ -62,12 +62,12 @@ GroupBox {
             ListBoxColumn {
                 title: qsTr("SE")
                 role: "se"
-                width: 150
+                width: 350 // Increased by 200
             }
             ListBoxColumn {
                 title: qsTr("Flash")
                 role: "flash"
-                width: 282
+                width: 298 // Increased by 16
             }
 
             function editItem(data) {

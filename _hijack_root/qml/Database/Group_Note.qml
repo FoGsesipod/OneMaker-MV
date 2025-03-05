@@ -23,8 +23,8 @@ GroupBox {
         title: root.title
         hint: root.hint
         hintComponent: root.hintComponent
-        itemWidth: 520
-        itemHeight: 375
+        itemWidth: 520 // Increased by 200
+        itemHeight: 375 // Increased by 200
         maximumLineCount: 0
 
         contextMenu: TextEditPopupMenu {

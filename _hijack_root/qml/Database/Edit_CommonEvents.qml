@@ -51,8 +51,8 @@ ControlsRow {
             ControlsRow {
                 EventCommandListBox {
                     list: dataObject ? dataObject.list : []
-                    width: 940
-                    height: 698
+                    width: 940 // Increased by 200
+                    height: 698 // Increased by 200
                 }
             }
         }

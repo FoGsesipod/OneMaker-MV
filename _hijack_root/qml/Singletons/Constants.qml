@@ -2,7 +2,7 @@ pragma Singleton
 import QtQuick 2.3
 
 QtObject {
-    readonly property string applicationTitle       : qsTr("OneMaker MV")
+    readonly property string applicationTitle       : qsTr("OneMaker MV") // Changed to OneMaker MV
     readonly property string projectExtName         : "rpgproject"
     readonly property string projectFilterTitle     : applicationTitle + " " + qsTr("Project")
     readonly property string projectFilter          : projectFilterTitle + " (*." + projectExtName + ")"

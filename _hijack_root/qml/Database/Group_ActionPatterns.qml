@@ -34,7 +34,7 @@ GroupBox {
             hint: root.hint
             hintComponent: root.hintComponent
             width: 390
-            height: 408
+            height: 408 // Increased by 200
             dragDrop: true
 
             ListBoxColumn {

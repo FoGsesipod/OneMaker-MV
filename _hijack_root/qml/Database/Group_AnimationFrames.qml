@@ -12,8 +12,8 @@ GroupBox {
 
     title: qsTr("Frames")
     hint: qsTr("Animation frames.")
-    width: 960
-    height: 501
+    width: 960 // Increased by 200
+    height: 501 // Increased by 100
 
     property int positionType: 0
     property int maxFrames: frameList.maxFrames
@@ -39,8 +39,8 @@ GroupBox {
                 id: screen
                 title: qsTr("Frame View")
                 hint: qsTr("Displays the contents of the selected frame. Double-click on the empty area to place a new cell. Drag a cell to move it. Right-click to open the popup menu.")
-                width: 670
-                height: 472
+                width: 670 // Increased by 200
+                height: 472 // Increased by 200
                 maxFrames: root.maxFrames
                 maxCells: root.maxCells
                 positionType: root.positionType
@@ -50,7 +50,7 @@ GroupBox {
             }
             Item {
                 width: 150
-                height: screen.height + 200
+                height: screen.height + 200 // Added `+ 200`
                 ControlsColumn {
                     width: parent.width
                     anchors.verticalCenter: parent.verticalCenter

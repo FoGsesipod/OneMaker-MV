@@ -19,10 +19,10 @@ EventCommandBase {
         id: textArea
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
-        width: 600
+        width: 600 // Increased by 200
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
-        maximumLineCount: 36
+        maximumLineCount: 36 // Increased by 24
 
         onKeyPressed: {
             if (event.key === Qt.Key_Return && isFinalLine()) {

@@ -110,7 +110,7 @@ ControlsRow {
                     title: equipGroup.title
                     hint: equipGroup.hint
                     width: 390
-                    height: 406
+                    height: 406 // Increased by 200
                 }
             }
         }

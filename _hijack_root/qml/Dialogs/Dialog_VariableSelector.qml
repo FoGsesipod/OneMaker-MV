@@ -314,7 +314,7 @@ ModalWindow {
 
             RoundFrame {
                 id: rightBlock
-                width: 444
+                width: 444 // Increased by 200
                 height: leftBlock.height
 
                 Item {
@@ -322,7 +322,7 @@ ModalWindow {
                     anchors.margins: 12
 
                     Column {
-                        width: 420
+                        width: 420 // Increased by 200
                         spacing: 12
 
                         ListBox {
@@ -375,7 +375,7 @@ ModalWindow {
         Dialog_ChangeMaximum {
             id: changeMaxDialog
             locator: button
-            maximumNumberOfItems: 10000
+            maximumNumberOfItems: 10000 // Increased by 5000
             onOk: base.changeMaximum(value);
         }
 

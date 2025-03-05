@@ -68,8 +68,8 @@ ModalWindow {
             FileListBox {
                 id: listBox1
 
-                width: 400
-                height: 602
+                width: 400 // Increased by 200
+                height: 602 // Increased by 200
                 visible: !imageFixed
 
                 folder: imageFixed ? "" : root.folder
@@ -118,7 +118,7 @@ ModalWindow {
             }
 
             ColumnLayout {
-                width: root.viewWidth + 200
+                width: root.viewWidth + 200 // Added `00` (it already had `+ 2`)
                 height: listBox1.height
                 spacing: 10
 

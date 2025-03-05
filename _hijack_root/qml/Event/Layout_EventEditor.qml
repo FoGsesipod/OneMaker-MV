@@ -14,7 +14,7 @@ ControlsColumn {
     property var object: dataObject
 
     property int mapId: 0
-    property int maxEventPages: 30
+    property int maxEventPages: 30 // Increased by 10
     property string clipboardFormat: "EventPage"
 
     property alias currentPageIndex: tabView.currentIndex
@@ -35,7 +35,7 @@ ControlsColumn {
                 member: "note"
                 title: Constants.noteTitle
                 hint: Constants.noteHint
-                itemWidth: 500
+                itemWidth: 500 // Added `itemWidth: 500`
 
                 contextMenu: TextEditPopupMenu {
                     MenuSeparator { }
@@ -58,8 +58,8 @@ ControlsColumn {
 
     TabView {
         id: tabView
-        width: 1216
-        height: 802
+        width: 1216 // Increased by 200
+        height: 802 // Increased by 200
 
         TabColumn {
             Layout_EventPage {

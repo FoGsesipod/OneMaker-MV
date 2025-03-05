@@ -19,10 +19,10 @@ EventCommandBase {
         id: textArea
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
-        width: 600
+        width: 600 // Increased by 200
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
-        maximumLineCount: 24
+        maximumLineCount: 24 // Increased by 18
 
         onKeyPressed: {
             if (event.key === Qt.Key_Return && isFinalLine()) {
