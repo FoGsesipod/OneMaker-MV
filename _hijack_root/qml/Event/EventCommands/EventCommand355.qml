@@ -19,7 +19,7 @@ EventCommandBase {
         id: textArea
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
-        width: 600 // Increased by 200
+        width: 400 + Constants.windowDefaultWidthIncrease // Window Increased
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
         maximumLineCount: 36 // Increased by 24

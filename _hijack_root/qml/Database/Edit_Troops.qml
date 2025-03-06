@@ -64,7 +64,7 @@ ControlsRow {
                         title: qsTr("Placement View")
                         hint: qsTr("Displays the enemies in the troop. Drag an enemy to move it. Right-click to open the popup menu.")
                         width: 280
-                        height: 262 // Increased by 100
+                        height: 162 + Constants.windowAlternativeHeightIncrease // Window Increased
                     }
                     ControlsColumn {
                         anchors.verticalCenter: parent.verticalCenter
@@ -106,8 +106,8 @@ ControlsRow {
                         id: listBox
                         title: qsTr("Enemy List")
                         hint: qsTr("Press the [Add] button on the left to add selected enemies to the troop.")
-                        width: 420 // Increased by 200
-                        height: 262 // Increased by 100
+                        width: 220 + Constants.windowDefaultWidthIncrease // Window Increased
+                        height: 162 + Constants.windowAlternativeHeightIncrease // Window Increased
 
                         model: listModel
                         headerVisible: false

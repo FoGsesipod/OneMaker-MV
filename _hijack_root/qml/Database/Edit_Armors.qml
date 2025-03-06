@@ -78,8 +78,8 @@ ControlsRow {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: 940  // Adjusted width and position
-            x: -420         // Adjusted width and position
+            itemWidth: Constants.groupNoteDatabaseWidth // Group Note Width and Position Changed
+            x: Constants.groupNoteDatabaseX // Group Note Width and Position Changed
         }
     }
 }

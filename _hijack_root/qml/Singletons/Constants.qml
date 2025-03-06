@@ -185,6 +185,54 @@ QtObject {
     readonly property string commandToTitle:    qsTr("To Title", "command")
     readonly property string commandCancel:     qsTr("Cancel", "command")
 
+    //======================================================================================
+    /* Window Size Constants.
+     * Use the list of constants for window sizing.
+     * Uncomment/Comment likes as necessary.
+    */
+
+    // 1080p+ Resolution Constants
+    readonly property int windowDefaultWidthIncrease: 200
+    readonly property int windowDefaultHeightIncrease: 200
+    readonly property int windowAlternativeWidthIncrease: 100
+    readonly property int windowAlternativeHeightIncrease: 100
+    readonly property int groupAnimationTimingsListBoxWidth: 298
+    readonly property int groupNoteDatabaseWidth: 940
+    readonly property int groupNoteDatabaseX: -420
+    readonly property int groupEffectsListBoxWidth: 116
+    readonly property int groupTraitsListBoxWidth: 116
+    readonly property int layoutEventEditorNoteWidth: 460
+
+    // 720p Resolution Constants
+    //readonly property int windowDefaultWidthIncrease: 180
+    //readonly property int windowDefaultHeightIncrease: 180
+    //readonly property int windowAlternativeWidthIncrease: 80
+    //readonly property int windowAlternativeHeightIncrease: 80
+    //readonly property int groupAnimationTimingsListBoxWidth: 282
+    //readonly property int groupNoteDatabaseWidth: 920
+    //readonly property int groupNoteDatabaseX: -420
+    //readonly property int groupEffectsListBoxWidth: 116
+    //readonly property int groupTraitsListBoxWidth: 116
+    //readonly property int layoutEventEditorNoteWidth: 440
+
+    // Default Constants
+    //readonly property int windowDefaultWidthIncrease: 0
+    //readonly property int windowDefaultHeightIncrease: 0
+    //readonly property int windowAlternativeWidthIncrease: 0
+    //readonly property int windowAlternativeHeightIncrease: 0
+    //readonly property int groupAnimationTimingsListBoxWidth: 282
+    //readonly property int groupNoteDatabaseWidth: 320
+    //readonly property int groupNoteDatabaseX: 0
+    //readonly property int groupEffectsListBoxWidth: 0
+    //readonly property int groupTraitsListBoxWidth: 0
+    //readonly property int layoutEventEditorNoteWidth: 164
+
+    /* Select All On Focus
+     * Change to true/false depending on your wants
+    */
+    readonly property bool groupNoteSelectAllOnFocus: false
+    //======================================================================================
+
     readonly property var paramNameArray: [
         mhpName, mmpName, atkName, defName, matName, mdfName, agiName, lukName
     ]

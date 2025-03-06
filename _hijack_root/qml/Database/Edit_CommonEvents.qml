@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Layouts"
 import "../Event"
+import "../Singletons"
 
 ControlsRow {
     id: root
@@ -51,8 +52,8 @@ ControlsRow {
             ControlsRow {
                 EventCommandListBox {
                     list: dataObject ? dataObject.list : []
-                    width: 940 // Increased by 200
-                    height: 698 // Increased by 200
+                    width: 740 + Constants.windowDefaultWidthIncrease // Window Increased
+                    height: 498 + Constants.windowDefaultHeightIncrease // Window Increased
                 }
             }
         }

@@ -45,8 +45,8 @@ GroupBox {
 
         TabView {
             id: tabView
-            width: 830 // Increased by 200
-            height: 426 // Increased by 100
+            width: 630 + Constants.windowDefaultWidthIncrease // Window Increased
+            height: 326 + Constants.windowAlternativeHeightIncrease // Window Increased
 
             TabColumn {
                 spacing: 12
@@ -73,8 +73,8 @@ GroupBox {
                 }
                 EventCommandListBox {
                     id: eventListBox
-                    width: 812 // Increased by 200
-                    height: 342 // Increased by 100
+                    width: 612 + Constants.windowDefaultWidthIncrease // Window Increased
+                    height: 242 + Constants.windowAlternativeHeightIncrease // Window Increased
                     troopId: root.troopId
                 }
             }

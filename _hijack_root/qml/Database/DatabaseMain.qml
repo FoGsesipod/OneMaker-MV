@@ -34,8 +34,8 @@ ModalWindow {
 
             TabView {
                 id: databaseTabView
-                width: 1228 // Increased by 200
-                height: 858 // Increased by 200
+                width: 1028 + Constants.windowDefaultWidthIncrease // Window Increased
+                height: 658 + Constants.windowDefaultHeightIncrease // Window Increased
                 tabsVisible: false
 
                 Tab_DBStandard {

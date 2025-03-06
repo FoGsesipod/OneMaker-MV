@@ -50,8 +50,8 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 720 // Increased by 200
-            height: 277 // Increased by 100
+            width: 520 + Constants.windowDefaultWidthIncrease // Window Increased
+            height: 177 + Constants.windowAlternativeHeightIncrease // Window Increased
             dragDrop: true
 
             ListBoxColumn {
@@ -62,12 +62,13 @@ GroupBox {
             ListBoxColumn {
                 title: qsTr("SE")
                 role: "se"
-                width: 350 // Increased by 200
+                width: 150 + Constants.windowDefaultWidthIncrease // Window Increased
             }
             ListBoxColumn {
                 title: qsTr("Flash")
                 role: "flash"
-                width: 298 // Increased by 16
+                // Width: Was changed to hardcode the Constant because it wasn't working with 282 + Constants...
+                width: Constants.groupAnimationTimingsListBoxWidth // Window Increased
             }
 
             function editItem(data) {

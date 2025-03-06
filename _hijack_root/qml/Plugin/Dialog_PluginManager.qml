@@ -100,7 +100,7 @@ ModalWindow {
             title: qsTr("Plugin List")
             hint: qsTr("Components that extend the standard game system.")
             width: 760
-            height: 742 // Increased by 200
+            height: 542 + Constants.windowDefaultHeightIncrease // Window Increased
             object: null
             member: "plugins"
             dragDrop: true

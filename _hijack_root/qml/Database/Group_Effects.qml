@@ -31,19 +31,19 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 520 // Increased by 200
+            width: 320 + Constants.windowDefaultWidthIncrease // Window Increased
             height: 179
             dragDrop: true
 
             ListBoxColumn {
                 title: qsTr("Type")
                 role: "type"
-                width: 240 // Increased by 110
+                width: 124 + Constants.groupEffectsListBoxWidth // Window Increased
             }
             ListBoxColumn {
                 title: qsTr("Content")
                 role: "content"
-                width: 278 // Increase by 100
+                width: 178 + Constants.windowAlternativeWidthIncrease // Window Increased
             }
 
             function editItem(data) {

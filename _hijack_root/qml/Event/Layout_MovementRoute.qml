@@ -19,7 +19,7 @@ GroupBoxRow {
     signal triggered(var code)
 
     GroupBoxColumn {
-        width: 420 // Increased by 200
+        width: 220 + Constants.windowDefaultWidthIncrease // Window Increased
         CharacterSelectBox {
             id: characterSelectBox
             title: qsTr("Character")

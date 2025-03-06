@@ -23,9 +23,10 @@ GroupBox {
         title: root.title
         hint: root.hint
         hintComponent: root.hintComponent
-        itemWidth: 520 // Increased by 200
-        itemHeight: 375 // Increased by 200
+        itemWidth: 320 + Constants.windowDefaultWidthIncrease // Window Increased
+        itemHeight: 175 + Constants.windowDefaultHeightIncrease // Window Increased
         maximumLineCount: 0
+        selectAllOnFocus: Constants.groupNoteSelectAllOnFocus
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }

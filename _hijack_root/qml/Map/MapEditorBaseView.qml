@@ -82,9 +82,9 @@ ScrollView {
             clip: true
 
             Image {
-                property string imageName: "map" + DataManager.makeIdText(root.mapId, 2) // Obtain mapXXX.png format
-                property string folder: DataManager.projectUrl + "scaled" // Directory changed to scaled folder
-                source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : "" // Changed path to use mapXXX.png format in scaled folder
+                property string imageName: root.parallaxName
+                property string folder: DataManager.projectUrl + "img/parallaxes"
+                source: imageName.length ? folder + "/" + encodeURIComponent(imageName) + ".png" : ""
                 fillMode: Image.Tile
                 horizontalAlignment: Image.AlignLeft
                 verticalAlignment: Image.AlignTop
@@ -93,7 +93,24 @@ ScrollView {
                 width: body.width / scale
                 height: body.height / scale
                 scale: body.tileScale
-                visible: true // Force set to true
+                visible: true // Hardcode enable showing parallax, since you can just change parallax to none to display none.
+                z: -2
+            }
+
+            // Grab map images from the output folder of OMORI Map Renderer.
+            Image {
+                property string imageName: "map" + DataManager.makeIdText(root.mapId, 2)
+                property string folder: DataManager.projectUrl + "scaled"
+                source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : ""
+                fillMode: Image.Tile
+                horizontalAlignment: Image.AlignLeft
+                verticalAlignment: Image.AlignTop
+                x: (body.width - width) / 2
+                y: (body.height - height) / 2
+                width: body.width / scale
+                height: body.height / scale
+                scale: body.tileScale
+                visible: root.parallaxShow // Change Show In Editor option to apply to tiled maps.
                 z: -1
             }
 

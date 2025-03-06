@@ -3,11 +3,11 @@ Injects UI modifications to RPGMaker MV, designed for modding OMORI.
 HUGE Thanks to Rph and Draught!  
 
 ## To Install:
-Place the contents of OneMaker MV into the steam/steamapps/common/RPGMaker MV/ folder.  
-NOTE: Parallaxes are disabled **in the editor** (they will still work in game).  
-To get maps to display use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/releases/tag/0.1.0).  
-(Maps that use tiled 1.0.4+ wont render using that tool *yet*).  
+Place the contents of OneMaker MV into the steam/steamapps/common/RPGMaker MV/ folder.   
 
+To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/releases/tag/0.1.0). 
+(Unfortauntely this tool doesn't work with tiled 1.0.4+ maps *yet*).  
+Parallaxes still work and will always be displayed under the tiled map images.  
 To manually add maps use Export As Image in tiled, select a `scaled` folder in your playtest.  
 The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a number).  
 ![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0).  

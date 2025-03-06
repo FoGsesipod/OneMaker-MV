@@ -35,7 +35,7 @@ ControlsColumn {
                 member: "note"
                 title: Constants.noteTitle
                 hint: Constants.noteHint
-                itemWidth: 500 // Added `itemWidth: 500`
+                itemWidth: Constants.layoutEventEditorNoteWidth // Window Increased
 
                 contextMenu: TextEditPopupMenu {
                     MenuSeparator { }
@@ -58,8 +58,8 @@ ControlsColumn {
 
     TabView {
         id: tabView
-        width: 1216 // Increased by 200
-        height: 802 // Increased by 200
+        width: 1016 + Constants.windowDefaultWidthIncrease // Window Increased
+        height: 602 + Constants.windowDefaultHeightIncrease // Window Increased
 
         TabColumn {
             Layout_EventPage {

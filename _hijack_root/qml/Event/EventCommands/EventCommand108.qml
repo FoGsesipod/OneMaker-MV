@@ -19,7 +19,7 @@ EventCommandBase {
         id: textArea
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
-        width: 600 // Increased by 200
+        width: 400 + Constants.windowDefaultWidthIncrease // Window Increased
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
         maximumLineCount: 24 // Increased by 18

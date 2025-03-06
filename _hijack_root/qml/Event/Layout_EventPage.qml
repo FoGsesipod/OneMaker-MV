@@ -158,8 +158,8 @@ GroupBoxRow {
         ControlsRow {
             EventCommandListBox {
                 list: dataObject ? dataObject.list : []
-                width: 838 // Increased by 200
-                height: 722 // Increased by 200
+                width: 638 + Constants.windowDefaultWidthIncrease // Window Increased
+                height: 522 + Constants.windowDefaultHeightIncrease // Window Increased
             }
         }
     }

@@ -23,13 +23,13 @@ GroupBox {
                 title: qsTr("Type")
                 hint: qsTr("Type of damage.")
                 model: [ qsTr("None"), qsTr("HP Damage"), qsTr("MP Damage"), qsTr("HP Recover"), qsTr("MP Recover"), qsTr("HP Drain"), qsTr("MP Drain") ]
-                itemWidth: 255 // Increased by 100
+                itemWidth: 155 + Constants.windowAlternativeWidthIncrease // Window Increased
             }
             ObjSelectBox {
                 member: "damage.elementId"
                 title: qsTr("Element")
                 hint: qsTr("Element of the damage. Final damage varies depending on the target's resistance to the element in question.")
-                itemWidth: 255 // Increased by 100
+                itemWidth: 155 + Constants.windowAlternativeWidthIncrease // Window Increased
                 dataSetName: "system"
                 systemDataName: "elements"
                 includeZero: true
@@ -43,7 +43,7 @@ GroupBox {
                 title: qsTr("Formula")
                 hint: qsTr("Formula for calculating basic damage. The user is expressed by a and the target by b, and then either one is followed by a dot to enable the referencing of the statuses shown hereafter. For example, \"a.atk\" stands for user's attack power.")
                 hintComponent: paramHintTable
-                itemWidth: 520 // Increased by 200
+                itemWidth: 320 + Constants.windowDefaultWidthIncrease // Window Increased
                 enabled: damageTypeValid
 
                 contextMenu: TextEditPopupMenu {

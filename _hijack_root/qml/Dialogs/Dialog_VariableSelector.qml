@@ -314,7 +314,7 @@ ModalWindow {
 
             RoundFrame {
                 id: rightBlock
-                width: 444 // Increased by 200
+                width: 244 + Constants.windowDefaultWidthIncrease // Window Increased
                 height: leftBlock.height
 
                 Item {
@@ -322,7 +322,7 @@ ModalWindow {
                     anchors.margins: 12
 
                     Column {
-                        width: 420 // Increased by 200
+                        width: 220 + Constants.windowDefaultWidthIncrease // Window Increased
                         spacing: 12
 
                         ListBox {
