@@ -8,7 +8,7 @@ Made better use of white space for Group_Damage, Group_Effects, and Group_Animat
 Increased tons of windows sizes.  
 Increased script and comment block limits.  
 10k Database limits.  
-Self Switch E-Z accesible.  
+Self Switch E-Z accessible.  
 Wait duration increased to 99999.  
 Maps automatically grab tiled images from `scaled` folder in root, ignoring the selected parallaxes.  
 Event Page maxes increased to 30.  
