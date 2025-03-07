@@ -205,7 +205,7 @@ QtObject {
 
     // 720p Resolution Constants
     //readonly property int windowDefaultWidthIncrease: 180
-    //readonly property int windowDefaultHeightIncrease: 180
+    //readonly property int windowDefaultHeightIncrease: 100
     //readonly property int windowAlternativeWidthIncrease: 80
     //readonly property int windowAlternativeHeightIncrease: 80
     //readonly property int groupAnimationTimingsListBoxWidth: 282
