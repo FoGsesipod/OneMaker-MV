@@ -1,9 +1,9 @@
 # Changelog
 ## Version 1.0.2A
-Fixed animations tab in database not being sized properly.
-Changed "Show in editor" to say "Show Tiled maps" with a matching tooltip to reflect OneMaker MV's changes.
-Updated the 720p preset to actually be useable on 720p resolutions.
-Added a directory list file (Won't appear in releases zip).
+Fixed animations tab in database not being sized properly.  
+Changed "Show in editor" to say "Show Tiled maps" with a matching tooltip to reflect OneMaker MV's changes.  
+Updated the 720p preset to actually be useable on 720p resolutions.  
+Added a directory list file (Won't appear in releases zip).  
 
 ## Version 1.0.2
 Added easy to modify window sizes, in `Constants.qml`.  
