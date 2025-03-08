@@ -29,7 +29,7 @@ QtObject {
         119: [ "blue",       1, qsTr("Jump to Label") ],
         121: [ "red",        1, qsTr("Control Switches") ],
         122: [ "red",        1, qsTr("Control Variables") ],
-        357: [ "gray",       0, qsTr("Control Self Variable")],
+        357: [ "gray",       0, qsTr("Control Self Variable")], // Added identification for Control Self Variables
         123: [ "red",        1, qsTr("Control Self Switch") ],
         124: [ "red",        1, qsTr("Control Timer") ],
         125: [ "darkorange", 1, qsTr("Change Gold") ],
@@ -259,7 +259,7 @@ QtObject {
     }
 
     function buttonText(code) {
-        return '<font color=' + color(code) + '>' + longName(code) + (flag(code) ? "..." : "")
+        return longName(code) + (flag(code) ? "..." : "")
     }
 
     function hint(code) {
