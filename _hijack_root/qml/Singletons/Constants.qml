@@ -227,10 +227,21 @@ QtObject {
     //readonly property int groupTraitsListBoxWidth: 0
     //readonly property int layoutEventEditorNoteWidth: 164
 
-    /* Select All On Focus
-     * Change to true/false depending on your wants
-    */
+    // Select All On Focus for database notes
     readonly property bool groupNoteSelectAllOnFocus: false
+
+    /* Change Event Command Select menu into 1 tab instead of 3
+     * Uncomment and Comment all the lines for disabling and enabling.
+    */
+
+    // Disabled
+    readonly property bool singleEventCommandSelectPage: false
+    readonly property int eventCommandSelectWidth: 508
+
+    // Enabled
+    //readonly property bool singleEventCommandSelectPage: true
+    //readonly property int eventCommandSelectWidth: 1508
+
     //======================================================================================
 
     readonly property var paramNameArray: [
@@ -368,10 +379,10 @@ QtObject {
         qsTr("Tile ID (Layer 3)"), qsTr("Tile ID (Layer 4)"),
         qsTr("Region ID"),
     ]
-    // ==, >=, <=, >, <, !=
+    // ≥, >, ==, <, ≤, ≠ 
     readonly property var variableConditionOperatorArray: [
-        qsTr("="), qsTr("\u2265"), qsTr("\u2264"),
-        qsTr(">"), qsTr("<"), qsTr("\u2260")
+        qsTr("\u2265"), qsTr(">"), qsTr("="),
+        qsTr("<"), qsTr("\u2264"), qsTr("\u2260")
     ]
     // >=, <=
     readonly property var timerConditionOperatorArray: [

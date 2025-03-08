@@ -7,9 +7,9 @@ Place the contents of OneMaker MV into the steam/steamapps/common/RPGMaker MV/ f
 
 To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/actions/runs/13727034987/artifacts/2712892480).  
 Parallaxes still work and will always be displayed under the tiled map images.  
-To manually add maps use Export As Image in tiled, select a `scaled` folder in your playtest.  
-The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a number).  
-![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0).  
+To manually add maps use Export As Image in tiled, select a `render` folder in your playtest.  
+The naming scheme follows tileds, which should be `mapX.png` (X being a number).  
+![Tiled Map Folder](https://github.com/user-attachments/assets/137a8bc5-d6a3-40a2-bccd-157a0337a687).  
 
 ## To get the RPGMaker MV resources
 Requirements: [Rust](https://www.rust-lang.org/tools/install).  

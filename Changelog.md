@@ -1,4 +1,29 @@
 # Changelog
+## Version 1.0.3  
+Added Variable Operator selection for Event Page Conditions.  
+Added Script Command to Event Page Conditions **(NOTE: You should really only use this if you know what you are doing!)**  
+Added identification to Control Self Variable commands in Event Lists. (Self Variables are still unaccessible). 
+Added the ability to change the Event Command Select menu into one giant tab instead of 3, disbaled by default. Check `Constants.qml`.  
+
+Changed Tiled Map rendering to use stretch, lower res map image files will now fill the map correctly (No more needing 150% Tiled Images!).  
+- Following this change, instead of using the `scaled` folder in root directory, we now use `render` (This is OMORI Map Renderer's default 100% scaling maps).  
+- Note: if the map in rpgmaker isn't sized exactly the same as Tiled then the images wont line up.
+
+Splash updated a little bit more - thanks again pigmask.  
+
+### Changed Files:  
+Added:  
+- qml\Event\Dialog_EventCommandSelect.qml
+- qml\Event\Group_EventConditions.qml  
+- qml\Singletons\EventCommands.qml  
+
+Changed:
+- qml\Map\MapEditorBaseView.qml
+- qml\Singletons\Constants.qml
+  - (Lines will only match up if you go from top to bottom).
+  - Lines 230-244
+  - Lines 371-375
+
 ## Version 1.0.2A  
 Fixed animations tab in database not being sized properly.  
 Changed "Show in editor" to say "Show Tiled maps" with a matching tooltip to reflect OneMaker MV's changes.  
