@@ -188,7 +188,7 @@ QtObject {
     //======================================================================================
     /* Window Size Constants.
      * Use the list of constants for window sizing.
-     * Uncomment/Comment likes as necessary.
+     * Uncomment/Comment lines as necessary.
     */
 
     // 1080p+ Resolution Constants
@@ -231,7 +231,7 @@ QtObject {
     readonly property bool groupNoteSelectAllOnFocus: false
 
     /* Change Event Command Select menu into 1 tab instead of 3
-     * Uncomment and Comment all the lines for disabling and enabling.
+     * Uncomment/Comment lines for disabling and enabling.
     */
 
     // Disabled

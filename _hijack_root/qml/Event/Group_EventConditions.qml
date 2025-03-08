@@ -72,6 +72,7 @@ GroupBox {
                     labelVisible: false
                 }
                 ControlsRow {
+                    // Changed to allow selection and applying variable operators
                     ObjComboBox {
                         member: "conditions.variableOperator"
                         title: qsTr("Operator")
@@ -149,6 +150,7 @@ GroupBox {
             }
         }
 
+        // Added script event page condition
         ControlsRow {
             ObjCheckBox {
                 id: checkBox7
