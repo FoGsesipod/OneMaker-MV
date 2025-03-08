@@ -11,6 +11,10 @@ To manually add maps use Export As Image in tiled, select a `scaled` folder in y
 The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a number).  
 ![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0).  
 
+## To get the RPGMaker MV resources
+Download and build [QT Extract](https://github.com/axstin/qtextract).  
+Drag and Drop RPGMV.exe onto qtextract.exe and follow the on screen instructions.  
+
 ## To Build QT5Core.dll Yourself
 Download [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip) and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
 Requires visual stuido 2013, which you can get from [Archive.org](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
