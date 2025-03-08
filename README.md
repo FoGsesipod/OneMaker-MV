@@ -5,16 +5,20 @@ HUGE Thanks to Rph and Draught!
 ## To Install:
 Place the contents of OneMaker MV into the steam/steamapps/common/RPGMaker MV/ folder.   
 
-To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/releases/tag/0.1.0). 
-(Unfortauntely this tool doesn't work with tiled 1.0.4+ maps *yet*).  
+To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/actions/runs/13727034987/artifacts/2712892480).  
 Parallaxes still work and will always be displayed under the tiled map images.  
 To manually add maps use Export As Image in tiled, select a `scaled` folder in your playtest.  
 The naming scheme follows tileds, which should be `mapXXX.png` (XXX being a number).  
 ![Scaled](https://github.com/user-attachments/assets/731ac594-87df-4c00-a506-e5daa35798b0).  
 
+## To get the RPGMaker MV resources
+Requirements: [Rust](https://www.rust-lang.org/tools/install).  
+Download and build [QT Extract](https://github.com/axstin/qtextract).  
+Drag and Drop RPGMV.exe onto qtextract.exe and follow the on screen instructions.  
+
 ## To Build QT5Core.dll Yourself
-Download [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip) and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
 Requires visual stuido 2013, which you can get from [Archive.org](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
+Download [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip) and follow [these instructions](https://doc.qt.io/archives/qt-5.5/windows-building.html).  
 Then replace `qresource.cpp` from this repositroy into the QT 5.4.2 archive.  
 
 ## Screenshots
