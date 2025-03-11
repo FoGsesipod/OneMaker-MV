@@ -72,13 +72,13 @@ GroupBox {
                     labelVisible: false
                 }
                 ControlsRow {
-                    // Changed to allow selection and applying variable operators
+                    // [OneMaker MV] - Changed to allow selection and applying variable operators
                     ObjComboBox {
                         member: "conditions.variableOperator"
                         title: qsTr("Operator")
                         hint: qsTr("Variable Operator to use")
                         itemWidth: 75
-                        model: Constants.variableConditionOperatorArray
+                        model: EventPageConditionOperators.eventConditionOperatorArray
                         labelVisible: false
                     }
                     ObjSpinBox {
@@ -109,6 +109,48 @@ GroupBox {
                 hint: checkBox4.hint
                 enabled: checkBox4.checked
                 labelVisible: false
+            }
+        }
+
+        // [OneMaker MV] - Add Self Variable event page conditions
+        ControlsRow {
+            ObjCheckBox {
+                id: checkBox7
+                member: "conditions.selfVariableValid"
+                text: qsTr("Self Variable")
+                hint: qsTr("")
+                width: root.checkBoxWidth
+                height: root.itemHeight
+            }
+            ControlsColumn {
+                enabled: checkBox7.checked
+                ObjComboBox {
+                    member: "conditions.selfVariableId"
+                    title: checkBox7.title
+                    hint: checkBox7.hint
+                    model: SelfVariableNamingScheme.namingScheme
+                    itemWidth: 90
+                    labelVisible: false
+                }
+                ControlsRow {
+                    ObjComboBox {
+                        member: "conditions.selfVariableOperator"
+                        title: qsTr("Operator")
+                        hint: qsTr("Self Variable Operator to use")
+                        labelVisible: false
+                        itemWidth: 75
+                        model: EventPageConditionOperators.eventConditionOperatorArray
+                    }
+                    ObjSpinBox {
+                        member: "conditions.selfVariableValue"
+                        title: checkBox7.title
+                        hint: checkBox7.hint
+                        labelVisible: false
+                        itemWidth: 100
+                        minimumValue: -99999999
+                        maximumValue: 99999999
+                    }
+                }
             }
         }
 
@@ -150,10 +192,10 @@ GroupBox {
             }
         }
 
-        // Added script event page condition
+        // [OneMaker MV] - Added script event page condition
         ControlsRow {
             ObjCheckBox {
-                id: checkBox7
+                id: checkBox8
                 member: "conditions.scriptValid"
                 text: qsTr("Script")
                 hint: qsTr("")
@@ -164,7 +206,7 @@ GroupBox {
                 member: "conditions.script"
                 title: qsTr("Script Command")
                 hint: qsTr("Syntax: {run = Boolean}\n\nThis code will only run on $gameMap.refresh() updates.\nThis is usually called for Variable and Switch changes, obtaining items, when an event ends, and some other calls.")
-                enabled: checkBox7.checked
+                enabled: checkBox8.checked
                 labelVisible: false
             }
         }

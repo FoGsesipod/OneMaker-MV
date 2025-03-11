@@ -52,8 +52,8 @@ ControlsRow {
             ControlsRow {
                 EventCommandListBox {
                     list: dataObject ? dataObject.list : []
-                    width: 740 + Constants.windowDefaultWidthIncrease // Window Increased
-                    height: 498 + Constants.windowDefaultHeightIncrease // Window Increased
+                    width: 740 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                    height: 498 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
                 }
             }
         }

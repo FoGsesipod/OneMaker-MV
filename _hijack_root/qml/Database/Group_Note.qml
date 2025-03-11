@@ -23,10 +23,10 @@ GroupBox {
         title: root.title
         hint: root.hint
         hintComponent: root.hintComponent
-        itemWidth: 320 + Constants.windowDefaultWidthIncrease // Window Increased
-        itemHeight: 175 + Constants.windowDefaultHeightIncrease // Window Increased
+        itemWidth: 320 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+        itemHeight: 175 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
         maximumLineCount: 0
-        selectAllOnFocus: Constants.groupNoteSelectAllOnFocus
+        selectAllOnFocus: SelectAllOnFocus.database // [OneMaker MV] - Changed to use users settings
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }

@@ -34,7 +34,7 @@ GroupBox {
             hint: root.hint
             hintComponent: root.hintComponent
             width: 390
-            height: 208 + Constants.windowDefaultHeightIncrease // Window Increased
+            height: 208 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
             dragDrop: true
 
             ListBoxColumn {

@@ -19,10 +19,10 @@ EventCommandBase {
         id: textArea
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
-        width: 400 + Constants.windowDefaultWidthIncrease // Window Increased
+        width: 400 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
-        maximumLineCount: 36 // Increased by 24
+        maximumLineCount: 36 // [OneMaker MV] - Increased by 24
 
         onKeyPressed: {
             if (event.key === Qt.Key_Return && isFinalLine()) {

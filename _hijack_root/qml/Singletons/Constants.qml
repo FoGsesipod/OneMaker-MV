@@ -2,7 +2,7 @@ pragma Singleton
 import QtQuick 2.3
 
 QtObject {
-    readonly property string applicationTitle       : qsTr("OneMaker MV") // Changed to OneMaker MV
+    readonly property string applicationTitle       : qsTr("OneMaker MV") // [OneMaker MV] - Changed to OneMaker MV
     readonly property string projectExtName         : "rpgproject"
     readonly property string projectFilterTitle     : applicationTitle + " " + qsTr("Project")
     readonly property string projectFilter          : projectFilterTitle + " (*." + projectExtName + ")"
@@ -185,65 +185,6 @@ QtObject {
     readonly property string commandToTitle:    qsTr("To Title", "command")
     readonly property string commandCancel:     qsTr("Cancel", "command")
 
-    //======================================================================================
-    /* Window Size Constants.
-     * Use the list of constants for window sizing.
-     * Uncomment/Comment lines as necessary.
-    */
-
-    // 1080p+ Resolution Constants
-    readonly property int windowDefaultWidthIncrease: 200
-    readonly property int windowDefaultHeightIncrease: 200
-    readonly property int windowAlternativeWidthIncrease: 100
-    readonly property int windowAlternativeHeightIncrease: 100
-    readonly property int groupAnimationTimingsListBoxWidth: 298
-    readonly property int groupNoteDatabaseWidth: 940
-    readonly property int groupNoteDatabaseX: -420
-    readonly property int groupEffectsListBoxWidth: 116
-    readonly property int groupTraitsListBoxWidth: 116
-    readonly property int layoutEventEditorNoteWidth: 460
-
-    // 720p Resolution Constants
-    //readonly property int windowDefaultWidthIncrease: 180
-    //readonly property int windowDefaultHeightIncrease: 100
-    //readonly property int windowAlternativeWidthIncrease: 80
-    //readonly property int windowAlternativeHeightIncrease: 80
-    //readonly property int groupAnimationTimingsListBoxWidth: 282
-    //readonly property int groupNoteDatabaseWidth: 920
-    //readonly property int groupNoteDatabaseX: -420
-    //readonly property int groupEffectsListBoxWidth: 116
-    //readonly property int groupTraitsListBoxWidth: 116
-    //readonly property int layoutEventEditorNoteWidth: 440
-
-    // Default Constants
-    //readonly property int windowDefaultWidthIncrease: 0
-    //readonly property int windowDefaultHeightIncrease: 0
-    //readonly property int windowAlternativeWidthIncrease: 0
-    //readonly property int windowAlternativeHeightIncrease: 0
-    //readonly property int groupAnimationTimingsListBoxWidth: 282
-    //readonly property int groupNoteDatabaseWidth: 320
-    //readonly property int groupNoteDatabaseX: 0
-    //readonly property int groupEffectsListBoxWidth: 0
-    //readonly property int groupTraitsListBoxWidth: 0
-    //readonly property int layoutEventEditorNoteWidth: 164
-
-    // Select All On Focus for database notes
-    readonly property bool groupNoteSelectAllOnFocus: false
-
-    /* Change Event Command Select menu into 1 tab instead of 3
-     * Uncomment/Comment lines for disabling and enabling.
-    */
-
-    // Disabled
-    readonly property bool singleEventCommandSelectPage: false
-    readonly property int eventCommandSelectWidth: 508
-
-    // Enabled
-    //readonly property bool singleEventCommandSelectPage: true
-    //readonly property int eventCommandSelectWidth: 1508
-
-    //======================================================================================
-
     readonly property var paramNameArray: [
         mhpName, mmpName, atkName, defName, matName, mdfName, agiName, lukName
     ]
@@ -379,10 +320,10 @@ QtObject {
         qsTr("Tile ID (Layer 3)"), qsTr("Tile ID (Layer 4)"),
         qsTr("Region ID"),
     ]
-    // ≥, >, ==, <, ≤, ≠ 
+    // ==, >=, <=, >, <, !=
     readonly property var variableConditionOperatorArray: [
-        qsTr("\u2265"), qsTr(">"), qsTr("="),
-        qsTr("<"), qsTr("\u2264"), qsTr("\u2260")
+        qsTr("="), qsTr("\u2265"), qsTr("\u2264"),
+        qsTr(">"), qsTr("<"), qsTr("\u2260")
     ]
     // >=, <=
     readonly property var timerConditionOperatorArray: [

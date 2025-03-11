@@ -23,7 +23,7 @@ GroupBox {
             title: root.title
             hint: root.hint
             minimumValue: 1
-            maximumValue: 99999 // Changed to 99999 from 999
+            maximumValue: 99999 // [OneMaker MV] - Changed to 99999 from 999
             value: 60
             itemWidth: 80
             labelVisible: false

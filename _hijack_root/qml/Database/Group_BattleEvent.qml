@@ -22,7 +22,7 @@ GroupBox {
     property int buttonWidth: 100
     property int buttonHeight: 56
 
-    property int maxEventPages: 30 // Increased by 10
+    property int maxEventPages: 30 // [OneMaker MV] - Increased by 10
     property string clipboardFormat: "BattleEventPage"
 
     property alias currentPageIndex: tabView.currentIndex
@@ -45,8 +45,8 @@ GroupBox {
 
         TabView {
             id: tabView
-            width: 630 + Constants.windowDefaultWidthIncrease // Window Increased
-            height: 326 + Constants.windowAlternativeHeightIncrease // Window Increased
+            width: 630 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+            height: 326 + WindowSizes.alternativeHeightIncrease // [OneMaker MV] - Window Increased
 
             TabColumn {
                 spacing: 12
@@ -73,8 +73,8 @@ GroupBox {
                 }
                 EventCommandListBox {
                     id: eventListBox
-                    width: 612 + Constants.windowDefaultWidthIncrease // Window Increased
-                    height: 242 + Constants.windowAlternativeHeightIncrease // Window Increased
+                    width: 612 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                    height: 242 + WindowSizes.alternativeHeightIncrease // [OneMaker MV] - Window Increased
                     troopId: root.troopId
                 }
             }

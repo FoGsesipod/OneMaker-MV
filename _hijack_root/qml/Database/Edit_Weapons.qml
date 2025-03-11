@@ -77,8 +77,8 @@ ControlsRow {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: Constants.groupNoteDatabaseWidth // Group Note Width and Position Changed
-            x: Constants.groupNoteDatabaseX // Group Note Width and Position Changed
+            itemWidth: WindowSizes.groupNoteDatabaseWidth // [OneMaker MV] - Group Note Width and Position Changed
+            x: WindowSizes.groupNoteDatabaseX // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

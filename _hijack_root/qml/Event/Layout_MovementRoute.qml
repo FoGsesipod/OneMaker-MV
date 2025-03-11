@@ -19,7 +19,7 @@ GroupBoxRow {
     signal triggered(var code)
 
     GroupBoxColumn {
-        width: 220 + Constants.windowDefaultWidthIncrease // Window Increased
+        width: 220 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
         CharacterSelectBox {
             id: characterSelectBox
             title: qsTr("Character")

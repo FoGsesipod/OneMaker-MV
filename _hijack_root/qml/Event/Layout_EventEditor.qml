@@ -14,7 +14,7 @@ ControlsColumn {
     property var object: dataObject
 
     property int mapId: 0
-    property int maxEventPages: 30 // Increased by 10
+    property int maxEventPages: 30 // [OneMaker MV] - Increased by 10
     property string clipboardFormat: "EventPage"
 
     property alias currentPageIndex: tabView.currentIndex
@@ -35,7 +35,7 @@ ControlsColumn {
                 member: "note"
                 title: Constants.noteTitle
                 hint: Constants.noteHint
-                itemWidth: Constants.layoutEventEditorNoteWidth // Window Increased
+                itemWidth: WindowSizes.layoutEventEditorNoteWidth // [OneMaker MV] - Window Increased
 
                 contextMenu: TextEditPopupMenu {
                     MenuSeparator { }
@@ -58,8 +58,8 @@ ControlsColumn {
 
     TabView {
         id: tabView
-        width: 1016 + Constants.windowDefaultWidthIncrease // Window Increased
-        height: 602 + Constants.windowDefaultHeightIncrease // Window Increased
+        width: 1016 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+        height: 602 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
 
         TabColumn {
             Layout_EventPage {

@@ -23,7 +23,7 @@ EventCommandBase {
         title: qsTr("Digits")
         hint: qsTr("Number of digits to be entered.")
         minimumValue: 1
-        maximumValue: 9 // Increased by 1
+        maximumValue: 9 // [OneMaker MV] - Increased by 1
         value: 1
     }
 

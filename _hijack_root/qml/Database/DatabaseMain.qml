@@ -34,8 +34,8 @@ ModalWindow {
 
             TabView {
                 id: databaseTabView
-                width: 1028 + Constants.windowDefaultWidthIncrease // Window Increased
-                height: 658 + Constants.windowDefaultHeightIncrease // Window Increased
+                width: 1028 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                height: 658 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
                 tabsVisible: false
 
                 Tab_DBStandard {
@@ -58,7 +58,7 @@ ModalWindow {
                     templateName: "Skill"
                     dataSetName: "skills"
                     editorSource: "Edit_Skills.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("Items")
@@ -66,7 +66,7 @@ ModalWindow {
                     templateName: "Item"
                     dataSetName: "items"
                     editorSource: "Edit_Items.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("Weapons")
@@ -74,7 +74,7 @@ ModalWindow {
                     templateName: "Weapon"
                     dataSetName: "weapons"
                     editorSource: "Edit_Weapons.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("Armors")
@@ -82,7 +82,7 @@ ModalWindow {
                     templateName: "Armor"
                     dataSetName: "armors"
                     editorSource: "Edit_Armors.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("Enemies")
@@ -90,7 +90,7 @@ ModalWindow {
                     templateName: "Enemy"
                     dataSetName: "enemies"
                     editorSource: "Edit_Enemies.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("Troops")
@@ -98,7 +98,7 @@ ModalWindow {
                     templateName: "Troop"
                     dataSetName: "troops"
                     editorSource: "Edit_Troops.qml"
-                    maximumNumberOfItems: 10000 // Changed to 10k
+                    maximumNumberOfItems: 10000 // [OneMaker MV] - Changed to 10k
                 }
                 Tab_DBStandard {
                     title: qsTr("States")

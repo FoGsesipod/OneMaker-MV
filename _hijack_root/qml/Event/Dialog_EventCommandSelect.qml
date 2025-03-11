@@ -43,9 +43,9 @@ ModalWindow {
 
         TabView {
             id: tabView
-            width: Constants.eventCommandSelectWidth // Changed to use Constants width
-            height: 596
-            visible: !Constants.singleEventCommandSelectPage // Added visibility based on Constants
+            width: EventCommandSelectPage.width // [OneMaker MV] - Changed to use Constants width
+            height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
+            visible: !EventCommandSelectPage.enabled // [OneMaker MV] - Added visibility based on Constants
 
             Tab {
                 title: " 1 "
@@ -60,7 +60,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Game Progression")
-                            codeList: [121, 122, 123, 124]
+                            codeList: [121, 122, 123, 357, 124] // [OneMaker MV] - Add Control Self Variable
                             onTriggered: dialogBox.triggered(code)
                         }
                         EventCommandGroup {
@@ -164,11 +164,11 @@ ModalWindow {
 
         TabView {
             id: tabView1
-            width: Constants.eventCommandSelectWidth // Changed to use Constants width
-            height: 596
-            visible: Constants.singleEventCommandSelectPage // Added visibility based on Constants
+            width: EventCommandSelectPage.width // [OneMaker MV] - Changed to use Constants width
+            height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
+            visible: EventCommandSelectPage.enabled // [OneMaker MV] - Added visibility based on Constants
 
-            // Removed the other Tab's and converted it into one giant tab if the Single Event Command Select Page Constant is enabled
+            // [OneMaker MV] - Removed the other Tab's and converted it into one giant tab if the Single Event Command Select Page Constant is enabled
             Tab {
                 title: " Combined "
                 GroupBoxRow {
@@ -182,7 +182,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Game Progression")
-                            codeList: [121, 122, 123, 124]
+                            codeList: [121, 122, 123, 357, 124] // [OneMaker MV] - Add Control Self Variable
                             onTriggered: dialogBox.triggered(code)
                         }
                         EventCommandGroup {

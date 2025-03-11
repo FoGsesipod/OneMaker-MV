@@ -50,8 +50,8 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 520 + Constants.windowDefaultWidthIncrease // Window Increased
-            height: 177 + Constants.windowAlternativeHeightIncrease // Window Increased
+            width: 520 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+            height: 177 + WindowSizes.alternativeHeightIncrease // [OneMaker MV] - Window Increased
             dragDrop: true
 
             ListBoxColumn {
@@ -62,13 +62,12 @@ GroupBox {
             ListBoxColumn {
                 title: qsTr("SE")
                 role: "se"
-                width: 150 + Constants.windowDefaultWidthIncrease // Window Increased
+                width: 150 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
             }
             ListBoxColumn {
                 title: qsTr("Flash")
                 role: "flash"
-                // Width: Was changed to hardcode the Constant because it wasn't working with 282 + Constants...
-                width: Constants.groupAnimationTimingsListBoxWidth // Window Increased
+                width: WindowSizes.groupAnimationTimingsListBoxWidth // [OneMaker MV] - Width was changed to use Window Sizes constant since 282 + Constant wasn't working
             }
 
             function editItem(data) {

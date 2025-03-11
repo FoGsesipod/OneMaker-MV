@@ -1,4 +1,37 @@
 # Changelog
+## Version 1.0.4
+Fixed an oversight with operators in if conditions (Thanks SoundofSpouting).  
+Injector improved to inject a new resource file, which will contain dummy files for the hijacker to replace (💕 Rph).  
+Added better detection for event self variable commands (It now displays their parameters).  
+Also added parameters for Conditional Branch Self Variables.  
+Added Self Variables to Event Page Conditions.  
+Added Self Variable conditions to Conditional Branches.  
+Finally, Added Control Self Variables to the Event Command List!  
+- `qml\Singleton\One_SelfVariableNaming.qml` has a modifiable array for its naming scheme, either using numbers (EX: 0, 1, 2, 3...) or words (EX: "Zero", "One", "Two", "Three"...).  
+- You can also increase/decrease the amount of self variables per event available to you in that array.  
+
+All `Constants` from `Constants.qml` have been moved to separate files in `qml\Singleton\One_X.qml` (Where X is related to what the file does) to make updating user friendly, so your configurable settings aren't overwritten every update.  
+
+### Changed Files:
+Added:  
+- qml\Event\EventCommands\EventCommand111.qml  
+- qml\Event\EventCommands\EventCommand357.qml  
+- qml\Event\EventCommandTexts.qml  
+- qml\Event\Group_SelfVariableRange.qml
+- qml\Event\Tab_ConditionalBranch1.qml  
+- qml\Singleton\One_EventCommandSelectPage.qml
+- qml\Singleton\One_SelectAllOnFocus.qml
+- qml\Singleton\One_SelfVariableNamingScheme.qml
+- qml\Singleton\One_WindowSizes.qml
+- qml\Singleton\qmldir
+
+Changed:  
+Every single file was changed.  
+
+### NOTE:
+Because every single file was changed, I recommend **deleting** the `_hijack_root` folder in your RPGMaker MV directory (Make sure to backup any custom window sizes you have in `Constants.qml`!!!).  
+Moving Forward, I will try to add a "Updaing from Previous Update" package each release after this one, which will only include the added/changed files from the previous release.  
+
 ## Version 1.0.3  
 Added Variable Operator selection for Event Page Conditions.  
 Added Script Command to Event Page Conditions **(NOTE: You should really only use this if you know what you are doing!)**  

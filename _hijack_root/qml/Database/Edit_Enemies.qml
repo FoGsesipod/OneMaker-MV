@@ -167,15 +167,15 @@ ControlsRow {
                 }
             }
         }
-        //Group_ActionPatterns {    // Removed because its unused for OMORI
-        //}                         // Removed because its unused for OMORI
+        //Group_ActionPatterns {    // [OneMaker MV] - Removed because its unused for OMORI
+        //}                         // [OneMaker MV] - Removed because its unused for OMORI
     }
     GroupBoxColumn {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: Constants.groupNoteDatabaseWidth // Group Note Width and Position Changed
-            x: Constants.groupNoteDatabaseX // Group Note Width and Position Changed
+            itemWidth: WindowSizes.groupNoteDatabaseWidth // [OneMaker MV] - Group Note Width and Position Changed
+            x: WindowSizes.groupNoteDatabaseX // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

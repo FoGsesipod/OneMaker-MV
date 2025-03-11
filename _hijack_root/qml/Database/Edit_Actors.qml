@@ -110,7 +110,7 @@ ControlsRow {
                     title: equipGroup.title
                     hint: equipGroup.hint
                     width: 390
-                    height: 206 + Constants.windowDefaultHeightIncrease // Window Increased
+                    height: 206 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
                 }
             }
         }

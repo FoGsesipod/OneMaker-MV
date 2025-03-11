@@ -93,22 +93,22 @@ ScrollView {
                 width: body.width / scale
                 height: body.height / scale
                 scale: body.tileScale
-                visible: true // Hardcode enable showing parallax, since you can just change parallax to none to display none.
-                z: -2 // Reduce to -2 so it appears before Tiled Maps
+                visible: true // [OneMaker MV] - Hardcode enable showing parallax, since you can just change parallax to none to display none.
+                z: -2 // [OneMaker MV] - Reduce to -2 so it appears before Tiled Maps
             }
 
-            // Grab map images from the output folder of OMORI Map Renderer.
+            // [OneMaker MV] - Grab map images from the output folder of OMORI Map Renderer.
             Image {
                 property string imageName: "map" + DataManager.makeIdText(root.mapId, 2)
                 property string folder: DataManager.projectUrl + "render"
                 source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : ""
-                fillMode: Image.Stretch // Changed to Stretch to help prevent crashing with very large maps
+                fillMode: Image.Stretch // [OneMaker MV] - Changed to Stretch to help prevent crashing with very large maps
                 x: (body.width - width) / 2
                 y: (body.height - height) / 2
                 width: body.width / scale
                 height: body.height / scale
                 scale: body.tileScale
-                visible: root.parallaxShow // Change Show In Editor option to apply to Tiled Maps.
+                visible: root.parallaxShow // [OneMaker MV] - Change Show In Editor option to apply to Tiled Maps.
                 z: -1
             }
 

@@ -156,8 +156,8 @@ ModalWindow {
                             }
                             ObjCheckBox {
                                 member: "parallaxShow"
-                                text: qsTr("Show Tiled Maps") // Changed to account for tiled map viewing.
-                                hint: qsTr("Displays map images located in the playtest/scaled/ folder.\nFollowing a mapX.png format, where X is the id of the map you are viewing.") // Changed to account for tiled map viewing.
+                                text: qsTr("Show Tiled Maps") // [OneMaker MV] - Changed to account for tiled map viewing.
+                                hint: qsTr("Displays map images located in the playtest/scaled/ folder.\nFollowing a mapX.png format, where X is the id of the map you are viewing.") // [OneMaker MV] - Changed to account for tiled map viewing.
                             }
                         }
                         height: 243

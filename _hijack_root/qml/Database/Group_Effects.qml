@@ -31,19 +31,19 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 320 + Constants.windowDefaultWidthIncrease // Window Increased
+            width: 320 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
             height: 179
             dragDrop: true
 
             ListBoxColumn {
                 title: qsTr("Type")
                 role: "type"
-                width: 124 + Constants.groupEffectsListBoxWidth // Window Increased
+                width: 124 + WindowSizes.groupEffectsListBoxWidth // [OneMaker MV] - Window Increased
             }
             ListBoxColumn {
                 title: qsTr("Content")
                 role: "content"
-                width: 178 + Constants.windowAlternativeWidthIncrease // Window Increased
+                width: 178 + WindowSizes.alternativeWidthIncrease // [OneMaker MV] - Window Increased
             }
 
             function editItem(data) {

@@ -1,0 +1,14 @@
+singleton AudioPlayer AudioPlayer.qml
+singleton Clipboard Clipboard.qml
+singleton Constants Constants.qml
+singleton DataManager DataManager.qml
+singleton EventCommands EventCommands.qml
+singleton MovementCommands MovementCommands.qml
+singleton PluginParser PluginParser.qml
+singleton SettingsManager SettingsManager.qml
+singleton AppendSettings AppendSettings.qml
+singleton WindowSizes One_WindowSizes.qml
+singleton EventCommandSelectPage One_EventCommandSelectPage.qml
+singleton EventPageConditionOperators One_EventPageConditionOperators.qml
+singleton SelectAllOnFocus One_SelectAllOnFocus.qml
+singleton SelfVariableNamingScheme One_SelfVariableNamingScheme.qml
