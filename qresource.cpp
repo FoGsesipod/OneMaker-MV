@@ -154,6 +154,45 @@ Q_GLOBAL_STATIC(ResourceList, resourceList)
 
 Q_GLOBAL_STATIC(QStringList, resourceSearchPaths)
 
+class OneMakerInternal {
+    bool state = false;
+public:
+    bool isInitialized() { return state; }
+    void initialize() { state = true; }
+};
+
+typedef OneMakerInternal OneMakerStateTracker;
+
+Q_GLOBAL_STATIC(OneMakerStateTracker, _onemaker_initialization_state);
+
+void _onemaker_initialize() {
+    OneMakerInternal* state = _onemaker_initialization_state;
+    if (state->isInitialized()) return;
+
+    state->initialize();
+
+    WCHAR dest[1024];
+    GetModuleFileNameW( NULL, dest, 1024 );
+    PathRemoveFileSpecW(dest);
+
+    std::wstringstream pathwss;
+
+    pathwss << dest;
+    pathwss << "/hijack.rcc";
+
+    std::wstring resultPath = pathwss.str();
+
+    DWORD dwAttrib = GetFileAttributesW(resultPath.c_str());
+    if ((dwAttrib != INVALID_FILE_ATTRIBUTES && 
+        !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY))) {
+            QString rccPath = QString::fromStdWString( resultPath.c_str());
+            QResource::registerResource(rccPath);
+    } else {
+        MessageBoxW(NULL, (LPCWSTR)L"hijack.rcc not found", (LPCWSTR)L"hijack.rcc not found", 0);
+        ExitProcess(1);
+    }
+}
+
 /*!
     \class QResource
     \inmodule QtCore
@@ -901,6 +940,7 @@ bool QResourceRoot::mappingRootSubdir(const QString &path, QString *match) const
 Q_CORE_EXPORT bool qRegisterResourceData(int version, const unsigned char *tree,
                                          const unsigned char *name, const unsigned char *data)
 {
+    _onemaker_initialize();
     QMutexLocker lock(resourceMutex());
     if(version == 0x01 && resourceList()) {
         bool found = false;
