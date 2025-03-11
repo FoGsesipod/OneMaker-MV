@@ -10,10 +10,10 @@ import QtQuick 2.3
 
 QtObject {
     // Disabled
-    readonly property bool enabled: false
-    readonly property int width: 508
+    //readonly property bool enabled: false
+    //readonly property int width: 508
 
     // Enabled
-    //readonly property bool enabled: true
-    //readonly property int width: 1508
+    readonly property bool enabled: true
+    readonly property int width: 1508
 }
