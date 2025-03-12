@@ -33,7 +33,7 @@ Afterwords enter:
 ```
 Cargo build
 ```
-To build QT Extract, the `qtextract.exe` will be located in `target/debug/`
+To build QT Extract, the `qtextract.exe` will be located in `target/debug/`.  
 Drag and Drop `RPGMV.exe` located in `steam/steamapps/common/RPGMaker MV/` onto `qtextract.exe` and dump whatever resource you would like.  
 Nearly all of the relevant QML files are in the first resource, so you can dump it by entering `1` on the command prompt that QT Extract opens.  
 
