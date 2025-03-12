@@ -1,4 +1,25 @@
 # Changelog
+## Version 1.0.5
+Added the ability to disable OMORI specific changes so OneMaker-MV can be used for other projects, without losing or breaking features.  
+Added Self Variable operand for Control Variables and Control Self Variables.  
+Upgraded Self Variable display in event to this format: `#X Name` where `X` is the id and `Name` is the name defined in `One_SelfVariableNamingScheme.qml`.  
+- This is for preperation sake mostly, if figuring out how to assign per-event Self Variable names is ever made apparent. 
+
+Added a method to get console.log data for help with development.  
+
+### Changed Files
+Added:
+- qml\Event\Group_Operand.qml
+- qml\Singletons\One_WorkingMode.qml
+
+Modified:
+- qml\Controls\FaceImageBox.qml
+- qml\Database\Edit_Enemies.qml
+- qml\Event\EventCommandTexts.qml
+- qml\Event\Group_SelfVariableRange.qml
+- qml\Singletons\One_WindowSizes.qml Note: This file only changed the `Default` constants, the `Upgrading from 1.0.4` zip does not include these changes.
+- qml\Singletons\qmldir
+
 ## Version 1.0.4
 Fixed an oversight with operators in if conditions (Thanks SoundofSpouting).  
 Injector improved to inject a new resource file, which will contain dummy files for the hijacker to replace (💕 Rph).  

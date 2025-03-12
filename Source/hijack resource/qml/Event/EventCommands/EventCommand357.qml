@@ -1,0 +1,1 @@
+/* This is a dummy file that will be overwritten by `_hijack_root` */

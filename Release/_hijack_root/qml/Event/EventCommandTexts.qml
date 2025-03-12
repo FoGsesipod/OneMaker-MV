@@ -90,21 +90,24 @@ QtObject {
         return rangeText(id1, id2, DataManager.variableName(id1));
     }
 
+    // [OneMaker MV] - altRangeText added
     function altRangeText(id1, id2, name1) {
-        if (id1 === id2) {
+        var idText1 = DataManager.makeIdText(id1, 1);
+        var idText2 = DataManager.makeIdText(id2, 1);
+        if (idText1 === idText2) {
             if (name1.length) {
-                return id1;
+                return "#" + idText1 + " " + name1;
             } else {
-                return id1;
+                return "#" + idText1;
             }
         } else {
-            return "#" + id1 + ".." + id2;
+            return "#" + idText1 + ".." + idText2;
         }
     }
 
     // [OneMaker MV] - selfVariableRange added
     function selfVariableRange(id1, id2) {
-        return altRangeText(id1, id2, qsTr("Self Variable") + " " + id1);
+        return altRangeText(id1, id2, SelfVariableNamingScheme.namingScheme[id1]);
     }
 
     function optionText(text) {
@@ -437,7 +440,7 @@ QtObject {
             break;
         // [OneMaker MV] - Case 14 added, Self Variables
         case 14:
-            text += qsTr("Self Variable") + " " + params[1] + " ";
+            text += qsTr("Self Variable") + " #" + params[1] + " " + SelfVariableNamingScheme.namingScheme[params[1]] + " ";
             text += Constants.variableConditionOperator(params[4]) + " ";
             if (params[2] === 0) {
                 text += params[3]
@@ -497,6 +500,8 @@ QtObject {
         case 4:     // Script
             text += params[4];
             break;
+        case 5:
+            text += "#" + params[4] + " " + SelfVariableNamingScheme.namingScheme[params[4]]
         }
         return text;
     }
@@ -530,7 +535,7 @@ QtObject {
             text += params[4];
             break;
         case 5: // Self Variable
-            text += qsTr("Self Variable") + " " + params[4];
+            text += "#" + params[4] + " " + SelfVariableNamingScheme.namingScheme[params[4]];
             break;
         }
         return text;

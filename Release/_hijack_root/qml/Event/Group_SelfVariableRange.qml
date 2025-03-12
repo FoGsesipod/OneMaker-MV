@@ -59,8 +59,8 @@ GroupBox {
                 title: radioButton2.title
                 hint: radioButton2.hint
                 enabled: radioButton2.checked
-                minimumValue: 1
-                maximumValue: 10
+                minimumValue: 0
+                maximumValue: 9
             }
             Label {
                 text: "~"
@@ -74,8 +74,8 @@ GroupBox {
                 title: radioButton2.title
                 hint: radioButton2.hint
                 enabled: radioButton2.checked
-                minimumValue: 1
-                maximumValue: 10
+                minimumValue: 0
+                maximumValue: 9
             }
         }
     }

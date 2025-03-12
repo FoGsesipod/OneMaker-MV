@@ -12,3 +12,4 @@ singleton EventCommandSelectPage One_EventCommandSelectPage.qml
 singleton EventPageConditionOperators One_EventPageConditionOperators.qml
 singleton SelectAllOnFocus One_SelectAllOnFocus.qml
 singleton SelfVariableNamingScheme One_SelfVariableNamingScheme.qml
+singleton WorkingMode One_WorkingMode.qml

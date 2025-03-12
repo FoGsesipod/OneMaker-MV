@@ -4,18 +4,21 @@ import "../BasicControls"
 import "../BasicLayouts"
 import "../ObjControls"
 import "../Dialogs"
+import "../Singletons"
 
 ObjImageBox {
     id: root
 
+    readonly property bool savedBool: WorkingMode.expectedContext
+
     subFolder: "faces"
     imageScale: 2/3
-    fixedFrameWidth: 106 // [OneMaker MV] - Changed from 144
-    fixedFrameHeight: 106 // [OneMaker MV] - Changed from 144
+    fixedFrameWidth: savedBool ? 106 : 144 // [OneMaker MV] - Changed to account for Working Mode
+    fixedFrameHeight: savedBool ? 106 : 144 // [OneMaker MV] - Changed to account for Working Mode
     fixedMaxColumns: 4
     itemWidth: 104
     itemHeight: 104
 
     framePosition: Qt.point(imageIndex % 4, Math.floor(imageIndex / 4))
-    frameSize: Qt.size(106, 106) // [OneMaker MV] - Changed from (144, 144) 
+    frameSize: Qt.size(savedBool ? 106 : 144, savedBool ? 106 : 144) // [OneMaker MV] - Changed to account for Working Mode
 }

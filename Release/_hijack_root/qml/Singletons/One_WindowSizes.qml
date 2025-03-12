@@ -37,7 +37,7 @@ QtObject {
 
     // Default  Constants
     //readonly property int defaultWidthIncrease: 0
-    //readonly property int defaultHeightIncrease: 0
+    //readonly property int defaultHeightIncrease: 100 // Default size is actually 0, but with the addition of Self Variable and Script Event Page Conditions an increase of width by 100 is required so no elements are clipping.
     //readonly property int alternativeWidthIncrease: 0
     //readonly property int alternativeHeightIncrease: 0
     //readonly property int groupAnimationTimingsListBoxWidth: 282
