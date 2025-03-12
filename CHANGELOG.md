@@ -5,12 +5,15 @@ Added Self Variable operand for Control Variables and Control Self Variables.
 Upgraded Self Variable display in event to this format: `#X Name` where `X` is the id and `Name` is the name defined in `One_SelfVariableNamingScheme.qml`.  
 - This is for preperation sake mostly, if figuring out how to assign per-event Self Variable names is ever made apparent. 
 
-Added a method to get console.log data for help with development.  
+Added a method to get console.log data for help with development. This `Console.log` file will appear next to `RPGMV.exe`.  
 
 ### Changed Files
 Added:
 - qml\Event\Group_Operand.qml
 - qml\Singletons\One_WorkingMode.qml
+- qml\Main\MainWindow.qml
+- qml\\_OneMakerMV\One_CustomLogger.qml
+- qml\\_OneMakerMV\qmldir
 
 Modified:
 - qml\Controls\FaceImageBox.qml
