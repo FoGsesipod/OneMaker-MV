@@ -22,6 +22,7 @@ Modified:
 - qml\Event\Group_SelfVariableRange.qml
 - qml\Singletons\One_WindowSizes.qml Note: This file only changed the `Default` constants, the `Upgrading from 1.0.4` zip does not include these changes.
 - qml\Singletons\qmldir
+- hijack.rcc
 
 ## Version 1.0.4
 Fixed an oversight with operators in if conditions (Thanks SoundofSpouting).  
