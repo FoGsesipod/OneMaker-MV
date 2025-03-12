@@ -2,7 +2,6 @@
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
 However, you can use this in other RPGMaker MV Projects, set `expectedContext` to `false` in `_hijack_root/qml/Singletons/One_WorkingMode.qml`.  
 HUGE Thanks to Rph and Draught!  
-Linux compatibility thanks to SoundOfSpouting!
 
 ## Features:
 Resizable window sizes, such as the Database and Event Viewer.  
