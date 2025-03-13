@@ -64,14 +64,15 @@ Followed with:
 ```
 cd qt-5
 ```
-Finally run:
+This command prompt is now ready to handle QT Environment commands.  
+For first time installation, run:  
 ```
 configure -release -nomake examples -nomake qtwebkit -nomake qtwebengine -opensource
 ```
 And accept the license (`Y`).  
 Then replace `qresource.cpp` from this repositroy into `C:\QT\QT-5\qtbase\src\corelib\io\`.  
 
-Then you can run `nmake` when inside a QT Environment cmd to compile QT, for this project we only need to compile `QT5Core.dll`, which shouldn't take too much time.  
+Then you can run `nmake` when inside a QT Environment cmd (See the commands above) to compile QT, for this project we only need to compile `QT5Core.dll`, which shouldn't take too much time.  
 The `QT5Core.dll` should appear in `C:/QT/qt-5/qtbase/bin/`.  
 (These instructions are based off of the instructions [here](https://doc.qt.io/archives/qt-5.5/windows-building.html)).  
 
