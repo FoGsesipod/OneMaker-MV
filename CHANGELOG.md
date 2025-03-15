@@ -1,4 +1,13 @@
 # Changelog
+## Version 1.0.6
+Fixed Self Variable Event Page Conditions from not actually working if you just enabled them then set a value.  
+Expanded the loggers code.  
+
+### Changed Files
+Modified:
+- qml\\_OneMakerMV\One_CustomLogger.qml
+- qml\Event\Group_EventConditions.qml
+
 ## Version 1.0.5
 Added the ability to disable OMORI specific changes so OneMaker-MV can be used for other projects, without losing or breaking features.  
 Added Self Variable operand for Control Variables and Control Self Variables.  

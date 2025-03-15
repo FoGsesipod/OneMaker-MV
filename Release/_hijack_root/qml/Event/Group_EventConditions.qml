@@ -121,6 +121,15 @@ GroupBox {
                 hint: qsTr("")
                 width: root.checkBoxWidth
                 height: root.itemHeight
+
+                onCheckedChanged: {
+                    if (!dataObject.hasOwnProperty("conditions.selfVariableId")) {
+                        DataManager.setObjectValue(dataObject, "conditions.selfVariableId", 0);
+                    }
+                    if (!dataObject.hasOwnProperty("conditions.selfVariableOperator")) {
+                        DataManager.setObjectValue(dataObject, "conditions.selfVariableOperator", 0);
+                    }
+                }
             }
             ControlsColumn {
                 enabled: checkBox7.checked
