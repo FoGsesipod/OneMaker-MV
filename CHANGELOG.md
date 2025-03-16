@@ -1,4 +1,40 @@
 # Changelog
+## Version 1.0.7
+Made ShowText preview use the OMORI_GAME2 font.  
+Allowed modification of the maximun level of Actors and Classes database tab, and the Change Level Event Command (See One_MaxLevel.qml).  
+Added infrastucture for changing the icons/images the editor uses (See One_UserImageSelection.qml).  
+Currently available icon packes:  
+- Default
+- MZ
+- Koffin's Pack
+
+### Changed Files
+Added:  
+- qml\BasicControls\FontManager.js  
+- qml\BasicControls\Palette.qml  
+- qml\BasicControls\MessageBox.qml  
+- qml\BasicControls\MessageBoxWithUrl.qml  
+- qml\BasicControls\ToolButton.qml  
+- qml\Controls\FileListBox.qml  
+- qml\Dialogs\Dialog_ParameterCurves.qml
+- qml\Events\EventCommands\EventCommand316.qml  
+- qml\Events\EventCommands\EventCommand357.qml
+- qml\Images\\**
+- qml\Event\Canvas_TextPreview.qml
+- qml\Fonts\OMORI_GAME2.tff
+- qml\Main\MainMenu.qml
+- qml\Map\MapSelectTreeBox.qml
+- qml\Singletons\One_UserImageSelection.qml
+- qml\Singletons\One_MaxLevel.qml 
+- qml\\_OneMakeMV\One_ImagePack.qml
+
+Modified:
+- qml\Singletons\One_WorkingMode.qml // This file will not be included in the Upgrade Package.  
+- qml\Database\Edit_Actors.qml  
+- qml\Singletons\qmldir
+- qm\\_OneMakerMV\qmldir
+
+
 ## Version 1.0.6
 Fixed Self Variable Event Page Conditions from not actually working if you just enabled them then set a value.  
 Expanded the loggers code.  

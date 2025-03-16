@@ -32,14 +32,17 @@ QtObject {
         if (typeof message === "object") {
             output = JSON.stringify(message);
         }
+        else if (!message) {
+            output = "Log Returned No Data";
+        }
         else if (object) {
             output = message + JSON.stringify(object);
         };
         
         if (data.length) {
-            data += "\n" + time + " " + output;
+            data += "\n" + time + " - " + output;
         } else {
-            data = time + " " + output;
+            data = time + " - " + output;
         };
         
         TkoolAPI.writeFile(path, data);

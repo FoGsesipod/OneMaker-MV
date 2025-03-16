@@ -10,9 +10,10 @@
  * A list of features that are changed that may harm functionality for projects other 
  * than OMORI:
  * - Show Text portrait size is reduced to 106x106, instead of 144x144.
+ * - Show Text preview font was changed to use the OMORI font.
  * - Actions Patterns is completely removed from Enemies in the database.
  *
- * To disable these changes, set `workingMode` to false.
+ * To disable these changes, set `expectedContext` to false.
 */
 //======================================================================================
 pragma Singleton

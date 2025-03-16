@@ -1,1 +1,2 @@
 singleton Logger One_CustomLogger.qml
+singleton ImagePack One_ImagePack.qml

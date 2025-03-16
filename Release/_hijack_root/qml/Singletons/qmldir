@@ -13,3 +13,5 @@ singleton EventPageConditionOperators One_EventPageConditionOperators.qml
 singleton SelectAllOnFocus One_SelectAllOnFocus.qml
 singleton SelfVariableNamingScheme One_SelfVariableNamingScheme.qml
 singleton WorkingMode One_WorkingMode.qml
+singleton UserImageSelection One_UserImageSelection.qml
+singleton MaxLevel One_MaxLevel.qml

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
     <file>qml/Event/EventCommands/EventCommand357.qml</file>
+    <file>qml/_OneMakerMV/qmldir</file>
   </qresource>
 </RCC>

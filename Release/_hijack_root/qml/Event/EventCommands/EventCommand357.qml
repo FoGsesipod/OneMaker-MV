@@ -8,6 +8,7 @@ import "../../Layouts"
 import "../../ObjControls"
 import "../../Singletons"
 
+// Self Variables
 EventCommandBase {
     Group_SelfVariableRange {
         id: rangeGroup
