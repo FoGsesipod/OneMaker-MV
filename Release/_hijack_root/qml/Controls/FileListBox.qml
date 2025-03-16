@@ -130,9 +130,7 @@ ListBox {
                 anchors.right: parent ? parent.right : undefined
                 anchors.rightMargin: 2
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                source: ImagePack.obtainImagePack() + "warning.png" // [OneMaker MV] - Obtain Image Pack
-                sourceSize.width: ImagePack.obtainImageSizes()[0] // [OneMaker MV] - Obtain Image Sizes
-                sourceSize.height: ImagePack.obtainImageSizes()[1] // [OneMaker MV] - Obtain Image Sizes
+                source: ImagePack.obtainImagePack() + "warning.png" // [OneMaker MV] - Obtain Image Pack, Obtaining Image Size is unnecessary here.
             }
 
             MouseArea {

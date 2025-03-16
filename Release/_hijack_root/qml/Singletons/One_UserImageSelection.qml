@@ -14,5 +14,5 @@ pragma Singleton
 import QtQuick 2.3
 
 QtObject {
-    readonly property string userSelection: "MZ"
+    readonly property string userSelection: "Default"
 }

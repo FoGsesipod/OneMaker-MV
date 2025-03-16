@@ -34,7 +34,6 @@ Modified:
 - qml\Singletons\qmldir
 - qm\\_OneMakerMV\qmldir
 
-
 ## Version 1.0.6
 Fixed Self Variable Event Page Conditions from not actually working if you just enabled them then set a value.  
 Expanded the loggers code.  
