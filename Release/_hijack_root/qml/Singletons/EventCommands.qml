@@ -127,6 +127,7 @@ QtObject {
         355: [ "indigo",     1, qsTr("Script") ],
         655: [ "indigo",     2, qsTr("Script") ],
         356: [ "indigo",     1, qsTr("Plugin Command") ],
+        1356:[ "indigo",     1, qsTr("Yaml Selector") ], // [OneMaker MV] - Added Yaml Selector
         999: [ "gray",       0, qsTr("Undefined Command") ]
     }
 

@@ -15,3 +15,4 @@ singleton SelfVariableNamingScheme One_SelfVariableNamingScheme.qml
 singleton WorkingMode One_WorkingMode.qml
 singleton UserImageSelection One_UserImageSelection.qml
 singleton MaxLevel One_MaxLevel.qml
+singleton YamlIdentifiers One_YamlIdentifiers.qml

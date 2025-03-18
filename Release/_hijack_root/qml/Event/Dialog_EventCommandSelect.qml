@@ -154,7 +154,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Advanced")
-                            codeList: [355, 356]
+                            codeList: [355, 356, 1356] // [OneMaker MV] - Added Yaml Selector
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -262,7 +262,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Advanced")
-                            codeList: [355, 356]
+                            codeList: [355, 356, 1356] // [OneMaker MV] - Added Yaml Selector
                             onTriggered: dialogBox.triggered(code)
                         }
                     }

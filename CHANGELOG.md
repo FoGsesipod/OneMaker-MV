@@ -1,4 +1,31 @@
 # Changelog
+## Version 1.0.8
+Added a Yaml Message Selector, to automate and or maybe make adding ShowMessage/AddChoice/ShowChoices plugin commands faster.  
+Added the Krypt Image Pack.  
+Modified audio pitch to go as low as 10% and as high as 200%.  
+Increased the maximun trait parameter to 10k.  
+
+### Changed Files
+Added:
+- qml\Controls\YamlFileListBox.qml
+- qml\Dialogs\Dialog_YamlSelector.qml
+- qml\Event\EventCommandBase.qml
+- qml\Event\Event\Dialog_EventCommandSelect.qml
+- qml\Event\EventCommands\EventCommand1356.qml
+- qml\ObjControls\ObjYamlEllipsisBox.qml
+- qml\Singletons\One_YamlIdentifiers.qml
+- qml\Images\Krypt\\*
+- qml\Layouts\Layout_AudioSelector.qml
+- qml\Layouts\Layout_TraitEdit.qml
+
+Modified:
+- qml\Event\Dialog_EventCommandSelect.qml
+- qml\Singletons\EventCommands.qml
+- qml\Singletons\qmldir
+- qml\\_OneMakerMV\One_ImagePack.qml
+- qml\Event\EventCommandBase.qml
+- hijack.rcc
+
 ## Version 1.0.7
 Made ShowText preview use the OMORI_GAME2 font.  
 Allowed modification of the maximun level of Actors and Classes database tab, and the Change Level Event Command (See One_MaxLevel.qml).  

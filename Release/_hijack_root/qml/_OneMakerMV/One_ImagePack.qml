@@ -12,8 +12,8 @@ import QtQuick 2.3
 import "../Singletons"
 
 QtObject {
-    property string imagePack
-    property var imageSize
+    property string imagePack: ""
+    property var imageSize: []
 
     function obtainImagePack() {
         switch (UserImageSelection.userSelection) {
@@ -23,11 +23,11 @@ QtObject {
             case "MZ":
                 imagePack = "../Images/MZ/";
                 break;
-            //case "Saffron":
-            //    imagePack = "../Images/Saffron/";
-            //    break;
             case "Koffin":
                 imagePack = "../Images/Koffin/";
+                break;
+            case "Krypt":
+                imagePack = "../Images/Krypt/";
                 break;
             default:
                 imagePack = "../Images/";
@@ -45,10 +45,10 @@ QtObject {
             case "MZ":
                 imageSize = [38, 38];
                 break;
-            //case "Saffron":
-            //    imageSize = [0, 0];
-            //    break;
             case "Koffin":
+                imageSize = [40, 40];
+                break;
+            case "Krypt":
                 imageSize = [40, 40];
                 break;
             default:
