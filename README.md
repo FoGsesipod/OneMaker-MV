@@ -42,7 +42,7 @@ Note: QT Extract places its files one level lower then they actually should be.
 So the ressources from the first resource bundle will output to `qml/qml/` when the actual resource path is only `qml/`.  
 
 ## To Build QT5Core.dll Yourself
-Requirements: [Visual Stuido 2013](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
+Requirements: [Visual Studio 2013](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
 Clone [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip).  
 First extract QT 5.4.2 to `C:/QT/qt-5/`.  
 Create a new file named `QT_Environment.cmd` and stick the following text into it:  
