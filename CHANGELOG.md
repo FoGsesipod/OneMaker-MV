@@ -15,10 +15,12 @@ You can enable this setting by:
 ### Windows 11:
 Open Settings, go to `System`, click the `For Developers` tab, open the `PowerShell` dropdown and enable: `Change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.`  
 
+![Execution Policy Windows 11](https://github.com/user-attachments/assets/97a32c99-ffa3-4477-8e87-23adf5ed5853)
+
 ### Windows 10:
 Open Settings, go to `Update & Security`, click the `For Developers` page, check `Change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.`  
 
-![Execution Policy](https://github.com/user-attachments/assets/97a32c99-ffa3-4477-8e87-23adf5ed5853)
+![Execution Policy Windows 10](https://github.com/user-attachments/assets/0a9faa21-f9f1-44e1-bb96-c18bc8e4ae2c)
 
 ### Changed FIles
 - Almost Every Single File Was Changed
