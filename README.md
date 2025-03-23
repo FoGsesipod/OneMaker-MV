@@ -14,7 +14,10 @@ Comments and Script Commands can now have way more lines.
 And other smaller improvements.  
 
 ## To Install:
-Place the contents of OneMaker-MV.7z into the `steam/steamapps/common/RPGMaker MV/` folder.  
+Run the OneMaker MV Installer.ps1 file, make sure you have PowerShell unsigned scripts enabled.  
+
+For Manual Installaton:  
+Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
 There is user configurable settings located in the `One_X.qml` files (Where X is related to what the file is for). These files are located in `_hijack_root/qml/Singletons/`.  
 
 ## Tiled Map Display:
