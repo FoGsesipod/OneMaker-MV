@@ -18,6 +18,8 @@ Open Settings, go to `System`, click the `For Developers` tab, open the `PowerSh
 ### Windows 10:
 Open Settings, go to `Update & Security`, click the `For Developers` page, check `Change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.`  
 
+![Execution Policy](https://github.com/user-attachments/assets/97a32c99-ffa3-4477-8e87-23adf5ed5853)
+
 ### Changed FIles
 - Almost Every Single File Was Changed
 
