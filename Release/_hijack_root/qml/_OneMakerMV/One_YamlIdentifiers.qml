@@ -16,6 +16,6 @@ import QtQuick 2.4
 
 QtObject {
     readonly property var ignoreIdentifiers: [
-        "#", "faceset", "faceindex", "extrafaces", "windowskin", "bust", "okegomrapefetish"
+        "faceset", "faceindex", "extrafaces", "windowskin", "bust", "okegomrapefetish"
     ]
 }

@@ -153,6 +153,7 @@ GroupBox {
             }
         }
 
+        // [OneMaker MV] - Self Variable Operand
         ControlsRow {
             visible: root.full
             RadioButton {
@@ -169,7 +170,7 @@ GroupBox {
                 title: radioButton6.title
                 hint: radioButton6.hint
                 enabled: radioButton6.checked
-                model: SelfVariableNamingScheme.namingScheme
+                model: OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")
                 itemWidth: 90
                 labelVisible: false
             }

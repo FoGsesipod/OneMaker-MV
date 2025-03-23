@@ -23,13 +23,13 @@ GroupBox {
                 title: qsTr("Type")
                 hint: qsTr("Type of damage.")
                 model: [ qsTr("None"), qsTr("HP Damage"), qsTr("MP Damage"), qsTr("HP Recover"), qsTr("MP Recover"), qsTr("HP Drain"), qsTr("MP Drain") ]
-                itemWidth: 155 + WindowSizes.alternativeWidthIncrease // [OneMaker MV] - Window Increased
+                itemWidth: 155 + OneMakerMVSettings.getSetting("windowSizes", "alternativeWidthIncrease") // [OneMaker MV] - Window Increased
             }
             ObjSelectBox {
                 member: "damage.elementId"
                 title: qsTr("Element")
                 hint: qsTr("Element of the damage. Final damage varies depending on the target's resistance to the element in question.")
-                itemWidth: 155 + WindowSizes.alternativeWidthIncrease // [OneMaker MV] - Window Increased
+                itemWidth: 155 + OneMakerMVSettings.getSetting("windowSizes", "alternativeWidthIncrease") // [OneMaker MV] - Window Increased
                 dataSetName: "system"
                 systemDataName: "elements"
                 includeZero: true
@@ -43,7 +43,7 @@ GroupBox {
                 title: qsTr("Formula")
                 hint: qsTr("Formula for calculating basic damage. The user is expressed by a and the target by b, and then either one is followed by a dot to enable the referencing of the statuses shown hereafter. For example, \"a.atk\" stands for user's attack power.")
                 hintComponent: paramHintTable
-                itemWidth: 320 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                itemWidth: 320 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
                 enabled: damageTypeValid
 
                 contextMenu: TextEditPopupMenu {

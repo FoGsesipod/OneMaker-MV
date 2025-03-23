@@ -9,7 +9,7 @@ import "../Singletons"
 ObjImageBox {
     id: root
 
-    readonly property bool savedBool: WorkingMode.expectedContext
+    readonly property bool savedBool: OneMakerMVSettings.getSetting("workingMode", "expectedContext")
 
     subFolder: "faces"
     imageScale: 2/3

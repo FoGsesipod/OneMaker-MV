@@ -100,7 +100,7 @@ ModalWindow {
             title: qsTr("Plugin List")
             hint: qsTr("Components that extend the standard game system.")
             width: 760
-            height: 542 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
+            height: 542 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
             object: null
             member: "plugins"
             dragDrop: true

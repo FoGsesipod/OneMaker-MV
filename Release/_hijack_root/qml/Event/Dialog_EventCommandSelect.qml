@@ -43,9 +43,9 @@ ModalWindow {
 
         TabView {
             id: tabView
-            width: EventCommandSelectPage.width // [OneMaker MV] - Changed to use Constants width
+            width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
             height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
-            visible: !EventCommandSelectPage.enabled // [OneMaker MV] - Added visibility based on Constants
+            visible: !OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             Tab {
                 title: " 1 "
@@ -154,7 +154,22 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Advanced")
-                            codeList: [355, 356, 1356] // [OneMaker MV] - Added Yaml Selector
+                            codeList: [355, 356]
+                            onTriggered: dialogBox.triggered(code)
+                        }
+                    }
+                }
+            }
+            // [OneMaker MV] - Added new Tab for custom commands
+            Tab {
+                title: " 4 "
+                GroupBoxRow {
+                    anchors.fill: parent
+                    anchors.margins: 8
+                    GroupBoxColumn {
+                        EventCommandGroup {
+                            title: qsTr("Custom Advanced")
+                            codeList: [1001, 1002, 1003]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -164,9 +179,9 @@ ModalWindow {
 
         TabView {
             id: tabView1
-            width: EventCommandSelectPage.width // [OneMaker MV] - Changed to use Constants width
+            width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
             height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
-            visible: EventCommandSelectPage.enabled // [OneMaker MV] - Added visibility based on Constants
+            visible: OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             // [OneMaker MV] - Removed the other Tab's and converted it into one giant tab if the Single Event Command Select Page Constant is enabled
             Tab {
@@ -262,7 +277,15 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Advanced")
-                            codeList: [355, 356, 1356] // [OneMaker MV] - Added Yaml Selector
+                            codeList: [355, 356]
+                            onTriggered: dialogBox.triggered(code)
+                        }
+                    }
+                    // [OneMaker MV] - Added new Group for custom commands
+                    GroupBoxColumn {
+                        EventCommandGroup {
+                            title: qsTr("Custom Advanced")
+                            codeList: [1001, 1002, 1003]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }

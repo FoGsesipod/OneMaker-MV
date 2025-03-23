@@ -127,8 +127,10 @@ QtObject {
         355: [ "indigo",     1, qsTr("Script") ],
         655: [ "indigo",     2, qsTr("Script") ],
         356: [ "indigo",     1, qsTr("Plugin Command") ],
-        1356:[ "indigo",     1, qsTr("Yaml Selector") ], // [OneMaker MV] - Added Yaml Selector
-        999: [ "gray",       0, qsTr("Undefined Command") ]
+        999: [ "gray",       0, qsTr("Undefined Command") ],
+        1001:[ "indigo",     1, qsTr("Yaml Selector") ], // [OneMaker MV] - Added Yaml Selector
+        1002:[ "teal",       1, qsTr("Sound Manager") ], // [OneMaker MV] - Added Sound Manager
+        1003:[ "maroon",     1, qsTr("Transfer Player Script") ] // [OneMaker MV] - Added Transfer Player Script
     }
 
     readonly property var hintTable: {
@@ -140,6 +142,7 @@ QtObject {
         121: qsTr("Turns a switch ON/OFF."),
         122: qsTr("Changes the numeric value stored in the variable."),
         123: qsTr("Turns a self switch ON/OFF. Used only on the map screen."),
+        357: qsTr("Changes the numeric value stored in a self variable."), // [OneMaker MV] - Added Self Variable hint
         124: qsTr("Starts or stops the timer."),
         111: qsTr("Creates a portion to be run only when specific conditions are met."),
         112: qsTr("Creates a portion to be run repeatedly."),
@@ -236,7 +239,10 @@ QtObject {
         339: qsTr("Forces the specified action."),
         340: qsTr("Exits the battle."),
         355: qsTr("Evaluates text as JavaScript."),
-        356: qsTr("Send a command to a plugin.")
+        356: qsTr("Send a command to a plugin."),
+        1001:qsTr("Auto-create yaml related plugin commands with a GUI."), // [OneMaker MV] - Added hint for yaml selector
+        1002:qsTr("Various sound related commands."), // [OneMaker MV] - Added Sound Manager
+        1003:qsTr("The Teleport Script with a GUI.") // [OneMaker MV] - Added Transfer Player Script
     }
 
     function get(code) {

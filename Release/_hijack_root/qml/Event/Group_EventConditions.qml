@@ -6,6 +6,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBox {
     id: root
@@ -137,7 +138,7 @@ GroupBox {
                     member: "conditions.selfVariableId"
                     title: checkBox7.title
                     hint: checkBox7.hint
-                    model: SelfVariableNamingScheme.namingScheme
+                    model: OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")
                     itemWidth: 90
                     labelVisible: false
                 }

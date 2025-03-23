@@ -91,6 +91,14 @@ Item {
     signal gamePlaytest()
     signal gameOpenFolder()
     signal helpContents()
+    // [OneMaker MV] - Add Menu Signals
+    signal oneMakerMV_EventCommandSelectPage()
+    signal oneMakerMV_MaxLimits()
+    signal oneMakerMV_ArrayNames()
+    signal oneMakerMV_ImageSelection()
+    signal oneMakerMV_WindowSizes()
+    signal oneMakerMV_WorkingMode()
+
     signal steamWindow()
     signal tutorial()
 
@@ -99,7 +107,7 @@ Item {
 
     signal launchTool(string path, string appName)
 
-    readonly property url imagePath: ImagePack.obtainImagePack() // [OneMaker MV] - Obtain Image Pack
+    readonly property url imagePath: ImagePack.selectedImagePack // [OneMaker MV] - Obtain Image Pack
 
     Settings {
         property alias editMode: root.editMode
@@ -193,6 +201,16 @@ Item {
             MenuItem { action: tutorial; visible: TutorialManager.enabled }
             MenuSeparator {}
             MenuItem { action: about }
+        }
+        // [OneMaker MV] - OneMakerMV Menu Bar
+        Menu {
+            title: qsTr("OneMaker MV")
+            MenuItem { action: oneMakerMV_EventCommandMenu }
+            MenuItem { action: oneMakerMV_MaxLimitsMenu }
+            MenuItem { action: oneMakerMV_ArrayNamesMenu }
+            MenuItem { action: oneMakerMV_ImageSelectionMenu }
+            MenuItem { action: oneMakerMV_WindowMenu }
+            MenuItem { action: oneMakerMV_WorkingModeMenu }
         }
     }
 
@@ -417,8 +435,8 @@ Item {
     function toolBarIconSource(name) {
         var map = ThemeManager.currentTheme.toolbarMap;
         if (map && map[name])
-            return ImagePack.obtainImagePack() + "toolbar/%1.png".arg(map[name]); // [OneMaker MV] - Obtain Image Pack
-        return ImagePack.obtainImagePack() + "toolbar/%1.png".arg(name); // [OneMaker MV] - Obtain Image Pack
+            return ImagePack.selectedImagePack + "toolbar/%1.png".arg(map[name]); // [OneMaker MV] - Obtain Image Pack
+        return ImagePack.selectedImagePack + "toolbar/%1.png".arg(name); // [OneMaker MV] - Obtain Image Pack
     }
 
     Action {
@@ -991,6 +1009,61 @@ Item {
         enabled: true
     }
 
+    // [OneMaker MV] - Added New Menu Actions
+    Action {
+        id: oneMakerMV_EventCommandMenu
+        text: qsTr("Open Event Command Select Settings")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_EventCommandSelectPage();
+        }
+    }
+
+    Action {
+        id: oneMakerMV_MaxLimitsMenu
+        text: qsTr("Open Max Limit Settings")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_MaxLimits()
+        }
+    }
+
+    Action {
+        id: oneMakerMV_ArrayNamesMenu
+        text: qsTr("Array Names")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_ArrayNames()
+        }
+    }
+
+    Action {
+        id: oneMakerMV_ImageSelectionMenu
+        text: qsTr("Image Selection")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_ImageSelection()
+        }
+    }
+
+    Action {
+        id: oneMakerMV_WindowMenu
+        text: qsTr("Open Window Sizing Settings")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_WindowSizes();
+        }
+    }
+
+    Action {
+        id: oneMakerMV_WorkingModeMenu
+        text: qsTr("Open Working Mode Selection")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_WorkingMode()
+        }
+    }
+
     Action {
         id: about
         // On OS X, this item will automatically appear in the Application Menu.
@@ -1043,6 +1116,8 @@ Item {
 
     Component.onCompleted: {
         if (TkoolAPI.mvToolsEnabled()) appendToolsRefresh();
+        // [OneMaker MV] - Load Default Configuration
+        OneMakerMVSettings.loadConfiguration()
     }
 
     Timer {
@@ -1120,7 +1195,7 @@ Item {
         }
         iconSource = "file:/" + iconSource;
         if (!TkoolAPI.isFileExists(iconSource)) {
-            iconSource = ImagePack.obtainImagePack() + "toolbar/tools_notfound.png"; // [OneMaker MV] - Obtain Image Pack
+            iconSource = ImagePack.selectedImagePack + "toolbar/tools_notfound.png"; // [OneMaker MV] - Obtain Image Pack
         }
 
         var qmlString = 'import "../BasicControls";' +

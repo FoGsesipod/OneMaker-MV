@@ -89,8 +89,8 @@ ControlsRow {
         Group_Effects {
         }
         Group_Note {
-            itemWidth: WindowSizes.groupNoteDatabaseWidth // [OneMaker MV] - Group Note Width and Position Changed
-            x: WindowSizes.groupNoteDatabaseX // [OneMaker MV] - Group Note Width and Position Changed
+            itemWidth: OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseWidth") // [OneMaker MV] - Group Note Width and Position Changed
+            x: OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseX") // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

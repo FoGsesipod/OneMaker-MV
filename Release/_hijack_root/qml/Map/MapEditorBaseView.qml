@@ -101,7 +101,8 @@ ScrollView {
             Image {
                 property string imageName: "map" + DataManager.makeIdText(root.mapId, 2)
                 property string folder: DataManager.projectUrl + "render"
-                source: root.mapId > 0 ? folder + "/" + encodeURIComponent(imageName) + ".png" : ""
+                property bool exists: TkoolAPI.isFileExists(folder + "/" + encodeURIComponent(imageName) + ".png")
+                source: root.mapId > 0 ? exists ? folder + "/" + encodeURIComponent(imageName) + ".png" : "" : ""
                 fillMode: Image.Stretch // [OneMaker MV] - Changed to Stretch to help prevent crashing with very large maps
                 x: (body.width - width) / 2
                 y: (body.height - height) / 2

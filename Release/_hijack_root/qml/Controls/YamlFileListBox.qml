@@ -121,7 +121,7 @@ ListBox {
                 anchors.right: parent ? parent.right : undefined
                 anchors.rightMargin: 2
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                source: ImagePack.obtainImagePack() + "warning.png"
+                source: ImagePack.selectedImagePack + "warning.png"
             }
 
             MouseArea {
@@ -182,7 +182,7 @@ ListBox {
         var baseNames = [];
         var list = [];
         var allIssues = [];
-        var atlasKeys = Object.keys(messageData);
+        var atlasKeys = typeof messageData === "object" ? Object.keys(messageData) : "";
 
         for (var i = 0; i < atlasKeys.length; i++) {
             var baseName = atlasKeys[i];

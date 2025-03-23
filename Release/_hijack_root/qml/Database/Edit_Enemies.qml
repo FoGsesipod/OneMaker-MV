@@ -58,7 +58,7 @@ ControlsRow {
                             title: Constants.mmpName
                             hint: Constants.mmpHint
                             minimumValue: 0
-                            maximumValue: 9999
+                            maximumValue: 99999 // [OneMaker MV] - Increased Maximun
                         }
                     }
                     ControlsRow {
@@ -168,15 +168,15 @@ ControlsRow {
             }
         }
         Group_ActionPatterns {
-            visible: !WorkingMode.expectedContext
+            visible: !OneMakerMVSettings.getSetting("workingMode", "expectedContext")
         }
     }
     GroupBoxColumn {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: WorkingMode.expectedContext ? WindowSizes.groupNoteDatabaseWidth : 320 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Group Note Width and Position Changed
-            x: WorkingMode.expectedContext ? WindowSizes.groupNoteDatabaseX : 0 // [OneMaker MV] - Group Note Width and Position Changed
+            itemWidth: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseWidth") : 320 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Group Note Width and Position Changed
+            x: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseX") : 0 // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

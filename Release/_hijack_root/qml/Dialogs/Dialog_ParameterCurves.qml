@@ -87,7 +87,7 @@ ModalWindow {
                                 itemWidth: 80
                                 anchors.bottom: parent.bottom
                                 minimumValue: 1
-                                maximumValue: MaxLevel.maximun // [OneMaker MV] - Change to use MaxLevel's value
+                                maximumValue: OneMakerMVSettings.getSetting("maxLevel", "maximun") // [OneMaker MV] - Change to use MaxLevel's value
                                 onValueChanged: {
                                     base.updateValueBox();
                                 }
@@ -124,7 +124,7 @@ ModalWindow {
                                     dialog.minimumValue = valueBox.minimumValue;
                                     dialog.maximumValue = valueBox.maximumValue;
                                     dialog.value1 = base.getParameterValue(1);
-                                    dialog.value2 = base.getParameterValue(99);
+                                    dialog.value2 = base.getParameterValue(OneMakerMVSettings.getSetting("maxLevel", "maximun"));
                                     dialog.growth = 10;
                                     dialog.open();
                                 }
@@ -158,7 +158,7 @@ ModalWindow {
                                 }
                             }
                             function changeLevel() {
-                                var barWidth = graphArea.canvasWidth / MaxLevel.maximun; // [OneMaker MV] - Change to use MaxLevel's value
+                                var barWidth = graphArea.canvasWidth / OneMakerMVSettings.getSetting("maxLevel", "maximun"); // [OneMaker MV] - Change to use MaxLevel's value
                                 levelBox.value = Math.floor(mouseX / barWidth) + 1;
                             }
                         }
@@ -192,10 +192,10 @@ ModalWindow {
                 if (context) {
                     context.fillStyle = pal.normalBack1;
                     context.fillRect(0, 0, graphArea.canvasWidth, graphArea.canvasHeight);
-                    var barWidth = graphArea.canvasWidth / MaxLevel.maximun; // [OneMaker MV] - Change to use MaxLevel's value
+                    var barWidth = graphArea.canvasWidth / OneMakerMVSettings.getSetting("maxLevel", "maximun"); // [OneMaker MV] - Change to use MaxLevel's value
                     var maxValue = Constants.paramGraphMaxArray[paramId];
                     context.fillStyle = Constants.paramColorArray[paramId];
-                    for (var i = 0; i < MaxLevel.maximun; i++) { // [OneMaker MV] - Change to use MaxLevel's value
+                    for (var i = 0; i < OneMakerMVSettings.getSetting("maxLevel", "maximun"); i++) { // [OneMaker MV] - Change to use MaxLevel's value
                         var n = getParameterValue(i + 1) * graphArea.canvasHeight / maxValue;
                         context.fillRect(i * barWidth, graphArea.canvasHeight - n, barWidth + 1, n);
                     }
@@ -206,9 +206,9 @@ ModalWindow {
                 var a = value1;
                 var b = value2;
                 var c = growth - 10;
-                for (var i = 1; i <= MaxLevel.maximun; i++) { // [OneMaker MV] - Change to use MaxLevel's value
-                    var n1 = a + ((b - a) * (i - 1) / (MaxLevel.maximun - 1)); // [OneMaker MV] - Change to use MaxLevel's value
-                    var n2 = a + ((b - a) * (i - 1) * (i - 1) / (MaxLevel.maximun - 1) / (MaxLevel.maximun - 1)); // [OneMaker MV] - Change to use MaxLevel's value
+                for (var i = 1; i <= OneMakerMVSettings.getSetting("maxLevel", "maximun"); i++) { // [OneMaker MV] - Change to use MaxLevel's value
+                    var n1 = a + ((b - a) * (i - 1) / (OneMakerMVSettings.getSetting("maxLevel", "maximun") - 1)); // [OneMaker MV] - Change to use MaxLevel's value
+                    var n2 = a + ((b - a) * (i - 1) * (i - 1) / (OneMakerMVSettings.getSetting("maxLevel", "maximun") - 1) / (OneMakerMVSettings.getSetting("maxLevel", "maximun") - 1)); // [OneMaker MV] - Change to use MaxLevel's value
                     var x = Math.ceil((n2 * c + n1 * (10 - c)) / 10);
                     setParameterValue(i, x);
                 }

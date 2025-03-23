@@ -158,8 +158,8 @@ GroupBoxRow {
         ControlsRow {
             EventCommandListBox {
                 list: dataObject ? dataObject.list : []
-                width: 638 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
-                height: 522 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
+                width: 638 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 522 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
             }
         }
     }

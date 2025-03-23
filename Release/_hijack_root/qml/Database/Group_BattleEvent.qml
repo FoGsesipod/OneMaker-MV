@@ -45,8 +45,8 @@ GroupBox {
 
         TabView {
             id: tabView
-            width: 630 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
-            height: 326 + WindowSizes.alternativeHeightIncrease // [OneMaker MV] - Window Increased
+            width: 630 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+            height: 326 + OneMakerMVSettings.getSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
 
             TabColumn {
                 spacing: 12
@@ -73,8 +73,8 @@ GroupBox {
                 }
                 EventCommandListBox {
                     id: eventListBox
-                    width: 612 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
-                    height: 242 + WindowSizes.alternativeHeightIncrease // [OneMaker MV] - Window Increased
+                    width: 612 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                    height: 242 + OneMakerMVSettings.getSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
                     troopId: root.troopId
                 }
             }

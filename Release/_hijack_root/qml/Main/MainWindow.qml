@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtWebEngine 1.0
 import Qt.labs.settings 1.0
-import QtWebView 1.0
+//import QtWebView 1.0 [OneMaker MV] - Synchronize steam and non-steam versions
 import Tkool.rpg 1.0
 import "../BasicControls"
 import "../Controls"
@@ -15,7 +15,6 @@ import "../Plugin"
 import "../Singletons"
 import "../BasicControls/FontManager.js" as FontManager
 import "../CharacterGenerator"
-import "../_OneMakerMV"
 
 ApplicationWindow {
     id: root
@@ -33,9 +32,10 @@ ApplicationWindow {
         return false;
     }
 
-    property string getLatestPostUrl: "http://13.115.163.66/wp-json/myplugin/v1/latest_post_by_product_and_language/?product=mv&language="
-    property string noticeLocale: ""
-    property var webViewWindow: null
+    // [OneMaker MV] - Synchronize steam and non-steam versions
+    //property string getLatestPostUrl: "http://13.115.163.66/wp-json/myplugin/v1/latest_post_by_product_and_language/?product=mv&language="
+    //property string noticeLocale: ""
+    //property var webViewWindow: null
 
 
     title: (gameTitle ? gameTitle + " - " : "") + Constants.applicationTitle
@@ -88,6 +88,15 @@ ApplicationWindow {
         onAbout: aboutBox.open()
         onExit: root.close()
         onHelpContents: openHelp()
+
+        // [OneMaker MV] - Added Menu Items
+        onOneMakerMV_EventCommandSelectPage: openEventCommandSelectPage()
+        onOneMakerMV_MaxLimits: openMaxLimits()
+        onOneMakerMV_ArrayNames: openArrayNames()
+        onOneMakerMV_ImageSelection: openImageSelection()
+        onOneMakerMV_WindowSizes: openWindowSizes()
+        onOneMakerMV_WorkingMode: openWorkingMode()
+
         onSteamWindow: openSteamWindow()
         onTutorial: openTutorial()
         onLaunchTool: launch(path, appName)
@@ -149,6 +158,26 @@ ApplicationWindow {
     Dialog_Options {
         id: options
     }
+    // [OneMaker MV] - Load Menus
+    OneMakerMV_EventCommandSelectPage {
+        id: one_EventCommandSelectPage
+    }
+    OneMakerMV_MaxLimits {
+        id: one_MaxLimits
+    }
+    OneMakerMV_ArrayNames {
+        id: one_ArrayNames
+    }
+    OneMakerMV_ImageSelection {
+        id: one_ImageSelection
+    }
+    OneMakerMV_WindowSizes {
+        id: one_WindowSizes
+    }
+    OneMakerMV_WorkingMode {
+        id: one_WorkingMode
+    }
+
     Dialog_GamePlayer {
         id: gamePlayer
     }
@@ -211,9 +240,9 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        options.requestOpenWebViewWindow.connect(root.openWebViewWindow)
+        //options.requestOpenWebViewWindow.connect(root.openWebViewWindow) [OneMaker MV] - Synchronize steam and non-steam versions
         adjustWindow();
-        checkServerHealth();
+        //checkServerHealth(); [OneMaker MV] - Synchronize steam and non-steam versions
     }
 
     onClosing: {
@@ -338,6 +367,43 @@ ApplicationWindow {
         urlOpener.open(helpUrl);
     }
 
+    // [OneMaker MV] - Open Menu Functions
+    function openEventCommandSelectPage() {
+        heavy.run(function() {
+            one_EventCommandSelectPage.open();
+        })
+    }
+
+    function openMaxLimits() {
+        heavy.run(function() {
+            one_MaxLimits.open();
+        })
+    }
+
+    function openArrayNames() {
+        heavy.run(function() {
+            one_ArrayNames.open()
+        })
+    }
+
+    function openImageSelection() {
+        heavy.run(function() {
+            one_ImageSelection.open()
+        })
+    }
+
+    function openWindowSizes() {
+        heavy.run(function() {
+            one_WindowSizes.open();
+        });
+    }
+
+    function openWorkingMode() {
+        heavy.run(function() {
+            one_WorkingMode.open()
+        })
+    }
+
     function openSteamWindow() {
         heavy.run(function() {
             if (TkoolAPI.isSteamRelease() && steamLoader.item) {
@@ -354,70 +420,69 @@ ApplicationWindow {
             tutorialSelector.open();
         });
     }
-
-
-    // WebEngineViewのインスタンスを作成し、表示する関数
-    function openWebViewWindow() {
-        if (webViewWindow == null) {
-            var component = Qt.createComponent("../Options/NoticeWebView.qml");
-            if (component.status === Component.Ready) {
-                webViewWindow = component.createObject(root);
-            } else {
-                // エラーハンドリング
-                console.log("Error:", component.errorString());
-            }
-        }
-
-        if (webViewWindow != null) {
-            webViewWindow.open();
-            webViewWindow.raise();
-        }
-    }
-
-
-    function checkServerHealth() {
-        Logger.initialize() // [OneMaker MV] - Added Logger initializaton
-          var xhr = new XMLHttpRequest();
-
-          var locale = TkoolAPI.locale();
-          if (locale === "ja_JP"){
-              SettingsManager.storage.noticeLocale = "ja";
-          } else  if (locale === "zh_CN"){
-              SettingsManager.storage.noticeLocale = "zh";
-          } else {
-              SettingsManager.storage.noticeLocale = "en";
-          }
-
-          xhr.onreadystatechange = function() {
-              if (xhr.readyState === XMLHttpRequest.DONE) {
-                  if (xhr.status === 200||xhr.status === 0) {
-                      console.log(xhr.responseText)
-                      var data = JSON.parse(xhr.responseText);
-                      if (data && data.date) {
-                          SettingsManager.storage.noticeToppageUrl = data.toppage;
-                          console.log(data.toppage)
-                          if (isNewNotice(data)) {
-                              SettingsManager.storage.latestNoticeDate = data.date;
-                               openWebViewWindow()
-                          }
-                      }
-                  }
-              }
-          }
-          xhr.open("GET", getLatestPostUrl + SettingsManager.storage.noticeLocale);
-          xhr.send();
-      }
-
-
-
-      function isNewNotice(data) {
-          if (!SettingsManager.storage.latestNoticeDate) {
-              return true;
-          }
-
-          var latestDate = new Date(SettingsManager.storage.latestNoticeDate);
-          var newDate = new Date(data.date);
-
-          return newDate > latestDate;
-      }
+// [OneMaker MV] - Synchronize steam and non-steam versions
+//
+//    // WebEngineViewのインスタンスを作成し、表示する関数
+//    function openWebViewWindow() {
+//        if (webViewWindow == null) {
+//            var component = Qt.createComponent("../Options/NoticeWebView.qml");
+//            if (component.status === Component.Ready) {
+//                webViewWindow = component.createObject(root);
+//            } else {
+//                // エラーハンドリング
+//                console.log("Error:", component.errorString());
+//            }
+//        }
+//
+//        if (webViewWindow != null) {
+//            webViewWindow.open();
+//            webViewWindow.raise();
+//        }
+//    }
+//
+//
+//    function checkServerHealth() {
+//          var xhr = new XMLHttpRequest();
+//
+//          var locale = TkoolAPI.locale();
+//          if (locale === "ja_JP"){
+//              SettingsManager.storage.noticeLocale = "ja";
+//          } else  if (locale === "zh_CN"){
+//              SettingsManager.storage.noticeLocale = "zh";
+//          } else {
+//              SettingsManager.storage.noticeLocale = "en";
+//          }
+//
+//          xhr.onreadystatechange = function() {
+//              if (xhr.readyState === XMLHttpRequest.DONE) {
+//                  if (xhr.status === 200||xhr.status === 0) {
+//                      console.log(xhr.responseText)
+//                      var data = JSON.parse(xhr.responseText);
+//                      if (data && data.date) {
+//                          SettingsManager.storage.noticeToppageUrl = data.toppage;
+//                          console.log(data.toppage)
+//                          if (isNewNotice(data)) {
+//                              SettingsManager.storage.latestNoticeDate = data.date;
+//                               openWebViewWindow()
+//                          }
+//                      }
+//                  }
+//              }
+//          }
+//          xhr.open("GET", getLatestPostUrl + SettingsManager.storage.noticeLocale);
+//          xhr.send();
+//      }
+//
+//
+//
+//      function isNewNotice(data) {
+//          if (!SettingsManager.storage.latestNoticeDate) {
+//              return true;
+//          }
+//
+//          var latestDate = new Date(SettingsManager.storage.latestNoticeDate);
+//          var newDate = new Date(data.date);
+//
+//          return newDate > latestDate;
+//      }
 }

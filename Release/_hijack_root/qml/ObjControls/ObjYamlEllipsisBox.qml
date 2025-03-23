@@ -5,30 +5,25 @@ import "../BasicControls"
 import "../BasicLayouts"
 import "../Dialogs"
 import "../Singletons"
-import "../_OneMakerMV"
 
 LabeledEllipsisBox {
     id: root
 
-    property string memberForName: ""
-    property string memberForIndex: ""
-    property string memberForName2: ""
     property var object: dataObject
 
     property string subFolder: ""
-    property string subFolder2: ""
 
     property string fileName: ""
     property string messageName: ""
+    property string displayName: ""
     property string savedFileName: ""
     property string savedMessageName: ""
 
     readonly property string folder: DataManager.projectUrl + subFolder
-    property string folder2: DataManager.projectUrl + subFolder2
 
     signal modified()
 
-    text: fileName + (messageName ? " & " + messageName : "")
+    text: displayName
 
     DialogBoxHelper { id: helper }
 
@@ -41,9 +36,9 @@ LabeledEllipsisBox {
             root.messageName = messageName;
             root.savedFileName = savedFileName;
             root.savedMessageName = savedMessageName;
+            root.displayName = root.fileName + (root.messageName  ? "." + root.messageName : "")
             helper.setModified();
             root.modified();
-            Logger.log("root file: ", root.fileName)
         }
 
         onInit: {

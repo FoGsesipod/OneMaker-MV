@@ -22,7 +22,7 @@ EventCommandBase {
 
     Group_Operand {
         id: operandGroup
-        maximumValue: MaxLevel.maximun - 1 // [OneMaker MV] - Change to use MaxLevel's value
+        maximumValue: OneMakerMVSettings.getSetting("maxLevel", "maximun") - 1 // [OneMaker MV] - Change to use MaxLevel's value
     }
 
     CheckBox {

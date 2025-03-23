@@ -171,7 +171,7 @@ Tab {
                         id: selfVariableIdBox
                         title: radioButton5.title
                         hint: radioButton5.hint
-                        model: SelfVariableNamingScheme.namingScheme
+                        model: OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")
                         itemWidth: 90
                         labelVisible: false
                     }

@@ -107,7 +107,7 @@ QtObject {
 
     // [OneMaker MV] - selfVariableRange added
     function selfVariableRange(id1, id2) {
-        return altRangeText(id1, id2, SelfVariableNamingScheme.namingScheme[id1]);
+        return altRangeText(id1, id2, OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[id1]);
     }
 
     function optionText(text) {
@@ -440,7 +440,7 @@ QtObject {
             break;
         // [OneMaker MV] - Case 14 added, Self Variables
         case 14:
-            text += qsTr("Self Variable") + " #" + params[1] + " " + SelfVariableNamingScheme.namingScheme[params[1]] + " ";
+            text += qsTr("Self Variable") + " #" + params[1] + " " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[1]] + " ";
             text += Constants.variableConditionOperator(params[4]) + " ";
             if (params[2] === 0) {
                 text += params[3]
@@ -501,7 +501,7 @@ QtObject {
             text += params[4];
             break;
         case 5:
-            text += "#" + params[4] + " " + SelfVariableNamingScheme.namingScheme[params[4]]
+            text += "#" + params[4] + " " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[4]]
         }
         return text;
     }
@@ -535,7 +535,7 @@ QtObject {
             text += params[4];
             break;
         case 5: // Self Variable
-            text += "#" + params[4] + " " + SelfVariableNamingScheme.namingScheme[params[4]];
+            text += "#" + params[4] + " " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[4]];
             break;
         }
         return text;

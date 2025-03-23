@@ -1,4 +1,26 @@
 # Changelog
+## Version 1.1.0
+Improve the Yaml Message Preview.  
+Added a sound manager for better control over audio.  
+Added a player transfer script creator, that includes a map viewer.  
+added a toggleable map to movement route commands, with selected tile information.  
+Settings can now be changed in-engine, no more browsing files in `_hijack_root`.  
+Revamped how settings are saved, so that they are created and stored in a json file outside of OneMaker MV's `_hijack_root`, the location is `Documents/OneMakerMV/`.  
+ - This means that settings have unfortunately, been reset again. But should absolutely never need to be reset again.
+
+## Added an installer!
+The installer is a powershell script file, which requires windows to allow unsigned local scripts to run.  
+You can enable this setting by:  
+
+### Windows 11:
+Open Settings, go to `System`, click the `For Developers` tab, open the `PowerShell` dropdown and enable: `Change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.`  
+
+### Windows 10:
+Open Settings, go to `Update & Security`, click the `For Developers` page, check `Change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.`  
+
+### Changed FIles
+- Almost Every Single File Was Changed
+
 ## Version 1.0.8
 Added a Yaml Message Selector, to automate and or maybe make adding ShowMessage/AddChoice/ShowChoices plugin commands faster.  
 Added the Krypt Image Pack.  

@@ -19,7 +19,7 @@ EventCommandBase {
         id: textArea
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
-        width: 400 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+        width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
         height: fittingHeight(maximumLineCount)
         selectAllOnFocus: false
         maximumLineCount: 24 // [OneMaker MV] - Increased by 18

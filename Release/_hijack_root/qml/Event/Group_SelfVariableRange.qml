@@ -39,7 +39,7 @@ GroupBox {
                 id: selfVariableBox
                 title: radioButton1.title
                 hint: radioButton1.hint
-                model: SelfVariableNamingScheme.namingScheme
+                model: OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")
                 enabled: radioButton1.checked
                 labelVisible: false
             }

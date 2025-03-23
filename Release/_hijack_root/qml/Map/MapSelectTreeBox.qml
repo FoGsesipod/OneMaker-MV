@@ -17,8 +17,8 @@ TreeBox {
     dragDrop: false
     cacheBuffer: 1000
 
-    property string rootIcon: ImagePack.obtainImagePack() + "tree-root.png" // [OneMaker MV] - Obtain Image Pack
-    property string mapIcon: ImagePack.obtainImagePack() + "tree-map.png" // [OneMaker MV] - Obtain Image Pack
+    property string rootIcon: ImagePack.selectedImagePack + "tree-root.png" // [OneMaker MV] - Obtain Image Pack
+    property string mapIcon: ImagePack.selectedImagePack + "tree-map.png" // [OneMaker MV] - Obtain Image Pack
     property alias findModality: findMgr.modality
 
     readonly property bool projectOpened: DataManager.projectOpened

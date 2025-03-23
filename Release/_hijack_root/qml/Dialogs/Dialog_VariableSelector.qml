@@ -314,7 +314,7 @@ ModalWindow {
 
             RoundFrame {
                 id: rightBlock
-                width: 244 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                width: 244 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
                 height: leftBlock.height
 
                 Item {
@@ -322,7 +322,7 @@ ModalWindow {
                     anchors.margins: 12
 
                     Column {
-                        width: 220 + WindowSizes.defaultWidthIncrease // [OneMaker MV] - Window Increased
+                        width: 220 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
                         spacing: 12
 
                         ListBox {

@@ -12,50 +12,51 @@ import QtQuick 2.3
 import "../Singletons"
 
 QtObject {
-    property string imagePack: ""
-    property var imageSize: []
+    property string selectedImagePack: ""
+    property var selectedImagePackSize: []
+
+    Component.onCompleted: {
+        obtainImagePack()
+        obtainImageSizes()
+    }
 
     function obtainImagePack() {
-        switch (UserImageSelection.userSelection) {
+        switch (OneMakerMVSettings.getSetting("imagePack", "userSelection")) {
             case "Default":
-                imagePack = "../Images/";
+                selectedImagePack = "../Images/";
                 break;
             case "MZ":
-                imagePack = "../Images/MZ/";
+                selectedImagePack = "../Images/MZ/";
                 break;
             case "Koffin":
-                imagePack = "../Images/Koffin/";
+                selectedImagePack = "../Images/Koffin/";
                 break;
             case "Krypt":
-                imagePack = "../Images/Krypt/";
+                selectedImagePack = "../Images/Krypt/";
                 break;
             default:
-                imagePack = "../Images/";
+                selectedImagePack = "../Images/";
                 break;
         }
-
-        return imagePack;
     }
 
     function obtainImageSizes() {
-        switch (UserImageSelection.userSelection) {
+        switch (OneMakerMVSettings.getSetting("imagePack", "userSelection")) {
             case "Default":
-                imageSize = [40, 40];
+                selectedImagePackSize = [40, 40];
                 break;
             case "MZ":
-                imageSize = [38, 38];
+                selectedImagePackSize = [38, 38];
                 break;
             case "Koffin":
-                imageSize = [40, 40];
+                selectedImagePackSize = [40, 40];
                 break;
             case "Krypt":
-                imageSize = [40, 40];
+                selectedImagePackSize = [40, 40];
                 break;
             default:
-                imageSize = [40, 40];
+                selectedImagePackSize = [40, 40];
                 break;
         }
-
-        return imageSize;
     }
 }

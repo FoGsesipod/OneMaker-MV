@@ -63,8 +63,8 @@ ToolButton {
             Image {
                 source: control.iconSource
                 anchors.centerIn: parent
-                sourceSize.width: ImagePack.obtainImageSizes()[0] // [OneMaker MV] - Scale images to imageSize values
-                sourceSize.height: ImagePack.obtainImageSizes()[1] // [OneMaker MV] - Scale images to imageSize values
+                sourceSize.width: ImagePack.selectedImagePackSize[0] // [OneMaker MV] - Scale images to imageSize values
+                sourceSize.height: ImagePack.selectedImagePackSize[1] // [OneMaker MV] - Scale images to imageSize values
                 opacity: control.enabled ? 1 : 0.5
             }
         }

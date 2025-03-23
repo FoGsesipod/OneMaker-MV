@@ -7,12 +7,4 @@ singleton MovementCommands MovementCommands.qml
 singleton PluginParser PluginParser.qml
 singleton SettingsManager SettingsManager.qml
 singleton AppendSettings AppendSettings.qml
-singleton WindowSizes One_WindowSizes.qml
-singleton EventCommandSelectPage One_EventCommandSelectPage.qml
-singleton EventPageConditionOperators One_EventPageConditionOperators.qml
-singleton SelectAllOnFocus One_SelectAllOnFocus.qml
-singleton SelfVariableNamingScheme One_SelfVariableNamingScheme.qml
-singleton WorkingMode One_WorkingMode.qml
-singleton UserImageSelection One_UserImageSelection.qml
-singleton MaxLevel One_MaxLevel.qml
-singleton YamlIdentifiers One_YamlIdentifiers.qml
+singleton OneMakerMVSettings One_SettingsManager.qml

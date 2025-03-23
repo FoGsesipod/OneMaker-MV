@@ -54,7 +54,7 @@ ControlsRow {
                         title: qsTr("Initial Level")
                         hint: qsTr("Level at the start of the game.")
                         minimumValue: 1
-                        maximumValue: MaxLevel.maximun // [OneMaker MV] - Change to use MaxLevel's value
+                        maximumValue: OneMakerMVSettings.getSetting("maxLevel", "maximun") // [OneMaker MV] - Change to use MaxLevel's value
                     }
                     ObjSpinBox {
                         id: maxLevel
@@ -62,7 +62,7 @@ ControlsRow {
                         title: qsTr("Max Level")
                         hint: qsTr("Maximum level that the actor can attain.")
                         minimumValue: 1
-                        maximumValue: MaxLevel.maximun // [OneMaker MV] - Change to use MaxLevel's value
+                        maximumValue: OneMakerMVSettings.getSetting("maxLevel", "maximun") // [OneMaker MV] - Change to use MaxLevel's value
                     }
                 }
                 ObjTextArea {
@@ -110,7 +110,7 @@ ControlsRow {
                     title: equipGroup.title
                     hint: equipGroup.hint
                     width: 390
-                    height: 206 + WindowSizes.defaultHeightIncrease // [OneMaker MV] - Window Increased
+                    height: 206 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 }
             }
         }

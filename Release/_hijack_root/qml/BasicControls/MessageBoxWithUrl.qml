@@ -87,9 +87,9 @@ ModalWindow {
                     Image {
                         id: icon
                         anchors.verticalCenter: parent.verticalCenter
-                        source: ImagePack.obtainImagePack() + "%1.png".arg(iconType) // [OneMaker MV] - Obtain Image Pack
-                        sourceSize.width: ImagePack.obtainImageSizes()[0] // [OneMaker MV] - Obtain Image Sizes
-                        sourceSize.height: ImagePack.obtainImageSizes()[1] // [OneMaker MV] - Obtain Image Sizes
+                        source: ImagePack.selectedImagePack + "%1.png".arg(iconType) // [OneMaker MV] - Obtain Image Pack
+                        sourceSize.width: ImagePack.selectedImagePackSize[0] // [OneMaker MV] - Obtain Image Sizes
+                        sourceSize.height: ImagePack.selectedImagePackSize[1] // [OneMaker MV] - Obtain Image Sizes
                         visible: source !== ""
                     }
                     Text {
