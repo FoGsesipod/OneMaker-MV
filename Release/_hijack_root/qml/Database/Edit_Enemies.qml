@@ -168,7 +168,7 @@ ControlsRow {
             }
         }
         Group_ActionPatterns {
-            visible: !OneMakerMVSettings.getSetting("workingMode", "expectedContext")
+            visible: !OneMakerMVSettings.getSetting("workingMode", "expectedContext") // [OneMaker MV] - Changed visibility depending on Expected Context
         }
     }
     GroupBoxColumn {

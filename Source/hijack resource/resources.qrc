@@ -1,6 +1,28 @@
 <RCC>
   <qresource prefix="/">
+    <file>qml/Controls/YamlFileListBox.qml</file>
+    <file>qml/Controls/YamlTextPreview.qml</file>
+    <file>qml/Dialogs/Dialog_YamlSelector.qml</file>
+    <file>qml/Event/EventCommandSoundManager.qml</file>
+    <file>qml/Event/Group_SelfVariableRange.qml</file>
+    <file>qml/Event/Group_SoundManagerDuration.qml</file>
+    <file>qml/Event/EventCommands/EventCommand1001.qml</file>
+    <file>qml/Event/EventCommands/EventCommand1002.qml</file>
+    <file>qml/Event/EventCommands/EventCommand1003.qml</file>
     <file>qml/Event/EventCommands/EventCommand357.qml</file>
+    <file>qml/Fonts/OMORI_GAME2.ttf</file>
+    <file>qml/Layouts/Layout_SoundManager.qml</file>
+    <file>qml/ObjControls/ObjYamlEllipsisBox.qml</file>
+    <file>qml/Options/OneMakerMV_ArrayNames.qml</file>
+    <file>qml/Options/OneMakerMV_EventCommandSelectPage.qml</file>
+    <file>qml/Options/OneMakerMV_ImageSelection.qml</file>
+    <file>qml/Options/OneMakerMV_MaxLimits.qml</file>
+    <file>qml/Options/OneMakerMV_WindowSizes.qml</file>
+    <file>qml/Options/OneMakerMV_WorkingMode.qml</file>
+    <file>qml/Singletons/One_SettingsManager.qml</file>
+    <file>qml/_OneMakerMV/One_EventPageConditionOperators.qml</file>
+    <file>qml/_OneMakerMV/One_ImagePack.qml</file>
+    <file>qml/_OneMakerMV/One_YamlIdentifiers.qml</file>
     <file>qml/_OneMakerMV/qmldir</file>
   </qresource>
 </RCC>

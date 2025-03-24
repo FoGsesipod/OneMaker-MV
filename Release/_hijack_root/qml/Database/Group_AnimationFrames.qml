@@ -50,7 +50,7 @@ GroupBox {
             }
             Item {
                 width: 150
-                height: screen.height + 2
+                height: screen.height
                 ControlsColumn {
                     width: parent.width
                     anchors.verticalCenter: parent.verticalCenter

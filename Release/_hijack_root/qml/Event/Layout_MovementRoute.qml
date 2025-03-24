@@ -18,6 +18,7 @@ GroupBoxRow {
     property alias characterSelectable: characterSelectBox.enabled
     property alias waitCheckable: checkBox3.enabled
 
+    // [OneMaker MV] - properties for map information
     property bool showMap: false
     property int mapX: 0
     property int mapY: 0
@@ -28,14 +29,15 @@ GroupBoxRow {
 
     GroupBoxColumn {
         width: 220 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        ControlsRow {
+        ControlsRow { // [OneMaker MV] - Append to a Control Row
             CharacterSelectBox {
                 id: characterSelectBox
                 title: qsTr("Character")
                 hint: qsTr("Character to be assigned the movement route.")
                 labelVisible: false
-                itemWidth: (200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease")) / 1.45
+                itemWidth: (200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease")) / 1.45 // [OneMaker MV] - Divide width to account for new button
             }
+            // [OneMaker MV] - Add Show Map Button
             Button {
                 id: showMapButton
                 text: qsTr("Show Map")
@@ -57,9 +59,9 @@ GroupBoxRow {
             id: optionsGroup
             title: qsTr("Options")
             hint: qsTr("Options for the movement route behavior.")
-            height: 100
+            height: 100 // [OneMaker MV] - Force Height
             width: parent.width
-            ControlsRow {
+            ControlsRow { // [OneMaker MV] - Append to Control Row
                 ControlsColumn {
                     CheckBox {
                         id: checkBox1
@@ -78,6 +80,7 @@ GroupBoxRow {
                         checked: true
                     }
                 }
+                // [OneMaker MV] - Add selected tile information
                 ControlsColumn {
                     Label {
                         text: qsTr("Event Id: " + eventId)
@@ -108,6 +111,7 @@ GroupBoxRow {
             }
             
         }
+        // [OneMaker MV] - Add a Minimap
         ControlsRow {
             MapEditorBaseView {
                 id: mapView
@@ -179,6 +183,7 @@ GroupBoxRow {
         characterSelectBox.setCurrentId(id);
     }
 
+    // [OneMaker MV] - Get event information for the selected tile
     function getEvent(x, y) {
         var map = DataManager.maps[mapId];
         if (map && map.events) {
@@ -194,6 +199,7 @@ GroupBoxRow {
         }
     }
 
+    // [OneMaker MV] - Toggle Map function
     function toggleMap() {
         showMap = !showMap;
     }

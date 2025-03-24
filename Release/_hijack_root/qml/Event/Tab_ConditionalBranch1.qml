@@ -110,7 +110,7 @@ Tab {
                         height: radioButtonHeight
                     }
                     GameVariableBox {
-                        id: selfariableBox2
+                        id: variableBox2
                         title: radioButton2B.title
                         hint: radioButton2B.hint
                         labelVisible: false

@@ -1,6 +1,6 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
-However, you can use this in other RPGMaker MV Projects, set `expectedContext` to `false` in `_hijack_root/qml/Singletons/One_WorkingMode.qml`.  
+However, you can use this in other RPGMaker MV Projects, disable `Expected Context` in the Working Mode menu, under OneMaker MV's tab.    
 HUGE Thanks to Rph and Draught!  
 
 ## Features:
@@ -14,11 +14,10 @@ Comments and Script Commands can now have way more lines.
 And other smaller improvements.  
 
 ## To Install:
-Run the OneMaker MV Installer.ps1 file, make sure you have PowerShell unsigned scripts enabled.  
+Open the Run Installer.bat file, in the installer package.  
 
-For Manual Installaton:  
+**For Manual Installaton:**  
 Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
-There is user configurable settings located in the `One_X.qml` files (Where X is related to what the file is for). These files are located in `_hijack_root/qml/Singletons/`.  
 
 ## Tiled Map Display:
 To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/actions/runs/13727034987) (You want the file with `.exe` in its name, but it is an archive).  

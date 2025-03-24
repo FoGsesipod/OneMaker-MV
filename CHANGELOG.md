@@ -1,4 +1,10 @@
 # Changelog
+## Version 1.1.1
+Fixed condition branch variable not working.  
+Audited all files to make sure changes were necessary, removed some files where their changes were added elsewhere, added comments to undocumented changes.  
+Updated Installer to bypass execution policy, detect if the user has replaced the global fonts, and added version checking for all future releases.  
+- You now need to run `Run Installer.bat` instead of `OneMaker MV Installer.ps1`
+
 ## Version 1.1.0
 Improve the Yaml Message Preview.  
 Added a sound manager for better control over audio.  

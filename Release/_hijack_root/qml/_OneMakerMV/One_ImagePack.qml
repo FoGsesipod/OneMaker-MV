@@ -1,14 +1,13 @@
 //======================================================================================
 // OneMaker MV's Image Pack
 //======================================================================================
-/* Handles the image folder location, dependent on userSelection in 
- * One_UserImageSelection.qml
+/* Handles the image folder location, dependent on whichever Image Pack is selected
  *
  * Do Not Modify This.
 */
 //======================================================================================
 pragma Singleton
-import QtQuick 2.3
+import QtQuick 2.4
 import "../Singletons"
 
 QtObject {

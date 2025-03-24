@@ -124,7 +124,7 @@ ModalWindow {
                                     dialog.minimumValue = valueBox.minimumValue;
                                     dialog.maximumValue = valueBox.maximumValue;
                                     dialog.value1 = base.getParameterValue(1);
-                                    dialog.value2 = base.getParameterValue(OneMakerMVSettings.getSetting("maxLevel", "maximun"));
+                                    dialog.value2 = base.getParameterValue(OneMakerMVSettings.getSetting("maxLevel", "maximun")); // [OneMaker MV] - Get Maximun Level
                                     dialog.growth = 10;
                                     dialog.open();
                                 }

@@ -1,5 +1,5 @@
 //======================================================================================
-// OneMaker MV's Event Command Select Page
+// OneMaker MV's Event Page Condition Operators
 //======================================================================================
 /* Contains the array for event page condition operators, as rpg_objects.js has
  * different values for different operators compared to if conditions.
@@ -8,7 +8,7 @@
 */
 //======================================================================================
 pragma Singleton
-import QtQuick 2.3
+import QtQuick 2.4
 
 QtObject {
     // ≥, >, ==, <, ≤, ≠ 

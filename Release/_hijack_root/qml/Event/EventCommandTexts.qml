@@ -90,7 +90,7 @@ QtObject {
         return rangeText(id1, id2, DataManager.variableName(id1));
     }
 
-    // [OneMaker MV] - altRangeText added
+    // [OneMaker MV] - altRangeText Added
     function altRangeText(id1, id2, name1) {
         var idText1 = DataManager.makeIdText(id1, 1);
         var idText2 = DataManager.makeIdText(id2, 1);
@@ -105,7 +105,7 @@ QtObject {
         }
     }
 
-    // [OneMaker MV] - selfVariableRange added
+    // [OneMaker MV] - selfVariableRange Added
     function selfVariableRange(id1, id2) {
         return altRangeText(id1, id2, OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[id1]);
     }
@@ -438,7 +438,7 @@ QtObject {
         case 13:
             text += qsTr("%1 is driven", "Vehicle").arg(Constants.vehicleName(params[1]));
             break;
-        // [OneMaker MV] - Case 14 added, Self Variables
+        // [OneMaker MV] - Case 14 Added, Self Variables
         case 14:
             text += qsTr("Self Variable") + " #" + params[1] + " " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[1]] + " ";
             text += Constants.variableConditionOperator(params[4]) + " ";
@@ -500,6 +500,7 @@ QtObject {
         case 4:     // Script
             text += params[4];
             break;
+        // [OneMaker MV] - Self Variables Added
         case 5:
             text += "#" + params[4] + " " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[4]]
         }
@@ -513,7 +514,7 @@ QtObject {
         return text;
     }
 
-    // [OneMaker MV] - Control Self Variables - added
+    // [OneMaker MV] - Control Self Variables Added
     function commandParamText357(params) {
         var text = selfVariableRange(params[0], params[1])
         text += [" = ", " += ", " -= ", " *= ", " /= ", " %= "][params[2]];
