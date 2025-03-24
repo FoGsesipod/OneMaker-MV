@@ -1,6 +1,6 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
-However, you can use this in other RPGMaker MV Projects, set `expectedContext` to `false` in `_hijack_root/qml/Singletons/One_WorkingMode.qml`.  
+However, you can use this in other RPGMaker MV Projects, uncheck `Expected Context` in the Working Mode settings menu.  
 HUGE Thanks to Rph and Draught!  
 
 ## Features:
