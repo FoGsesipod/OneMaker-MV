@@ -18,7 +18,6 @@ Run the OneMaker MV Installer.ps1 file, make sure you have PowerShell unsigned s
 
 For Manual Installaton:  
 Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
-There is user configurable settings located in the `One_X.qml` files (Where X is related to what the file is for). These files are located in `_hijack_root/qml/Singletons/`.  
 
 ## Tiled Map Display:
 To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/actions/runs/13727034987) (You want the file with `.exe` in its name, but it is an archive).  
