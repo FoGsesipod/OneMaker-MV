@@ -15,7 +15,7 @@ And other smaller improvements.
 
 ## To Install:  
 ### Windows  
-Run `Installer.bat` after extracting the contents of Installer.7z
+Run `Run Installer.bat` after extracting the contents of Installer.7z
 
 ### Linux + Manual:  
 Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
