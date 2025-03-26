@@ -1,6 +1,6 @@
 # Changelog
 ## Version 1.1.2
-Added Linux support with thanks to Rph and SoundOfSprouting!  
+Added Linux support with thanks to Rph and SoundOfSpouting!  
 Changed F1 hotkey to open the plugin help menu, almost everywhere.  
 Added a settings option to change the default blend mode when creating new cells in the Animations Database tab.  
 Added automation for creating movement graphics for actors.  
