@@ -1,7 +1,7 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
 However, you can use this in other RPGMaker MV Projects, disable `Expected Context` in the Working Mode menu, under OneMaker MV's tab.    
-HUGE Thanks to Rph and Draught!  
+HUGE Thanks to Rph, Draught, and SoundOfSpouting!  
 
 ## Features:
 Resizable window sizes, such as the Database and Event Viewer.  
