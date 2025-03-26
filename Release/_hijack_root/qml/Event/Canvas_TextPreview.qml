@@ -110,7 +110,7 @@ Canvas {
     function drawText(text, x, y, lineHeight) {
         var tx = x;
         var ty = y + lineHeight - (lineHeight - fontSize * 0.7) / 2;
-        var fontSource = WorkingMode.expectedContext ? pal.omoriFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", ") : pal.previewFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", "); // [OneMaker MV] - Changed text preview font
+        var fontSource =  OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? pal.omoriFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", ") : pal.previewFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", "); // [OneMaker MV] - Changed text preview font
         var fontName = fontSource; // [OneMaker MV] - Changed text preview font
         context.font = fontSize + "px " + fontName;
         context.lineWidth = outlineWidth;
@@ -132,7 +132,7 @@ Canvas {
     }
 
     function textWidth(text) {
-        var fontSource = WorkingMode.expectedContext ? pal.omoriFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", ") : pal.previewFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", "); // [OneMaker MV] - Changed text preview font
+        var fontSource = OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? pal.omoriFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", ") : pal.previewFont.split(",").map(function(i) { return "'" + i.trim() + "'"; }).join(", "); // [OneMaker MV] - Changed text preview font
         var fontName = fontSource; // [OneMaker MV] - Changed text preview font
         context.font = fontSize + "px " + fontName;
         return context.measureText(text).width;

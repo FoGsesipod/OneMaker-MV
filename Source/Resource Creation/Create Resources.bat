@@ -1,0 +1,1 @@
+rcc.exe -binary ".\hijackrcc\resources.qrc" -o ".\hijack.rcc"

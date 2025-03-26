@@ -13,7 +13,7 @@ LabeledComboBox {
 
     readonly property string currentCharacter: model[currentIndex]
 
-    model: [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ] // [OneMaker MV] - Changed to include E - Z
+    model: OneMakerMVSettings.getSetting("selfSwitchNaming", "namingScheme") // [OneMaker MV] - Changed to include E - Z
 
     itemWidth: 90
 

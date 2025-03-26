@@ -92,6 +92,7 @@ Item {
     signal gameOpenFolder()
     signal helpContents()
     // [OneMaker MV] - Add Menu Signals
+    signal oneMakerMV_AnimationScreen()
     signal oneMakerMV_EventCommandSelectPage()
     signal oneMakerMV_MaxLimits()
     signal oneMakerMV_ArrayNames()
@@ -205,6 +206,7 @@ Item {
         // [OneMaker MV] - OneMakerMV Menu Bar
         Menu {
             title: qsTr("OneMaker MV")
+            MenuItem { action: oneMakerMV_AnimationScreen }
             MenuItem { action: oneMakerMV_EventCommandMenu }
             MenuItem { action: oneMakerMV_MaxLimitsMenu }
             MenuItem { action: oneMakerMV_ArrayNamesMenu }
@@ -999,7 +1001,7 @@ Item {
 
     Action {
         id: helpContents
-        text: qsTr("Contents")
+        text: qsTr("Plugin Help Menu")
         hint: qsTr("Open the help.")
         shortcut: "F1"
         onTriggered: {
@@ -1010,6 +1012,15 @@ Item {
     }
 
     // [OneMaker MV] - Added New Menu Actions
+    Action {
+        id: oneMakerMV_AnimationScreen
+        text: qsTr("Open Animation Screen Settings")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_AnimationScreen();
+        }
+    }
+
     Action {
         id: oneMakerMV_EventCommandMenu
         text: qsTr("Open Event Command Select Settings")
@@ -1030,7 +1041,7 @@ Item {
 
     Action {
         id: oneMakerMV_ArrayNamesMenu
-        text: qsTr("Array Names")
+        text: qsTr("Open Array Names")
         hint: qsTr("")
         onTriggered: {
             root.oneMakerMV_ArrayNames()
@@ -1039,7 +1050,7 @@ Item {
 
     Action {
         id: oneMakerMV_ImageSelectionMenu
-        text: qsTr("Image Selection")
+        text: qsTr("Open Image Selection")
         hint: qsTr("")
         onTriggered: {
             root.oneMakerMV_ImageSelection()

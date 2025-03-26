@@ -102,7 +102,7 @@ ControlsRow {
                     ListModel {
                         id: listModel
                     }
-                    ListBox {
+                    FindManagerListBox { // [OneMaker MV] - Change to obtain a find manager list box
                         id: listBox
                         title: qsTr("Enemy List")
                         hint: qsTr("Press the [Add] button on the left to add selected enemies to the troop.")
@@ -112,9 +112,15 @@ ControlsRow {
                         model: listModel
                         headerVisible: false
 
+                        // [OneMaker MV] - Always show selection and disable all the broken menu items
+                        showSelectionAlways: true
+
                         ListBoxColumn { role: "text" }
 
                         onDoubleClicked: screen.add(listBox.currentIndex + 1)
+                        
+                        // [OneMaker MV] - Add findManager
+                        findManager: findMgr
                     }
                     Component.onCompleted: {
                         var dataSet = DataManager.getDataSet("enemies");
@@ -170,6 +176,33 @@ ControlsRow {
     }
 
     DialogBoxHelper { id: helper }
+
+    // [OneMaker MV] - Add FindManager Control
+    FindManager {
+            id: findMgr
+            scopeTitle: qsTr("Enemy List")
+
+            searchableFields: ([
+                { name: "text", title: qsTr("Enemy Name"), hint: qsTr("Search for an Enemies Name.") },
+            ])
+
+            function getItemCount() {
+                return listBox.rowCount;
+            }
+
+            function getItem(index) {
+                return listBox.model.get(index);
+            }
+
+            function getCurrentIndex() {
+                return listBox.currentIndex;
+            }
+
+            function setCurrentIndex(index) {
+                listBox.currentIndex = index;
+                listBox.positionViewAtIndex(listBox.currentIndex, ListView.Contain);
+            }
+        }
 
     Component.onDestruction: {
         DataManager.removeTestData();

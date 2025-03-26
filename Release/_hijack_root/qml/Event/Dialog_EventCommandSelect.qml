@@ -169,7 +169,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003]
+                            codeList: [1001, 1002, 1003, 1004]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -285,7 +285,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003]
+                            codeList: [1001, 1002, 1003, 1004]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }

@@ -12,6 +12,10 @@ QtObject {
 
     Component.onCompleted: {
         defaultSettings = {
+            animationScreenBlendMode: {
+                default: 1,
+                arrayIndex: 1
+            },
             eventCommandSelect: {
                 combinedEnabled: false,
                 width: 508
@@ -22,6 +26,12 @@ QtObject {
             selfVariableNaming: {
                 namingScheme: [
                     'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'
+                ]
+            },
+            selfSwitchNaming: {
+                enabled: false,
+                namingScheme: [
+                    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
                 ]
             },
             soundSlotNaming: {

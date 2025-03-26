@@ -20,8 +20,8 @@ ModalWindow {
         applyVisible: false
         closeVisible: true
 
-            ControlsColumn {
-                GroupBox {
+        ControlsColumn {
+            GroupBox {
                 height: 55
                 width: 250
                 LabeledComboBox {

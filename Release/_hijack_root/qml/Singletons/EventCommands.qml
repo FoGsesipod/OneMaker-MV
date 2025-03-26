@@ -130,7 +130,8 @@ QtObject {
         999: [ "gray",       0, qsTr("Undefined Command") ],
         1001:[ "indigo",     1, qsTr("Yaml Selector") ], // [OneMaker MV] - Added Yaml Selector
         1002:[ "teal",       1, qsTr("Sound Manager") ], // [OneMaker MV] - Added Sound Manager
-        1003:[ "maroon",     1, qsTr("Transfer Player Script") ] // [OneMaker MV] - Added Transfer Player Script
+        1003:[ "maroon",     1, qsTr("Transfer Player Script") ], // [OneMaker MV] - Added Transfer Player Script
+        1004:[ "magenta",    1, qsTr("Actor Movement Animations") ] // [OneMaker MV] - Added Actor Movement Animations
     }
 
     readonly property var hintTable: {
@@ -242,7 +243,8 @@ QtObject {
         356: qsTr("Send a command to a plugin."),
         1001:qsTr("Auto-create yaml related plugin commands with a GUI."), // [OneMaker MV] - Added hint for yaml selector
         1002:qsTr("Various sound related commands."), // [OneMaker MV] - Added Sound Manager
-        1003:qsTr("The Teleport Script with a GUI.") // [OneMaker MV] - Added Transfer Player Script
+        1003:qsTr("The Teleport Script with a GUI."), // [OneMaker MV] - Added Transfer Player Script
+        1004:qsTr("Create Actor Movement Animation scripts.") // [OneMaker MV] - Added Actor Movement Animations
     }
 
     function get(code) {

@@ -21,6 +21,9 @@ ApplicationWindow {
 
     readonly property string gameTitle: DataManager.gameTitle
 
+    // [OneMaker MV] - Add PluginHelpEverywhere to replace default help action
+    property var dialogPluginHelp: Dialog_PluginHelpEverywhere { }
+
     property bool qmlTextWorkaround: {
         // [Workaround] QML Text has a problem with Intel on-board graphics.
         // (QTBUG-44256)
@@ -90,6 +93,7 @@ ApplicationWindow {
         onHelpContents: openHelp()
 
         // [OneMaker MV] - Added Menu Items
+        onOneMakerMV_AnimationScreen: openAnimationScreen()
         onOneMakerMV_EventCommandSelectPage: openEventCommandSelectPage()
         onOneMakerMV_MaxLimits: openMaxLimits()
         onOneMakerMV_ArrayNames: openArrayNames()
@@ -159,6 +163,9 @@ ApplicationWindow {
         id: options
     }
     // [OneMaker MV] - Load Menus
+    OneMakerMV_AnimationScreen {
+        id: one_AnimationScreen
+    }
     OneMakerMV_EventCommandSelectPage {
         id: one_EventCommandSelectPage
     }
@@ -362,12 +369,16 @@ ApplicationWindow {
     }
 
     function openHelp() {
-        var helpPath = TkoolAPI.applicationDirPath() + "/Help/index.html";
-        var helpUrl = TkoolAPI.pathToUrl(helpPath);
-        urlOpener.open(helpUrl);
+        dialogPluginHelp.open()
     }
 
     // [OneMaker MV] - Open Menu Functions
+    function openAnimationScreen() {
+        heavy.run(function() {
+            one_AnimationScreen.open();
+        })
+    }
+
     function openEventCommandSelectPage() {
         heavy.run(function() {
             one_EventCommandSelectPage.open();

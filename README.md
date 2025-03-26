@@ -13,10 +13,11 @@ The Show Text command is now formatted correctly to fit OMORI's face images.
 Comments and Script Commands can now have way more lines.  
 And other smaller improvements.  
 
-## To Install:
-Open the Run Installer.bat file, in the installer package.  
+## To Install:  
+### Windows  
+Run `Installer.bat` after extracting the contents of Installer.7z
 
-**For Manual Installaton:**  
+### Linux + Manual:  
 Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
 
 ## Tiled Map Display:
@@ -27,6 +28,7 @@ The naming scheme follows Tileds, which should be `mapX.png` (X being a number).
 ![Tiled Map Folder](https://github.com/user-attachments/assets/137a8bc5-d6a3-40a2-bccd-157a0337a687).  
 
 ## To get the RPGMaker MV resources
+### Windows:
 Requirements: [Rust](https://www.rust-lang.org/tools/install).  
 Clone [QT Extract](https://github.com/axstin/qtextract).  
 Extract it to some folder, then open powershell and navigate to the folder.  
@@ -43,7 +45,25 @@ Once the application has finished running, the extracted resources will be in `s
 Note: QT Extract places its files one level lower then they actually should be.  
 So the ressources from the first resource bundle will output to `qml/qml/` when the actual resource path is only `qml/`.  
 
+### Linux:
+Requirements: A recent version of GCC and zlib.  
+Download [This Gist File](https://gist.github.com/rphsoftware/e379c86354fdcff5386c4115df4c8f39).  
+Run this command, changing the path to the RPG Maker MV folder:  
+```
+gcc -shared -fPIC -o rmvinj.so main.cpp -ldl -lz; cp rmvinj.so <path>/rmvinj.so 
+```
+
+Afterwords, run:
+```
+LD_PRELOAD=rmvinj.so ./"RPG Maker MV.sh"
+```
+To run RPG Maker MV with the extracter. You can close it after it has finished loading.  
+Delete `rmvinj.so`.  
+
+The extracted resources will be in a folder named `<path>/output/`.  
+
 ## To Build QT5Core.dll Yourself
+### Windows:  
 Requirements: [Visual Studio 2013](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332).  
 Clone [QT 5.4.2](https://download.qt.io/new_archive/qt/5.4/5.4.2/single/qt-everywhere-opensource-src-5.4.2.zip).  
 First extract QT 5.4.2 to `C:/QT/qt-5/`.  
@@ -77,6 +97,18 @@ Then replace `qresource.cpp` from this repositroy into `C:\QT\QT-5\qtbase\src\co
 Then you can run `nmake` when inside a QT Environment cmd (See the commands above) to compile QT, for this project we only need to compile `QT5Core.dll`, which shouldn't take too much time.  
 The `QT5Core.dll` should appear in `C:/QT/qt-5/qtbase/bin/`.  
 (These instructions are based off of the instructions [here](https://doc.qt.io/archives/qt-5.5/windows-building.html)).  
+
+### Linux:
+Requirements: Docker, Curl, and a recent bash-compatible shell.  
+Clone this repository.  
+Navigate to `Source/Linux`, and run `./run.sh`
+
+## To Build hijack.rcc Yourself
+### Windows: 
+Requirements: [Python](https://www.python.org/downloads/).  
+Clone this repository.  
+Navigate to `Source/Resource Creation/`.  
+Run `Create Resource.bat`.  
 
 ## Screenshots
 ![Sample0](https://github.com/user-attachments/assets/7c7dba64-c0d4-4d68-a542-06da93b634b8)

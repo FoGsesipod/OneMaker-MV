@@ -185,8 +185,8 @@ function Show-Selection {
                 $response = $resetFonts.ToLower()
             } until ($response -in @("y", "n"))
 
-            if ($resetFonts -eq "y") {
-                $removeFonts = $true
+            if ($resetFonts -eq "n") {
+                $removeFonts = $false
             }
         }
     }
@@ -300,7 +300,7 @@ $workingDirectory = Join-Path -Path $PSScriptRoot -ChildPath "Working"
 $targetFileName = "OneMaker-MV.zip"
 $outputFilePath = Join-Path -Path $workingDirectory -ChildPath $targetFileName
 
-# Download the latest release's zip, extracting it to the Working directory, then finally deleting the zip.
+# Download the latest release's zip, extracting it to the Working directory, then finally delete the zip.
 Get-LatestRelease
 
 # Copy and replace the core files into RPG Maker's directory.
@@ -316,7 +316,7 @@ $qmlDirectory = Join-Path -Path $hijackRoot -ChildPath "qml"
 $fontsDirectory = Join-Path -Path $qmlDirectory -ChildPath "Fonts"
 
 # Prompt the user if they would like to reset the global Font, Replace the Splash.png, and Replace the Images folder.
-$removeFonts = $false
+$removeFonts = $true
 $replaceSplash = $false
 $replaceImages = $false
 $replacements = Show-Selection
