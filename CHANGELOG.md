@@ -5,6 +5,7 @@ Changed F1 hotkey to open the plugin help menu, almost everywhere.
 Added a settings option to change the default blend mode when creating new cells in the Animations Database tab.  
 Added automation for creating movement graphics for actors.  
 Fixed default Show Text preview not working at all.  
+Added the ability to find enemies on the Enemy List in the Troops Database tab.  
 Added the self switch array to Array Naming settings menu (Please read the tooltip before you go and change it).  
 
 ## Version 1.1.1
