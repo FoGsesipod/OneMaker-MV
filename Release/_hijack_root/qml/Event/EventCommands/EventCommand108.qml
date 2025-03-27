@@ -20,19 +20,12 @@ EventCommandBase {
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
         width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        height: fittingHeight(maximumLineCount)
+        height: fittingHeight(Math.min(Math.max(lineCount, 6), 24)) // [OneMaker MV] - Dynamically scale from 6 to 24 lines (+scrollbars)
         selectAllOnFocus: false
-        maximumLineCount: 24 // [OneMaker MV] - Increased by 18
-
-        onKeyPressed: {
-            if (event.key === Qt.Key_Return && isFinalLine()) {
-                root.ok();
-            }
-        }
-
-        function isFinalLine() {
-            return currentLineIndex === maximumLineCount - 1;
-        }
+        // [OneMaker MV] - Removed:
+        // maximumLineCount: 6
+        // onKeyPressed: {
+        // isFinalLine() {
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }

@@ -20,19 +20,12 @@ EventCommandBase {
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
         width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        height: fittingHeight(maximumLineCount)
+        height: fittingHeight(Math.min(Math.max(lineCount, 12), 24)) // [OneMaker MV] - Dynamically scale from 12 to 24 lines (+scrollbars)
         selectAllOnFocus: false
-        maximumLineCount: 36 // [OneMaker MV] - Increased by 24
-
-        onKeyPressed: {
-            if (event.key === Qt.Key_Return && isFinalLine()) {
-                root.ok();
-            }
-        }
-
-        function isFinalLine() {
-            return currentLineIndex === maximumLineCount - 1;
-        }
+        // [OneMaker MV] - Removed:
+        // maximumLineCount: 12
+        // onKeyPressed: {
+        // isFinalLine() {
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }
