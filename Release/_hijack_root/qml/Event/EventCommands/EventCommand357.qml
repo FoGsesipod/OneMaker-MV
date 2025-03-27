@@ -116,6 +116,7 @@ EventCommandBase {
         troopId: root.troopId
         minimumValue: -99999999
         maximumValue: 99999999
+        allowSelfVariableOperand: true
     }
 
     onLoad: {
