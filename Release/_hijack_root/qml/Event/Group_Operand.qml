@@ -25,6 +25,9 @@ GroupBox {
     property int radioButtonWidth: 100
     property int itemHeight: 28
 
+    // [OneMaker MV] - Self Variable Operand
+    property bool allowSelfVariableOperand: false
+
     ControlsColumn {
         ExclusiveGroup { id: group }
 
@@ -199,13 +202,22 @@ GroupBox {
             gameDataOperandBox.param2 = operandValue3;
             break;
         case 4:
-            radioButton5.checked = true;
+            // [OneMaker MV] - Workaround for EventCommand122 (Control Variables)
+            var selfVarMatch = /^this\.selfVariableValue\((\d+)\)$/.exec(operandValue1);
+            if (!allowSelfVariableOperand &&
+                selfVarMatch && (+selfVarMatch[1] >= 0) && (+selfVarMatch[1] < selfVariableBox.count)
+            ) {
+                radioButton6.checked = true;
+                selfVariableBox.currentIndex = +selfVarMatch[1];
+            } else {
+                radioButton5.checked = true;
+            }
             scriptBox.text = operandValue1;
             break;
         // [OneMaker MV] - Added case 5, self variables 
         case 5:
             radioButton6.checked = true;
-            selfVariableBox.value = operandValue1;
+            selfVariableBox.currentIndex = operandValue1;
             break;
         }
     }
@@ -234,7 +246,13 @@ GroupBox {
             break;
         // [OneMaker MV] - Added case 5, self variables 
         case 5:
-            params.push(selfVariableBox.value);
+            if (allowSelfVariableOperand) {
+                params.push(selfVariableBox.value);
+                break;
+            } else {
+                params[0] = 4;
+                params.push("this.selfVariableValue(" + selfVariableBox.value + ")");
+            }
             break;
         }
         return params;
