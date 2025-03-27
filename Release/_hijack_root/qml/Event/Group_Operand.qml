@@ -248,7 +248,6 @@ GroupBox {
         case 5:
             if (allowSelfVariableOperand) {
                 params.push(selfVariableBox.value);
-                break;
             } else {
                 params[0] = 4;
                 params.push("this.selfVariableValue(" + selfVariableBox.value + ")");
