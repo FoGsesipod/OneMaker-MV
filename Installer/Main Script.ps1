@@ -139,14 +139,17 @@ function Get-LatestRelease {
             Write-Host "Successfully Downloaded Latest Release."
 
             if ($targetFileName -like '*.zip') {
-                Expand-Archive -Path $outputFilePath -DestinationPath $workingDirectory -Force
-                
                 try {
-                    Remove-Item -Path $outputFilePath -Force
+                    Expand-Archive -Path $outputFilePath -DestinationPath $workingDirectory -Force
                     Write-Host "Successfully Extracted Latest Release."
+
+                    Remove-Item -Path $outputFilePath -Force
+
                 }
                 catch {
-                    Write-Error "Failed to remove downloaded zip: $_"
+                    Write-Error "Failed to Extract Latest Release: $_"
+                    Read-Host -Prompt "Installation failed. Press Enter to exit"
+                    exit
                 }
             }
         }
@@ -189,8 +192,6 @@ function Show-Selection {
                 $removeFonts = $false
             }
         }
-    }
-    if ($oldInstall) {
         do {
             $updateSplash = Read-Host -Prompt "Do you want to update the Splash image? [Y/N]"
             $response = $updateSplash.ToLower()
@@ -199,10 +200,8 @@ function Show-Selection {
         if ($response -eq "y") {
             $replaceSplash = $true
         }
-    }
-    if ($oldInstall) {
         do {
-            $updateImage = Read-Host -Prompt "Do you want to replace your Images folder? [Y/N]"
+            $updateImage = Read-Host -Prompt "Do you want to replace the default Image Packs? [Y/N]"
             $response = $updateImage.ToLower()
         } until ($response -in @("y", "n")) 
 
@@ -215,11 +214,11 @@ function Show-Selection {
 }
 
 function Remove-ResourceRedirects {
-    if ($replacements[0]) {
-        $excludes = @("Images")
+    $excludes = if ($replacements[0]) {
+        @("Images") 
     }
     else {
-        $excludes = @("Fonts", "Images")
+        @("Fonts", "Images")
     }
 
     if ($oldInstall) {
@@ -228,8 +227,15 @@ function Remove-ResourceRedirects {
             Write-Host "Removed Splash"
         }
         if ($replacements[2]) {
-            Remove-Item -Path $imageFolder -Recurse -Force
-            Write-Host "Removed Images"
+            Get-ChildItem -Path $imageFolder -Directory |
+            ForEach-Object {
+                foreach ($key in $imagePacks) {
+                    if ($_.Name -eq $key) {
+                        Remove-Item -Path $_.FullName -Recurse -Force
+                        
+                    }
+                }
+            }
         }
         
         Get-ChildItem -Path $qmlDirectory -Directory -Exclude $excludes |
@@ -242,27 +248,27 @@ function Remove-ResourceRedirects {
 
 function Install-ResourceRedirects {
     if ($oldInstall) {
-        $newQmlDirectory = Join-Path -Path $newHijackRoot -ChildPath "qml"
-
         if ($replacements[1]) {
-            $newSplashFolder = Join-Path -Path $newHijackRoot -ChildPath "Splash"
+            $newSplashFolder = Join-Path -Path $newHijackRoot -ChildPath "splash"
             Copy-Item -Path $newSplashFolder -Destination $splashFolder -Recurse -Force
-            Write-Host "Installed new Splash"
+            Write-Host "Updated Splash"
         }
         if ($replacements[2]) {
-            $newImageFolder = Join-Path -Path $newQmlDirectory -ChildPath "Images"
-            Copy-Item -Path $newImageFolder -Destination $imageFolder -Recurse -Force
-            Write-Host "Installed new Images"
+            Get-ChildItem -Path $newImageFolder -Directory |
+            ForEach-Object {
+                Copy-Item -Path $_.FullName -Destination $imageFolder -Recurse -Force
+            }
+            Write-Host "Updated Image Packs"
         }
 
         Get-ChildItem -Path $newQmlDirectory -Directory -Exclude "Images" |
         ForEach-Object {
-            Copy-Item -Path $newQmlDirectory -Destination $hijackRoot -Recurse -Force
+            Copy-Item -Path $_.FullName -Destination $qmlDirectory -Recurse -Force
         }
 
         $manifestUpdate = Join-Path $newHijackRoot -ChildPath "manifest.json"
         Copy-Item -Path $manifestUpdate -Destination $hijackRoot
-        Write-Host "Installed new _hijack_root files"
+        Write-Host "Installed Latest _hijack_root files"
     }
     else {
         Copy-Item -Path $newHijackRoot -Destination $rpgMakerRoot -Recurse
@@ -308,8 +314,9 @@ $QT5Core = Join-Path -Path $workingDirectory -ChildPath "QT5Core.dll"
 $hijackRcc = Join-Path -Path $workingDirectory -ChildPath "hijack.rcc"
 Update-CoreFiles
 
-# Setup the latest releases `_hijack_root`.
+# Setup the latest releases `_hijack_root` and `qml`.
 $newHijackRoot = Join-Path -Path $workingDirectory -ChildPath "_hijack_root"
+$newQmlDirectory = Join-Path -Path $newHijackRoot -ChildPath "qml"
 
 # Setup the destination `qml` and the `Fonts` directories.
 $qmlDirectory = Join-Path -Path $hijackRoot -ChildPath "qml"
@@ -322,8 +329,12 @@ $replaceImages = $false
 $replacements = Show-Selection
 
 # Setup existing Splash and Images folder
-$splashFolder = Join-Path -Path $hijackRoot -ChildPath "Splash"
+$splashFolder = Join-Path -Path $hijackRoot -ChildPath "splash"
 $imageFolder = Join-Path -Path $qmlDirectory -ChildPath "Images"
+
+# Get the updated Image Pack folders
+$newImageFolder = Join-Path -Path $newQmlDirectory -ChildPath "Images"
+$imagePacks = Get-ChildItem -Path $newImageFolder -Directory
 
 # Remove all qml files, and the Font/Splash/Images folder if the user specified. Then Install the new versions.
 Remove-ResourceRedirects

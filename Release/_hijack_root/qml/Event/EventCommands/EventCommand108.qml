@@ -20,19 +20,20 @@ EventCommandBase {
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
         width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        height: fittingHeight(maximumLineCount)
+        height: fittingHeight(Math.min(Math.max(lineCount, 6), 18)) // [OneMaker MV] - Dynamically scale from 6 to 18 lines, afterwords add a scrollbar
         selectAllOnFocus: false
-        maximumLineCount: 24 // [OneMaker MV] - Increased by 18
+        //maximumLineCount: 6 [OneMaker MV] - Removed to allow infinite comment size.
 
-        onKeyPressed: {
-            if (event.key === Qt.Key_Return && isFinalLine()) {
-                root.ok();
-            }
-        }
+        // [OneMaker MV] - Removed to allow infinite comment size.
+        //onKeyPressed: {
+        //    if (event.key === Qt.Key_Return && isFinalLine()) {
+        //        root.ok();
+        //    }
+        //}
 
-        function isFinalLine() {
-            return currentLineIndex === maximumLineCount - 1;
-        }
+        //function isFinalLine() {
+        //    return currentLineIndex === maximumLineCount - 1;
+        //}
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }

@@ -105,9 +105,8 @@ Navigate to `Source/Linux`, and run `./run.sh`
 
 ## To Build hijack.rcc Yourself
 ### Windows: 
-Requirements: [Python](https://www.python.org/downloads/).  
 Clone this repository.  
-Navigate to `Source/Resource Creation/`.  
+Navigate to `Source/Hijack Resource Creation/`.  
 Run `Create Resource.bat`.  
 
 ## Screenshots

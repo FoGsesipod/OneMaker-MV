@@ -445,7 +445,7 @@ QtObject {
             if (params[2] === 0) {
                 text += params[3]
             }
-            // [OneMaker MV] - Commented because there is code for checking if a Self Variable is the same as another Self Variable in rpg_objects.js but for consistency with condition variables I'm going to disallow that.
+            // [OneMaker MV] - Removed because there is code for checking if a Self Variable is the same as another Self Variable in rpg_objects.js but for consistency with condition variables I'm going to disallow that.
             //else if (params[2] === 1) {
             //    text += qsTr("Self Variable") + " " + params[3];
             //}
