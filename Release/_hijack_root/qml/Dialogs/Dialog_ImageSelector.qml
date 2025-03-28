@@ -68,8 +68,8 @@ ModalWindow {
             FileListBox {
                 id: listBox1
 
-                width: 200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                height: 402 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                width: 200 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 402 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 visible: !imageFixed
 
                 folder: imageFixed ? "" : root.folder
@@ -118,7 +118,7 @@ ModalWindow {
             }
 
             ColumnLayout {
-                width: root.viewWidth + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased (Originally was + 2)
+                width: root.viewWidth + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased (Originally was + 2)
                 height: listBox1.height
                 spacing: 10
 

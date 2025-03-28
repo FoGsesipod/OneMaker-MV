@@ -175,8 +175,8 @@ ControlsRow {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseWidth") : 320 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Group Note Width and Position Changed
-            x: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseX") : 0 // [OneMaker MV] - Group Note Width and Position Changed
+            itemWidth: 320 + OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? 320 + OneMakerMVSettings.getWindowSetting("windowSizes", "groupNoteDatabaseWidth") : 320 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Group Note Width and Position Changed
+            x: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getWindowSetting("windowSizes", "groupNoteDatabaseX") : 0 // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

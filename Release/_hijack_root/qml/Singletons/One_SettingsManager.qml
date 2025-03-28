@@ -49,11 +49,12 @@ QtObject {
                 alternativeWidthIncrease: 100,
                 alternativeHeightIncrease: 100,
                 groupAnimationTimingsListBoxWidth: 298,
-                groupNoteDatabaseWidth: 940,
+                groupNoteDatabaseWidth: 620,
                 groupNoteDatabaseX: -420,
                 groupEffectsListBoxWidth: 116,
                 groupTraitsListBoxWidth: 116,
-                layoutEventEditorNoteWidth: 460
+                layoutEventEditorNoteWidth: 460,
+                globalDisable: false
             },
             workingMode: {
                 expectedContext: true
@@ -68,6 +69,10 @@ QtObject {
 
     function getArraySetting(key, identifier) {
         return JSON.stringify(settingData[key][identifier])
+    }
+
+    function getWindowSetting(key, identifier) {
+        return settingData["windowSizes"]["globalDisable"] ? 0 : settingData[key][identifier];
     }
 
     function setSetting(key, identifier, value) {

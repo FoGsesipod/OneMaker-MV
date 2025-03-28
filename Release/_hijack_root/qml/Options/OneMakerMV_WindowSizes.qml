@@ -12,6 +12,8 @@ ModalWindow {
     id: root
     title: qsTr("Window Size Settings")
 
+    property bool currentState: OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
+
     DialogBox {
         okVisible: false
         cancelVisible: false
@@ -39,7 +41,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 200\nDefault 720p: 100")
+                        text: qsTr("Default 1080p: 200\nDefault 900p: 100")
                         height: 20
                         width: 125
                         y: -14
@@ -71,7 +73,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 200\nDefault 720p: 100")
+                        text: qsTr("Default 1080p: 200\nDefault 900p: 100")
                         height: 20
                         width: 125
                         y: -14
@@ -103,7 +105,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 100\nDefault 720p: 80")
+                        text: qsTr("Default 1080p: 100\nDefault 900p: 80")
                         height: 20
                         width: 125
                         y: -14
@@ -135,7 +137,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 100\nDefault 720p: 80")
+                        text: qsTr("Default 1080p: 100\nDefault 900p: 80")
                         height: 20
                         width: 125
                         y: -14
@@ -167,7 +169,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 298\nDefault 720p: 282")
+                        text: qsTr("Default 1080p: 298\nDefault 900p: 282")
                         height: 20
                         width: 125
                         y: -14
@@ -199,7 +201,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default 1080p: 940\nDefault 720p: 920")
+                        text: qsTr("Default 1080p: 620\nDefault 900p: 600")
                         height: 20
                         width: 125
                         y: -14
@@ -352,11 +354,21 @@ ModalWindow {
                             id: checkBox
                             text: qsTr("Global Disable")
                             hint: qsTr("")
+                            checked: currentState
                             
+                            onCheckedChanged: {
+                                if (currentState != checked) {
+                                    if (currentState) {
+                                        OneMakerMVSettings.setSetting("windowSizes", "globalDisable", false)
+                                    }
+                                    else {
+                                        OneMakerMVSettings.setSetting("windowSizes", "globalDisable", true)
+                                    }
+                                    currentState = checked
+                                }
+                            }
                         }
-                        
                     }
-                    
                     Label {
                         text: qsTr("This will disable all OneMaker MV window size modifications. Including\nthe hardcoded `Default Window Height` minimun of 100. As a result,\nSelf Variable and Script Event Page Conditions will also be disabled.")
                         y: -5

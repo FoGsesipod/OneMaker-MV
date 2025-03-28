@@ -19,7 +19,7 @@ EventCommandBase {
         id: textArea
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
-        width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        width: 400 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
         height: fittingHeight(Math.min(Math.max(lineCount, 6), 18)) // [OneMaker MV] - Dynamically scale from 6 to 18 lines, afterwords add a scrollbar
         selectAllOnFocus: false
         //maximumLineCount: 12 [OneMaker MV] - Removed to allow infinite comment size.

@@ -19,7 +19,7 @@ EventCommandBase {
         id: textArea
         title: qsTr("Comment")
         hint: qsTr("Comment text. Has no effect in the game.")
-        width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        width: 400 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
         height: fittingHeight(Math.min(Math.max(lineCount, 6), 18)) // [OneMaker MV] - Dynamically scale from 6 to 18 lines, afterwords add a scrollbar
         selectAllOnFocus: false
         //maximumLineCount: 6 [OneMaker MV] - Removed to allow infinite comment size.

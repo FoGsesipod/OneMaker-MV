@@ -110,7 +110,7 @@ ControlsRow {
                     title: equipGroup.title
                     hint: equipGroup.hint
                     width: 390
-                    height: 206 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                    height: 206 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 }
             }
         }

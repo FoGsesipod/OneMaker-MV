@@ -115,6 +115,7 @@ GroupBox {
 
         // [OneMaker MV] - Add Self Variable event page conditions
         ControlsRow {
+            visible: !OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
             ObjCheckBox {
                 id: checkBox7
                 member: "conditions.selfVariableValid"
@@ -204,6 +205,7 @@ GroupBox {
 
         // [OneMaker MV] - Added script event page condition
         ControlsRow {
+            visible: !OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
             ObjCheckBox {
                 id: checkBox8
                 member: "conditions.scriptValid"
