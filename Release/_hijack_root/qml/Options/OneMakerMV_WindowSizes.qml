@@ -346,7 +346,8 @@ ModalWindow {
                 width: 650
                 ControlsRow {
                     ControlsColumn {
-                        y: -15
+                        width: 175
+                        y: -25
                         Label {
                             text: qsTr("Resolution Below 900p:")
                         }
@@ -371,7 +372,7 @@ ModalWindow {
                     }
                     Label {
                         text: qsTr("This will disable all OneMaker MV window size modifications. Including\nthe hardcoded `Default Window Height` minimun of 100. As a result,\nSelf Variable and Script Event Page Conditions will also be disabled.")
-                        y: -5
+                        y: -7
                     }
                 }
             }
