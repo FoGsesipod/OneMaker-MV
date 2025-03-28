@@ -428,6 +428,39 @@ Game_Interpreter.prototype.command111 = function() {
   return true;
 };
 
+// Control Variables
+Game_Interpreter.prototype.command122 = function() {
+    var value = 0;
+    switch (this._params[3]) { // Operand
+        case 0: // Constant
+            value = this._params[4];
+            break;
+        case 1: // Variable
+            value = $gameVariables.value(this._params[4]);
+            break;
+        case 2: // Random
+            value = this._params[5] - this._params[4] + 1;
+            for (var i = this._params[0]; i <= this._params[1]; i++) {
+                this.operateVariable(i, this._params[2], this._params[4] + Math.randomInt(value));
+            }
+            return true;
+            break;
+        case 3: // Game Data
+            value = this.gameDataOperand(this._params[4], this._params[5], this._params[6]);
+            break;
+        case 4: // Script
+            value = eval(this._params[4]);
+            break;
+        case 5: // Self Variable
+            value = $gameSelfVariables.value([this._mapId,this._eventId,this._params[4]])
+            break;
+    }
+    for (var i = this._params[0]; i <= this._params[1]; i++) {
+        this.operateVariable(i, this._params[2], value);
+    }
+    return true;
+};
+
 // Control Self Variables
 Game_Interpreter.prototype.command357 = function() {
   var value = 0;
