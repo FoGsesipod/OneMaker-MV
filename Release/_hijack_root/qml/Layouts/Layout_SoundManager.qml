@@ -18,6 +18,7 @@ DialogBoxRow {
     property int pan: 0
     property bool stopSound: checkBox.checked
     property bool disable: false
+    property bool disableStopSound: false
 
     property string playingAudioName: "";
     property bool restoreLast: false;
@@ -40,6 +41,7 @@ DialogBoxRow {
         onCurrentBaseNameChanged: root.updateAudioName()
         onDoubleClicked: root.play()
         onUpdated: selectName(root.audioName)
+        enabled: !checkBox.checked && !root.disable
     }
 
     GroupBoxColumn {
@@ -116,6 +118,7 @@ DialogBoxRow {
                     modified()
                 }
             }
+            enabled: !root.disable && !root.disableStopSound
         }
         
     }
