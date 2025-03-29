@@ -484,7 +484,7 @@ Game_Interpreter.prototype.command357 = function() {
       case 4: // Script
           value = eval(this._params[4]);
           break;
-      case 5:
+      case 5: // Self Variables
           value = $gameSelfVariables.value([this._mapId,this._eventId,this._params[4]]);
           break;
   }

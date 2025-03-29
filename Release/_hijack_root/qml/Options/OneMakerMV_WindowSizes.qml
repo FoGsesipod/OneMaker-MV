@@ -12,7 +12,7 @@ ModalWindow {
     id: root
     title: qsTr("Window Size Settings")
 
-    property bool currentState: OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
+    property bool disableCurrentState: OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
 
     DialogBox {
         okVisible: false
@@ -355,17 +355,17 @@ ModalWindow {
                             id: checkBox
                             text: qsTr("Global Disable")
                             hint: qsTr("")
-                            checked: currentState
+                            checked: disableCurrentState
                             
                             onCheckedChanged: {
-                                if (currentState != checked) {
-                                    if (currentState) {
+                                if (disableCurrentState != checked) {
+                                    if (disableCurrentState) {
                                         OneMakerMVSettings.setSetting("windowSizes", "globalDisable", false)
                                     }
                                     else {
                                         OneMakerMVSettings.setSetting("windowSizes", "globalDisable", true)
                                     }
-                                    currentState = checked
+                                    disableCurrentState = checked
                                 }
                             }
                         }
