@@ -303,7 +303,6 @@ EventCommandBase {
     }
 
     onSave: {
-        eventData = [];
         var scriptLines = [];
         switch (tabView.currentIndex) {
             case 0:
@@ -367,6 +366,7 @@ EventCommandBase {
                 }
                 break;
         }
+        eventData = [];
         for (var i = 0; i < scriptLines.length; i++) {
             eventData.push( makeCommand(i === 0 ? 355 : 655, 0, [ scriptLines[i] ] ) );
         }
