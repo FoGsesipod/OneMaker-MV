@@ -5,6 +5,7 @@
     <file>qml/Controls/YamlFileListBox.qml</file>
     <file>qml/Controls/YamlTextPreview.qml</file>
     <file>qml/Dialogs/Dialog_YamlSelector.qml</file>
+    <file>qml/Event/EventCommandListBox.qml</file>
     <file>qml/Event/EventCommandSoundManager.qml</file>
     <file>qml/Event/Group_SelfVariableRange.qml</file>
     <file>qml/Event/Group_SoundManagerDuration.qml</file>

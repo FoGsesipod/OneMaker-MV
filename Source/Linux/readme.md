@@ -1,4 +1,4 @@
-# OneMaker MV's injector on linux
+# OneMaker MV's injector on Linux
 Contained in this directory are the following:
 - Modified `qtbase/src/corelib/io/qresource.cpp`
 - Docker configuration
