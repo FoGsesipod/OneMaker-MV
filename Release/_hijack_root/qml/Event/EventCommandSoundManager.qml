@@ -44,6 +44,7 @@ EventCommandBase {
                     restoreLast: true
                     fadeable: true
                     disable: saveBgm.checked || replayBgm.checked || fadeOut.value
+                    disableStopSound: fadeBgmInValue > 0
 
                     Component.onCompleted: {
                         var item = nextItemInFocusChain();
@@ -143,6 +144,7 @@ EventCommandBase {
                     subFolder: "bgs"
                     restoreLast: true
                     disable: saveBgs.checked || replayBgs.checked || fadeOut.value
+                    disableStopSound: fadeBgsInValue > 0
 
                     onModified: {
                         root.audioName = audioName;
@@ -301,103 +303,72 @@ EventCommandBase {
     }
 
     onSave: {
-        var params
-        var scriptCommandText = "AudioManager."
-        var ignore = false
-        eventData = []
-
-        eventData.push( makeCommand(355, 0, []) );
-        params = eventData[0].parameters;
-
+        var scriptLines = [];
         switch (tabView.currentIndex) {
             case 0:
                 if (stopSound) {
-                    scriptCommandText += "stopBgm()";
+                    scriptLines.push("AudioManager.stopBgm()");
                 }
                 else if (saveBgmSound) {
-                    scriptCommandText = "$gameSystem._savedBgm" + saveBgmSlot + " = AudioManager.saveBgm()";
+                    scriptLines.push("$gameSystem._savedBgm" + saveBgmSlot + " = AudioManager.saveBgm()");
                 }
                 else if (replayBgmSound) {
-                    eventData.push( makeCommand(655, 0, []) );
-                    eventData.push( makeCommand(655, 0, []) );
-                    params = eventData[1].parameters;
-                    scriptCommandText = "if ($gameSystem._savedBgm" + saveBgmSlot + ") {";
-                    params[0] = "  AudioManager.replayBgm($gameSystem._savedBgm" + saveBgmSlot + ")";
-                    params = eventData[2].parameters;
-                    params[0] = "}";
-
-                    params = eventData[0].parameters;
+                    scriptLines.push("if ($gameSystem._savedBgm" + saveBgmSlot + ") {");
+                    scriptLines.push("  AudioManager.replayBgm($gameSystem._savedBgm" + saveBgmSlot + ")");
+                    scriptLines.push("}");
+                }
+                else if (fadeBgmOutValue > 0) {
+                    scriptLines.push("AudioManager.fadeOutBgm(" + fadeBgmOutValue + ")");
                 }
                 else {
-                    if (fadeBgmOutValue > 0) {
-                        scriptCommandText += "fadeOutBgm(" + fadeBgmOutValue + ")";
-                    }
-                    else {
-                        scriptCommandText += "playBgm( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
-
-                        if (fadeBgmInValue > 0) {
-                            eventData.push( makeCommand(655, 0, []) );
-                            params = eventData[1].parameters;
-                            params[0] = "AudioManager.fadeInBgm(" + fadeBgmInValue + ")";
-
-                            params = eventData[0].parameters;
-                        }
+                    scriptLines.push("AudioManager.playBgm( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )");
+                    if (fadeBgmInValue > 0) {
+                        scriptLines.push("AudioManager.fadeInBgm(" + fadeBgmInValue + ")");
                     }
                 }
                 break;
             case 1:
                 if (stopSound) {
-                    scriptCommandText += "stopBgs()";
+                    scriptLines.push("AudioManager.stopBgs()");
                 }
                 else if (saveBgsSound) {
-                    scriptCommandText = "$gameSystem._savedBgs" + saveBgsSlot + " = AudioManager.saveBgs()";
+                    scriptLines.push("$gameSystem._savedBgs" + saveBgsSlot + " = AudioManager.saveBgs()");
                 }
                 else if (replayBgsSound) {
-                    eventData.push( makeCommand(655, 0, []) );
-                    eventData.push( makeCommand(655, 0, []) );
-                    params = eventData[1].parameters;
-                    params[0] = "  AudioManager.replayBgs($gameSystem._savedBgs" + saveBgsSlot + ")";
-                    scriptCommandText = "if ($gameSystem._savedBgs" + saveBgsSlot + ") {";
-                    params = eventData[2].parameters;
-                    params[0] = "}";
-
-                    params = eventData[0].parameters;
+                    scriptLines.push("if ($gameSystem._savedBgs" + saveBgsSlot + ") {");
+                    scriptLines.push("  AudioManager.replayBgs($gameSystem._savedBgs" + saveBgsSlot + ")");
+                    scriptLines.push("}");
+                }
+                else if (fadeBgsOutValue > 0) {
+                    scriptLines.push("AudioManager.fadeOutBgs(" + fadeBgsOutValue + ")");
                 }
                 else {
-                    if (fadeBgsOutValue > 0) {
-                        scriptCommandText += "fadeOutBgs(" + fadeBgsOutValue + ")";
-                    }
-                    else {
-                        scriptCommandText += "playBgs( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
-
-                        if (fadeBgsInValue > 0 && !ignore) {
-                            eventData.push( makeCommand(655, 0, []) );
-                            params = eventData[1].parameters;
-                            params[0] = "AudioManager.fadeInBgs(" + fadeBgsInValue + ")";
-
-                            params = eventData[0].parameters;
-                        }
+                    scriptLines.push("AudioManager.playBgs( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )");
+                    if (fadeBgsInValue > 0) {
+                        scriptLines.push("AudioManager.fadeInBgs(" + fadeBgsInValue + ")");
                     }
                 }
                 break;
             case 2:
                 if (stopSound) {
-                    scriptCommandText += "stopMe()";
+                    scriptLines.push("AudioManager.stopMe()");
                 }
                 else {
-                    scriptCommandText += "playMe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    scriptLines.push("AudioManager.playMe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )");
                 }
                 break;
             case 3:
                 if (stopSound) {
-                    scriptCommandText += "stopSe()";
+                    scriptLines.push("AudioManager.stopSe()");
                 }
                 else {
-                    scriptCommandText += "playSe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    scriptLines.push("AudioManager.playSe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )");
                 }
                 break;
         }
-
-        params[0] = scriptCommandText;
+        eventData = [];
+        for (var i = 0; i < scriptLines.length; i++) {
+            eventData.push( makeCommand(i === 0 ? 355 : 655, 0, [ scriptLines[i] ] ) );
+        }
     }
 }
