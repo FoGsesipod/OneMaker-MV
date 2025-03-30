@@ -31,7 +31,6 @@ ModelessWindow {
     readonly property var paramSearchData: {
         // switchMode
         "2": [
-            // 101 105 manual
             ["getValue", [111],
                 [[0,0], 1],
             ],
@@ -39,14 +38,14 @@ ModelessWindow {
         ],
         // variableMode
         "1": [
-            // 101 105 manual
+            // 101 401 105 405 manual
             ["setValue", [103, 104],
                 [0]
             ],
             ["getValue", [111],
                 [[0,1], 1],
                 [[0,1], [2,1], 3],
-                [[0,14], [2,1], 3], /*ex*/
+                [[0,14], [2,2], 3], /*ex*/
             ],
             ["getValue", [122, 357 /*ex*/],
                 // param 0 and 1 manual
@@ -98,9 +97,15 @@ ModelessWindow {
 
     readonly property int controlSwitchCode: 121
     readonly property int controlVariableCode: 122
-    // [OneMaker MV] - Removed no longer used variable
-    //readonly property int conditionBranchCode: 111
+    readonly property int conditionBranchCode: 111
     readonly property int setMovementRouteCode: 205
+    // [OneMaker MV] - Added control self variable code
+    readonly property int controlSelfVariableCode: 357
+    // [OneMaker MV] - Added show text codes
+    readonly property int showTextCode: 101
+    readonly property int showTextDataCode: 401
+    readonly property int showScrollingTextCode: 105
+    readonly property int showScrolingTextDataCode: 405
     // [OneMaker MV] - Added comment codes
     readonly property int commentCode: 108
     readonly property int commentDataCode: 408
@@ -456,7 +461,9 @@ ModelessWindow {
                             _searchSingleMap(maps[i].id, data, variableId, switchId);
                         }
 
-                        for (i = data.length - 1; i >= 0; i--) {
+                        // [OneMaker MV] - Reversed result order
+                        //for (i = data.length - 1; i >= 0; i--) {
+                        for (i = 0; i < data.length; i++) {
                             listModel.insert(currentIndex, makeModelItem(data[i]));
                             currentIndex++;
                         }
@@ -557,7 +564,7 @@ ModelessWindow {
                             continue l_next_test;
                         break;
                     case "number": // i
-                        if (params[tests[i][j][0]] !== id)
+                        if (params[tests[i][j]] !== id)
                             continue l_next_test;
                         break;
                 }
@@ -803,6 +810,22 @@ ModelessWindow {
             }
 
             if (mode === variableMode) {
+                // [OneMaker MV] - Added search for show text
+                // for show text
+                if ((list[i].code === showTextCode || list[i].code === showScrollingTextCode) && options.getValue) {
+                    var dataCode = list[i].code === showTextCode ? showTextDataCode : showScrollingTextDataCode;
+                    var blockText = "";
+                    while (list[i+1] && list[i+1].code === dataCode) {
+                        i++;
+                        blockText += list[i].parameters[0] + (i === 0 ? "" : "\n");
+                    }
+                    if (blockText.indexOf("\\V[" + id + "]") !== -1) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                        continue;
+                    }
+                }
+
                 // [OneMaker MV] - Removed code replaced by extensive param searching system
                 //// for condition branch code
                 //if (list[i].code === conditionBranchCode) {
@@ -956,11 +979,11 @@ ModelessWindow {
 
     function _createResult(mapId, page, info, event) {
         var result = {
-            'event': _padding3(event.id) + ':' + event.name,
+            'event': _padding3(event.id) + ': ' + event.name, // [OneMaker MV] Changed ':' to ': '
             'page': page
         };
         if (mapId !== 'Common') {
-            result.map = _padding3(mapId) + ':' + info.name;
+            result.map = _padding3(mapId) + ': ' + info.name; // [OneMaker MV] Changed ':' to ': '
             result.coordinate = '(' + event.x + ',' + event.y + ')';
         }
         return result;
