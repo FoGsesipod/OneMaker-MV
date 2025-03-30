@@ -62,11 +62,11 @@ ObjEllipsisBox {
         if (!root.includeZero && id === 0) {
             return
         }
-        else if (id >= DataManager.system.variables.length) {
+        else if (id >= DataManager.system.switches.length) {
             return
         }
 
-        root.variableId = id;
+        root.switchId = id;
         updateText();
         helper.setModified();
     }
