@@ -12,6 +12,7 @@ Column {
 
     readonly property var texts1: [
         "\\V[n]", qsTr("Replaced by the value of the nth variable."),
+        "\\SV[n]", qsTr("Replaced by the value of the nth self variable."),
         "\\N[n]", qsTr("Replaced by the name of the nth actor."),
         "\\P[n]", qsTr("Replaced by the name of the nth party member."),
         "\\G",    qsTr("Replaced by the currency unit."),
