@@ -120,17 +120,15 @@ GroupBox {
                 id: checkBox7
                 member: "conditions.selfVariableValid"
                 text: qsTr("Self Variable")
-                hint: qsTr("")
+                hint: qsTr("Appears when the specified self variable is greater than or equal to the given value.")
                 width: root.checkBoxWidth
                 height: root.itemHeight
 
                 onCheckedChanged: {
-                    if (!dataObject.hasOwnProperty("conditions.selfVariableId")) {
-                        DataManager.setObjectValue(dataObject, "conditions.selfVariableId", 0);
-                    }
-                    if (!dataObject.hasOwnProperty("conditions.selfVariableOperator")) {
-                        DataManager.setObjectValue(dataObject, "conditions.selfVariableOperator", 0);
-                    }
+                    // sets default value
+                    var members = ["conditions.selfVariableId", "conditions.selfVariableOperator", "conditions.selfVariableValue"];
+                    for (var i = 0; i < members.length; i++)
+                        DataManager.setObjectValue(dataObject, members[i], DataManager.getObjectValue(dataObject, members[i], 0));
                 }
             }
             ControlsColumn {
