@@ -126,7 +126,7 @@ Game_SelfVariables.prototype.onChange = function() {
 // determination functions.
 
 Game_Map.prototype.selfVariableValue = function(variableId) {
-  return this._interpreter.selfVariableValue(variableId) || "";
+  return this._interpreter.selfVariableValue(variableId);
 };
 
 //-----------------------------------------------------------------------------
@@ -541,4 +541,31 @@ Game_BattlerBase.prototype.paramMax = function(paramId) {
     } else {
         return 99999;
     }
+};
+
+//-----------------------------------------------------------------------------
+// Window_Base
+//
+// The superclass of all windows within the game.
+
+Window_Base.prototype.convertEscapeCharacters = function(text) {
+    text = text.replace(/\\/g, '\x1b');
+    text = text.replace(/\x1b\x1b/g, '\\');
+    text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
+        return $gameVariables.value(parseInt(arguments[1]));
+    }.bind(this));
+    text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
+        return $gameVariables.value(parseInt(arguments[1]));
+    }.bind(this));
+    text = text.replace(/\x1bSV\[(\d+)\]/gi, function() {
+        return $gameMap.selfVariableValue(parseInt(arguments[1]));
+    }.bind(this));
+    text = text.replace(/\x1bN\[(\d+)\]/gi, function() {
+        return this.actorName(parseInt(arguments[1]));
+    }.bind(this));
+    text = text.replace(/\x1bP\[(\d+)\]/gi, function() {
+        return this.partyMemberName(parseInt(arguments[1]));
+    }.bind(this));
+    text = text.replace(/\x1bG/gi, TextManager.currencyUnit);
+    return text;
 };
