@@ -128,18 +128,14 @@ QtObject {
     }
 
     function findCorePlugin() {
-        //if (DataManager.loadDatabase()) {
-            if (DataManager.loadPlugins()) {
-                var dataArray = DataManager.plugins;
-                
-                if (dataArray[0].name === "OneMakerMV-Core") {
-                    corePluginDetected = true;
-                }
-                else {
-                    corePluginDetected = false;
-                }
-            }
-        //}
+        var dataArray = DataManager.plugins;
+        
+        if (dataArray[0].name === "OneMakerMV-Core" && dataArray[0].status) {
+            corePluginDetected = true;
+        }
+        else {
+            corePluginDetected = false;
+        }
     }
 
     function detectCorePluginActivationStatus() {
