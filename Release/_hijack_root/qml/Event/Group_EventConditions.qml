@@ -6,7 +6,6 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
-import "../_OneMakerMV"
 
 GroupBox {
     id: root
@@ -79,7 +78,7 @@ GroupBox {
                         title: qsTr("Operator")
                         hint: qsTr("Variable Operator to use")
                         itemWidth: 75
-                        model: EventPageConditionOperators.eventConditionOperatorArray
+                        model: Constants.variableConditionOperatorArray
                         labelVisible: false
                     }
                     ObjSpinBox {
@@ -148,7 +147,7 @@ GroupBox {
                         hint: qsTr("Self Variable Operator to use")
                         labelVisible: false
                         itemWidth: 75
-                        model: EventPageConditionOperators.eventConditionOperatorArray
+                        model: Constants.variableConditionOperatorArray
                     }
                     ObjSpinBox {
                         member: "conditions.selfVariableValue"

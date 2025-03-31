@@ -1,3 +1,2 @@
-singleton EventPageConditionOperators One_EventPageConditionOperators.qml
 singleton ImagePack One_ImagePack.qml
 singleton YamlIdentifiers One_YamlIdentifiers.qml
