@@ -221,8 +221,4 @@ GroupBox {
             }
         }
     }
-
-    Component.onCompleted: {
-        OneMakerMVSettings.detectCorePluginActivationStatus()
-    }
 }

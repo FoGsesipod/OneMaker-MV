@@ -1,9 +1,12 @@
 pragma Singleton
 import QtQuick 2.3
 import Tkool.rpg 1.0
+import "../Main"
 import "../Singletons"
 
 QtObject {
+    id: root
+
     readonly property url storageLocation: TkoolAPI.pathToUrl(TkoolAPI.standardDocumentsLocation() + "/OneMakerMV/")
     readonly property string settingsFileName: "OneMakerMV-Settings.json"
     readonly property url fullPath: storageLocation + settingsFileName
@@ -11,7 +14,7 @@ QtObject {
     property var settingData
     property var defaultSettings: dataObject
 
-    property bool corePluginDetected: false
+    property bool corePluginDetected: null
 
     Component.onCompleted: {
         defaultSettings = {
@@ -64,7 +67,6 @@ QtObject {
             }
         }
         loadConfiguration()
-        detectCorePluginActivationStatus()
     }
 
     function getSetting(key, identifier) {
@@ -125,9 +127,19 @@ QtObject {
         }
     }
 
-    function detectCorePluginActivationStatus() {
+    function findCorePlugin() {
         if (DataManager.loadDatabase()) {
-            console.log("yes")
+            if (DataManager.loadPlugins()) {
+                var dataArray = DataManager.plugins;
+                
+                console.log(dataArray[0])
+            }
+        }
+    }
+
+    function detectCorePluginActivationStatus() {
+        if (!corePluginDetected) {
+
         }
     }
 }
