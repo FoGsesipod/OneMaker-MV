@@ -20,11 +20,13 @@ ModalWindow {
             DataManager.backupPlugins();
         }
         onOk: {
+            OneMakerMVSettings.findCorePlugin(); // [OneMaker MV] - re-detect the first plugin
             DataManager.pluginsModified = true;
             DataManager.backupPlugins();
             TutorialManager.onOkDialog("PluginManager", root);
         }
         onApply: {
+            OneMakerMVSettings.findCorePlugin(); // [OneMaker MV] - re-detect the first plugin
             DataManager.pluginsModified = true;
             DataManager.backupPlugins();
             applyEnabled = false;

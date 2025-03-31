@@ -340,7 +340,7 @@ Item {
     }
 
     onLoad: {
-        OneMakerMVSettings.findCorePlugin()
+        OneMakerMVSettings.findCorePlugin(); // [OneMaker MV] - Detect core plugin on project load
         DataManager.updateGameTitle();
         DataManager.currentMapId = DataManager.getSystemValue("editMapId", 0);
         DataManager.projectOpened = false;

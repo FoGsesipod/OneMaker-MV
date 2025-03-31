@@ -14,7 +14,7 @@ QtObject {
     property var settingData
     property var defaultSettings: dataObject
 
-    property bool corePluginDetected: null
+    property bool corePluginDetected: false
 
     Component.onCompleted: {
         defaultSettings = {
@@ -128,18 +128,21 @@ QtObject {
     }
 
     function findCorePlugin() {
-        if (DataManager.loadDatabase()) {
+        //if (DataManager.loadDatabase()) {
             if (DataManager.loadPlugins()) {
                 var dataArray = DataManager.plugins;
                 
-                console.log(dataArray[0])
+                if (dataArray[0].name === "OneMakerMV-Core") {
+                    corePluginDetected = true;
+                }
+                else {
+                    corePluginDetected = false;
+                }
             }
-        }
+        //}
     }
 
     function detectCorePluginActivationStatus() {
-        if (!corePluginDetected) {
-
-        }
+        return corePluginDetected;
     }
 }

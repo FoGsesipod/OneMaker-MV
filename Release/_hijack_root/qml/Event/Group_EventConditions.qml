@@ -123,13 +123,7 @@ GroupBox {
                 hint: qsTr("Appears when the specified self variable is greater than or equal to the given value.")
                 width: root.checkBoxWidth
                 height: root.itemHeight
-
-                onCheckedChanged: {
-                    // sets default value
-                    var members = ["conditions.selfVariableId", "conditions.selfVariableOperator", "conditions.selfVariableValue"];
-                    for (var i = 0; i < members.length; i++)
-                        DataManager.setObjectValue(dataObject, members[i], DataManager.getObjectValue(dataObject, members[i], 0));
-                }
+                enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
             }
             ControlsColumn {
                 enabled: checkBox7.checked
