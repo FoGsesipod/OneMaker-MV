@@ -158,7 +158,7 @@ Tab {
             RadioButton {
                 id: radioButton5
                 text: qsTr("Self Variable")
-                hint: qsTr("")
+                hint: qsTr("Based on the value of the specified self variable.")
                 exclusiveGroup: root.exclusiveGroup
                 value: 14
                 width: radioButtonWidth
