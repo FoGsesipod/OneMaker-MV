@@ -148,13 +148,14 @@ Game_Event.prototype.meetsConditions = function (page) {
       }
   }
   if (c.variableValid) {
-      switch (c.variableOperator) {
+      var variableOperator = c.variableOperator != null ? c.variableOperator : 0;
+      switch (variableOperator) {
         case 0: // Greater than or Equal to
             if ($gameVariables.value(c.variableId) < c.variableValue) {
                 return false;
             }
             break;
-        case 1: // Greather than
+        case 1: // Greater than
             if ($gameVariables.value(c.variableId) <= c.variableValue) {
                 return false;
             }
@@ -179,11 +180,6 @@ Game_Event.prototype.meetsConditions = function (page) {
                 return false;
             }
             break;
-        default: // Compatibility with MV BASE defaults to Greater than or equal to
-            if ($gameVariables.value(c.variableId) < c.variableValue) {
-                return false;
-            }
-            break;
           }
   }
   if (c.selfSwitchValid) {
@@ -193,40 +189,38 @@ Game_Event.prototype.meetsConditions = function (page) {
       }
   }
   if (c.selfVariableValid) {
-      var key = [this._mapId, this._eventId, c.selfVariableId];
-      switch (c.selfVariableOperator) {
+      var selfVariableId       = c.selfVariableId       != null ? c.selfVariableId       : 0;
+      var selfVariableOperator = c.selfVariableOperator != null ? c.selfVariableOperator : 0;
+      var selfVariableValue    = c.selfVariableValue    != null ? c.selfVariableValue    : 0;
+      var key = [this._mapId, this._eventId, selfVariableId];
+      switch (selfVariableOperator) {
         case 0: // Greater than or Equal to
-            if ($gameSelfVariables.value(key) < c.selfVariableValue) {
+            if ($gameSelfVariables.value(key) < selfVariableValue) {
                 return false;
             }
             break;
-        case 1: // Greather than
-            if ($gameSelfVariables.value(key) <= c.selfVariableValue) {
+        case 1: // Greater than
+            if ($gameSelfVariables.value(key) <= selfVariableValue) {
                 return false;
             }
             break;
         case 2: // Equal to
-            if ($gameSelfVariables.value(key) != c.selfVariableValue) {
+            if ($gameSelfVariables.value(key) != selfVariableValue) {
                 return false;
             }
             break;
         case 3: // Less than
-            if ($gameSelfVariables.value(key) >= c.selfVariableValue) {
+            if ($gameSelfVariables.value(key) >= selfVariableValue) {
                 return false;
             }
             break;
         case 4: // Less than or Equal to
-            if ($gameSelfVariables.value(key) > c.selfVariableValue) {
+            if ($gameSelfVariables.value(key) > selfVariableValue) {
                 return false;
             }
             break;
         case 5: // Not Equals to
-            if ($gameSelfVariables.value(key) === c.selfVariableValue) {
-                return false;
-            }
-            break;
-          default: // Default to Greater than or equal to
-            if ($gameSelfVariables.value(key) < c.selfVariableValue) {
+            if ($gameSelfVariables.value(key) === selfVariableValue) {
                 return false;
             }
             break;
