@@ -554,9 +554,10 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
     text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
         return $gameVariables.value(parseInt(arguments[1]));
     }.bind(this));
-    text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
-        return $gameVariables.value(parseInt(arguments[1]));
-    }.bind(this));
+    // Commenting this because it is a duplicate of the above command, no idea why they did this.
+    //text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
+    //    return $gameVariables.value(parseInt(arguments[1]));
+    //}.bind(this));
     text = text.replace(/\x1bSV\[(\d+)\]/gi, function() {
         return $gameMap.selfVariableValue(parseInt(arguments[1]));
     }.bind(this));
