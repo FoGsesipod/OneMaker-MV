@@ -79,7 +79,7 @@ GroupBox {
                         title: qsTr("Operator")
                         hint: qsTr("Variable Operator to use")
                         itemWidth: 75
-                        model: Constants.variableConditionOperatorArray
+                        model: Constants.eventConditionOperatorArray
                         labelVisible: false
                     }
                     ObjSpinBox {
@@ -148,7 +148,7 @@ GroupBox {
                         hint: qsTr("Self Variable Operator to use")
                         labelVisible: false
                         itemWidth: 75
-                        model: Constants.variableConditionOperatorArray
+                        model: Constants.eventConditionOperatorArray
                     }
                     ObjSpinBox {
                         member: "conditions.selfVariableValue"
@@ -220,5 +220,9 @@ GroupBox {
                 labelVisible: false
             }
         }
+    }
+
+    Component.onCompleted: {
+        OneMakerMVSettings.detectCorePluginActivationStatus()
     }
 }
