@@ -9,7 +9,7 @@
  * @author FoGsesipod | Sound
  * @help
  * ===============================================================================================================
- * Adds core changes necessary for features the OneMaker MV adds.
+ * Adds core changes necessary for features that OneMaker MV adds.
  * ===============================================================================================================
  * 
  * List of current additional feature:
@@ -18,10 +18,24 @@
  * - Increases the maximun parameters for enemies.
  * 
  * ===============================================================================================================
+ * Additional features 
+ * ===============================================================================================================
+ * 
+ * List of features that you can enable or disable:
+ * - Option to pass the Event Id to the Game_Interpreter in Event Test,
+ * Also allows you to select where the player is located before opening the game.
+ * 
+ * ===============================================================================================================
  * Version History:
  * ===============================================================================================================
  * 
  * 1.0.0 - Initial Release.
+ * 
+ * @param Event Test Fix
+ * @text Test
+ * @type boolean
+ * @default true
+ * @desc Test
 */
 //===============================================================================================================
 
@@ -154,7 +168,7 @@ Game_Event.prototype.meetsConditions = function (page) {
                 return false;
             }
             break;
-        case 1: // Greather than
+        case 1: // Greater than
             if ($gameVariables.value(c.variableId) <= c.variableValue) {
                 return false;
             }
@@ -193,14 +207,15 @@ Game_Event.prototype.meetsConditions = function (page) {
       }
   }
   if (c.selfVariableValid) {
-      var key = [this._mapId, this._eventId, c.selfVariableId];
+      var key = [this._mapId, this._eventId, c.selfVariableId ? c.selfVariableId : 0];
+      if (!c.selfVariableValue) c.selfVariableValue = 0;
       switch (c.selfVariableOperator) {
         case 0: // Greater than or Equal to
             if ($gameSelfVariables.value(key) < c.selfVariableValue) {
                 return false;
             }
             break;
-        case 1: // Greather than
+        case 1: // Greater than
             if ($gameSelfVariables.value(key) <= c.selfVariableValue) {
                 return false;
             }
@@ -225,7 +240,7 @@ Game_Event.prototype.meetsConditions = function (page) {
                 return false;
             }
             break;
-          default: // Default to Greater than or equal to
+        default: // Default to Greater than or equal to
             if ($gameSelfVariables.value(key) < c.selfVariableValue) {
                 return false;
             }
@@ -575,3 +590,53 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
     text = text.replace(/\x1bG/gi, TextManager.currencyUnit);
     return text;
 };
+
+// region Additions
+
+var OneMakerMV = {}
+OneMakerMV.parameters = PluginManager.parameters(`OneMakerMV-Core`);
+
+// Fix Game_Interpreter not having an Event Id when doing Event Test.
+if (eval(OneMakerMV.parameters[`Event Test Fix`])) {
+    const old_DataManager_loadDatabase = DataManager.loadDatabase;
+    DataManager.loadDatabase = function() {
+      // Run Original Function
+      old_DataManager_loadDatabase.call(this);
+      if (DataManager.isEventTest()) {
+        DataManager.loadDataFile('$testEventExtra', '_testEventExtra.json');
+      };
+    };
+
+    Game_Map.prototype.setupTestEvent = function() {
+        if ($testEvent) {
+            if (window['$testEventExtra']) {
+                this._interpreter.setup($testEvent, window['$testEventExtra'].EventId);
+    		} else {
+    			this._interpreter.setup($testEvent, 0);
+    		}
+            $testEvent = null;
+            return true;
+        }
+        return false;
+    };
+
+    DataManager.setupEventTest = function() {
+    	// Skip omori title screen
+    	if (window.Galv && Galv.ASPLASH) {
+    	    Galv.ASPLASH.splashed = true;
+    	};
+    	// Fetch extra event detail
+    	var extra = window['$testEventExtra'];
+        this.createGameObjects();
+        this.selectSavefileForNewGame();
+        $gameParty.setupStartingMembers();
+    	if (extra) {
+            $gamePlayer.reserveTransfer(extra.MapId, extra.X, extra.Y);
+    	} else {
+    		$gamePlayer.reserveTransfer(window['$dataSystem'].editMapId, 8, 6);
+    	}
+        $gamePlayer.setTransparent(false);
+    	$gamePlayer.setThrough(true);
+    	Window_TitleCommand.initCommandPosition();
+    };
+}
