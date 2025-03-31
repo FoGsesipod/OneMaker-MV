@@ -10,6 +10,8 @@ QtObject {
     property var settingData
     property var defaultSettings: dataObject
 
+    property bool corePluginDetected: false
+
     Component.onCompleted: {
         defaultSettings = {
             animationScreenBlendMode: {
@@ -61,6 +63,7 @@ QtObject {
             }
         }
         loadConfiguration()
+        detectCorePluginActivationStatus()
     }
 
     function getSetting(key, identifier) {
@@ -118,6 +121,45 @@ QtObject {
         })
         if (needsUpdate) {
             updateConfigurationFile();
+        }
+    }
+
+    // Modified from DataManager.qml, since this file is located in `qml/Singeltons` I cannot import the DataManager.
+    function loadPlugins() {
+        var fileName = "plugins.js";
+        var url = projectUrl + "js/" + fileName;
+        try {
+            var script = TkoolAPI.readFile(url);
+            var lines = script.split(/\r\n|\r|\n/g)
+            var json = "";
+            for (var i = 0; i < lines.length; i++) {
+                var s = lines[i];
+                if (s === '];') {
+                    s = ']';
+                }
+                if (!s.match(/^(\/\/|var)/)) {
+                    json += s;
+                }
+            }
+            if (json) {
+                return JSON.parse(json);
+            } else {
+                errorFileName = fileName;
+                return null;
+            }
+        } catch (e) {
+            console.warn(e);
+            errorFileName = fileName;
+            return null;
+        }
+        return null;
+    }
+
+    function detectCorePluginActivationStatus() {
+        var plugins = loadPlugins();
+
+        if (!!plugins) {
+            console.log("we Found Them", plugins)
         }
     }
 }

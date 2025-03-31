@@ -6,6 +6,7 @@ import "../BasicLayouts"
 import "../ObjControls"
 import "../Layouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 FocusScope {
     id: root

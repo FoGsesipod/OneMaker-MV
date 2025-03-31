@@ -4,6 +4,7 @@ import Tkool.rpg 1.0
 import "../BasicControls"
 import "../Controls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root

@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import "../BasicControls"
 import "../BasicLayouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root

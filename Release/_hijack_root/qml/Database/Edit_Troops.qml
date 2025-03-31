@@ -7,6 +7,7 @@ import "../ObjControls"
 import "../Dialogs"
 import "../Layouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ControlsRow {
     id: root

@@ -6,6 +6,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 import "../Scripts/JsonTemplates.js" as JsonTemplates
 
 ControlsColumn {

@@ -8,6 +8,7 @@ import "../Layouts"
 import "../Dialogs"
 import "../Event"
 import "../Singletons"
+import "../_OneMakerMV"
 import "../Scripts/JsonTemplates.js" as JsonTemplates
 
 GroupBox {

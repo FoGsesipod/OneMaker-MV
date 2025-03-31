@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Dialogs"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBox {
     id: root

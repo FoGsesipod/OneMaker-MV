@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Map"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBoxRow {
     id: root

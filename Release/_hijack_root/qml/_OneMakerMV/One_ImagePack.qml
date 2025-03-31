@@ -9,6 +9,7 @@
 pragma Singleton
 import QtQuick 2.4
 import "../Singletons"
+import "../_OneMakerMV"
 
 QtObject {
     property string selectedImagePack: ""

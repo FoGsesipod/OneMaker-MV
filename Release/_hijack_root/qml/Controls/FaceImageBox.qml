@@ -5,6 +5,7 @@ import "../BasicLayouts"
 import "../ObjControls"
 import "../Dialogs"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ObjImageBox {
     id: root

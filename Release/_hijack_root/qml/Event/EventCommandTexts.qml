@@ -1,6 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import "../Singletons"
+import "../_OneMakerMV"
 
 QtObject {
     id: root

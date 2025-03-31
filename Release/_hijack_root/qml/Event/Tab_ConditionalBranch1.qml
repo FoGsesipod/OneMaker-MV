@@ -5,6 +5,7 @@ import "../BasicLayouts"
 import "../Controls"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 Tab {
     id: root
