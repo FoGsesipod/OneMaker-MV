@@ -205,6 +205,7 @@ GroupBox {
                 hint: qsTr("")
                 width: root.checkBoxWidth
                 height: root.itemHeight
+                enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
             }
             ObjTextField {
                 member: "conditions.script"

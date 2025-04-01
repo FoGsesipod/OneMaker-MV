@@ -297,7 +297,7 @@ Tab {
                 break;
             case 14: // [OneMaker MV] - Added Self Variables
                 radioButton5.checked = true;
-                selfVariableIdBox.currentIndex = params[1] - 1;
+                selfVariableIdBox.currentIndex = params[1];
                 if (params[2] === 0) {
                     radioButton5A.checked = true;
                     selfVariableValueBox.value = params[3];
@@ -340,7 +340,7 @@ Tab {
                 params[2] = timerOperationBox.currentIndex;
                 break;
             case 14: // [OneMaker MV] - Added Self Variables
-                params[1] = selfVariableIdBox.value;
+                params[1] = selfVariableIdBox.currentIndex;
                 if (radioButton5A.checked) {
                     params[2] = 0;
                     params[3] = selfVariableValueBox.value;

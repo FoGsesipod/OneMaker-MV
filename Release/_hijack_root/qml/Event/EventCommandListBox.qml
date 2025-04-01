@@ -6,6 +6,7 @@ import "../BasicLayouts"
 import "../Controls"
 import "../ObjControls"
 import "../Dialogs"
+import "../Map"
 import "../Singletons"
 
 ListBox {
@@ -21,6 +22,13 @@ ListBox {
     property var list: []
     property string clipboardFormat: "EventCommand"
     property int troopId: 0
+
+    // [OneMaker MV] - Detect if Improved Event Test plugin is enabled
+    property bool improveEventTest: false
+
+    // [OneMaker MV] - Add Cursor Map X/Y for Event Test Improvement.
+    property int mapX: 0
+    property int mapY: 0
 
     readonly property int eventCodeThreshold: 400
     readonly property var currentItem: list[selectionStart]
@@ -172,6 +180,19 @@ ListBox {
     Dialog_GamePlayer {
         id: gamePlayer
         eventTest: true
+    }
+
+    // [OneMaker MV] - Add Dialog Location for Event Test selection
+    Dialog_Location {
+        id: dialogLocation
+        title: qsTr("Select Player Location")
+        needMapSelection: false
+
+        onOk: {
+            root.mapX = mapX;
+            root.mapY = mapY;
+            runTest();
+        }
     }
 
     DialogBoxHelper { id: helper }
@@ -469,11 +490,36 @@ ListBox {
     }
 
     function test() {
+        // [OneMaker MV] - Detect if the Event Test Fixes plugin is installed
+        var dataArray = DataManager.plugins;
+
+        for (var i = 0; i < dataArray.length; i++) {
+            if (dataArray[i].name === "Geo_ImprovedEventTest" && dataArray[i].status) {
+                dialogLocation.mapId = mapId;
+                dialogLocation.mapX = object["x"];
+                dialogLocation.mapY = object["y"];
+                dialogLocation.open();
+                improveEventTest = true;
+                return;
+            }
+        }
+
+        runTest();
+    }
+
+    // [OneMaker MV] - Separate gamePlayer.open() to another function for player selection
+    function runTest() {
         var data = list.slice(selectionStart, selectionEnd + 1);
-        var xy = [object["x"], object["y"]]; // [OneMaker MV] - Grab the X and Y coords of the currently selected event
-        var extraData = {EventId: eventId, MapId: mapId, X: xy[0], Y: xy[1]}; // [OneMaker MV] - Store event and map Id's
+
+        // [OneMaker MV] - Make Extra Event Test information if the plugin was detected
+        if (improveEventTest) {
+            var xy = [mapX, mapY];
+            var extraData = {EventId: eventId, MapId: mapId, X: xy[0], Y: xy[1]}
+            DataManager.saveDataFile("Test_EventExtra.json", extraData);
+            improveEventTest = false;
+        }
+        
         DataManager.saveTestData();
-        DataManager.saveDataFile("_testEventExtra.json", extraData) // [OneMaker MV] - Stringify the extra data
         DataManager.saveTestEvent(data);
         gamePlayer.open();
     }
@@ -551,6 +597,8 @@ ListBox {
 
     Component.onDestruction: {
         DataManager.removeTestData();
+        DataManager.removeDataFile("Test_EventExtra.json"); // [OneMaker MV] - Remove Test Event Extra
         DataManager.removeTestEvent();
+        
     }
 }

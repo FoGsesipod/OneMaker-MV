@@ -31,11 +31,6 @@
  * 
  * 1.0.0 - Initial Release.
  * 
- * @param Event Test Fix
- * @text Test
- * @type boolean
- * @default true
- * @desc Test
 */
 //===============================================================================================================
 
@@ -591,52 +586,7 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
     return text;
 };
 
-// region Additions
+// region Extra Functionality
 
-var OneMakerMV = {}
+class OneMakerMV {}
 OneMakerMV.parameters = PluginManager.parameters(`OneMakerMV-Core`);
-
-// Fix Game_Interpreter not having an Event Id when doing Event Test.
-if (eval(OneMakerMV.parameters[`Event Test Fix`])) {
-    const old_DataManager_loadDatabase = DataManager.loadDatabase;
-    DataManager.loadDatabase = function() {
-      // Run Original Function
-      old_DataManager_loadDatabase.call(this);
-      if (DataManager.isEventTest()) {
-        DataManager.loadDataFile('$testEventExtra', '_testEventExtra.json');
-      };
-    };
-
-    Game_Map.prototype.setupTestEvent = function() {
-        if ($testEvent) {
-            if (window['$testEventExtra']) {
-                this._interpreter.setup($testEvent, window['$testEventExtra'].EventId);
-    		} else {
-    			this._interpreter.setup($testEvent, 0);
-    		}
-            $testEvent = null;
-            return true;
-        }
-        return false;
-    };
-
-    DataManager.setupEventTest = function() {
-    	// Skip omori title screen
-    	if (window.Galv && Galv.ASPLASH) {
-    	    Galv.ASPLASH.splashed = true;
-    	};
-    	// Fetch extra event detail
-    	var extra = window['$testEventExtra'];
-        this.createGameObjects();
-        this.selectSavefileForNewGame();
-        $gameParty.setupStartingMembers();
-    	if (extra) {
-            $gamePlayer.reserveTransfer(extra.MapId, extra.X, extra.Y);
-    	} else {
-    		$gamePlayer.reserveTransfer(window['$dataSystem'].editMapId, 8, 6);
-    	}
-        $gamePlayer.setTransparent(false);
-    	$gamePlayer.setThrough(true);
-    	Window_TitleCommand.initCommandPosition();
-    };
-}
