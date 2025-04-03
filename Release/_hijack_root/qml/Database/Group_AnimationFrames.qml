@@ -13,8 +13,8 @@ GroupBox {
 
     title: qsTr("Frames")
     hint: qsTr("Animation frames.")
-    width: 760 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-    height: 401 + OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+    width: 760 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+    height: 401 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
 
     property int positionType: 0
     property int maxFrames: frameList.maxFrames
@@ -40,8 +40,8 @@ GroupBox {
                 id: screen
                 title: qsTr("Frame View")
                 hint: qsTr("Displays the contents of the selected frame. Double-click on the empty area to place a new cell. Drag a cell to move it. Right-click to open the popup menu.")
-                width: 470 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                height: 272 + OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+                width: 470 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 272 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
                 maxFrames: root.maxFrames
                 maxCells: root.maxCells
                 positionType: root.positionType
@@ -110,7 +110,7 @@ GroupBox {
             id: palette
             title: qsTr("Pattern Palette")
             hint: qsTr("Select the pattern for a new cell.")
-            width: 740 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+            width: 740 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
             height: 82
         }
     }

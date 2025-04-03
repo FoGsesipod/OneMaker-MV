@@ -24,8 +24,8 @@ ModalWindow {
             DialogBoxRow {
                 ListBox {
                     id: pluginList
-                    width: 200 + (OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeWidthIncrease") * 2)
-                    height: 360 + (OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") * 2)
+                    width: 200 + (OneMakerMVSettings.getWindowSetting("alternativeWidthIncrease") * 2)
+                    height: 360 + (OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") * 2)
 
                     headerVisible: false
                     multiSelect: false
@@ -120,8 +120,8 @@ ModalWindow {
 
                 TextArea {
                     id: pluginHelp
-                    width: 200 + (OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") * 2)
-                    height: 360 + (OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") * 2)
+                    width: 200 + (OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") * 2)
+                    height: 360 + (OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") * 2)
                     readOnly: true
                     selectAllOnFocus: false
                 }

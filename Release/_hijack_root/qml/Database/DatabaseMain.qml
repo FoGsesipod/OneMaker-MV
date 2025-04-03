@@ -35,8 +35,8 @@ ModalWindow {
 
             TabView {
                 id: databaseTabView
-                width: 1028 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                height: 658 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                width: 1028 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 658 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 tabsVisible: false
 
                 Tab_DBStandard {

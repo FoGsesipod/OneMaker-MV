@@ -99,6 +99,7 @@ Item {
     signal oneMakerMV_ImageSelection()
     signal oneMakerMV_WindowSizes()
     signal oneMakerMV_WorkingMode()
+    signal oneMakerMV_ResetSettings()
 
     signal steamWindow()
     signal tutorial()
@@ -213,6 +214,7 @@ Item {
             MenuItem { action: oneMakerMV_ImageSelectionMenu }
             MenuItem { action: oneMakerMV_WindowMenu }
             MenuItem { action: oneMakerMV_WorkingModeMenu }
+            MenuItem { action: oneMakerMV_ResetSettings }
         }
     }
 
@@ -1072,6 +1074,15 @@ Item {
         hint: qsTr("")
         onTriggered: {
             root.oneMakerMV_WorkingMode()
+        }
+    }
+
+    Action {
+        id: oneMakerMV_ResetSettings
+        text: qsTr("Reset Settings Menu")
+        hint: qsTr("")
+        onTriggered: {
+            root.oneMakerMV_ResetSettings()
         }
     }
 

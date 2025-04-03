@@ -36,7 +36,7 @@ ControlsColumn {
                 member: "note"
                 title: Constants.noteTitle
                 hint: Constants.noteHint
-                itemWidth: OneMakerMVSettings.getWindowSetting("windowSizes", "layoutEventEditorNoteWidth") // [OneMaker MV] - Window Increased
+                itemWidth: OneMakerMVSettings.getWindowSetting("layoutEventEditorNoteWidth") // [OneMaker MV] - Window Increased
 
                 contextMenu: TextEditPopupMenu {
                     MenuSeparator { }
@@ -59,8 +59,8 @@ ControlsColumn {
 
     TabView {
         id: tabView
-        width: 1016 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        height: 602 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+        width: 1016 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        height: 602 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
 
         TabColumn {
             Layout_EventPage {

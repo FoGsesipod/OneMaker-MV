@@ -65,7 +65,7 @@ ControlsRow {
                         title: qsTr("Placement View")
                         hint: qsTr("Displays the enemies in the troop. Drag an enemy to move it. Right-click to open the popup menu.")
                         width: 280
-                        height: 162 + OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+                        height: 162 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
                     }
                     ControlsColumn {
                         anchors.verticalCenter: parent.verticalCenter
@@ -107,8 +107,8 @@ ControlsRow {
                         id: listBox
                         title: qsTr("Enemy List")
                         hint: qsTr("Press the [Add] button on the left to add selected enemies to the troop.")
-                        width: 220 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                        height: 162 + OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+                        width: 220 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                        height: 162 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
 
                         model: listModel
                         headerVisible: false

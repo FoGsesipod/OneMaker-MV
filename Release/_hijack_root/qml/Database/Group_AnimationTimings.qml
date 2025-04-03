@@ -51,8 +51,8 @@ GroupBox {
             title: root.title
             hint: root.hint
             hintComponent: root.hintComponent
-            width: 520 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-            height: 177 + OneMakerMVSettings.getWindowSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+            width: 520 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+            height: 177 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
             dragDrop: true
 
             ListBoxColumn {
@@ -63,12 +63,12 @@ GroupBox {
             ListBoxColumn {
                 title: qsTr("SE")
                 role: "se"
-                width: 150 + OneMakerMVSettings.getWindowSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                width: 150 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
             }
             ListBoxColumn {
                 title: qsTr("Flash")
                 role: "flash"
-                width: OneMakerMVSettings.getWindowSetting("windowSizes", "groupAnimationTimingsListBoxWidth") // [OneMaker MV] - Width was changed to use Window Sizes constant since 282 + Constant wasn't working
+                width: OneMakerMVSettings.getWindowSetting("groupAnimationTimingsListBoxWidth") // [OneMaker MV] - Width was changed to use Window Sizes constant since 282 + Constant wasn't working
             }
 
             function editItem(data) {

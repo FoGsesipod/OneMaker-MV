@@ -170,7 +170,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003, 1004]
+                            codeList: OneMakerMVSettings.getWorkingModeSetting("customEventCommands") ? [1001, 1002, 1003, 1004] : [1002]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -286,7 +286,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003, 1004]
+                            codeList: OneMakerMVSettings.getWorkingModeSetting("customEventCommands") ? [1001, 1002, 1003, 1004] : [1002]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }

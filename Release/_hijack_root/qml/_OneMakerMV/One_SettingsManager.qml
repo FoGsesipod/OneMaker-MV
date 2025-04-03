@@ -20,7 +20,6 @@ QtObject {
         defaultSettings = {
             animationScreenBlendMode: {
                 default: 1,
-                arrayIndex: 1
             },
             eventCommandSelect: {
                 combinedEnabled: false,
@@ -63,7 +62,11 @@ QtObject {
                 globalDisable: false
             },
             workingMode: {
-                expectedContext: true
+                expectedContext: true,
+                faceImageBoxChange: true,
+                removeActionPatterns: false,
+                changeTextPreviewFont: true,
+                customEventCommands: true
             }
         }
         loadConfiguration()
@@ -77,8 +80,12 @@ QtObject {
         return JSON.stringify(settingData[key][identifier])
     }
 
-    function getWindowSetting(key, identifier) {
-        return settingData["windowSizes"]["globalDisable"] ? 0 : settingData[key][identifier];
+    function getWindowSetting(identifier) {
+        return settingData["windowSizes"]["globalDisable"] ? 0 : settingData["windowSizes"][identifier];
+    }
+
+    function getWorkingModeSetting(identifier) {
+        return settingData["workingMode"]["expectedContext"] ? settingData["workingMode"][identifier] : false;
     }
 
     function setSetting(key, identifier, value) {
@@ -93,6 +100,11 @@ QtObject {
 
     function updateConfigurationFile() {
         TkoolAPI.writeFile(fullPath, JSON.stringify(settingData));
+    }
+
+    function resetSettings() {
+        TkoolAPI.removeFile(fullPath);
+        loadConfiguration();
     }
 
     function loadConfiguration() {
