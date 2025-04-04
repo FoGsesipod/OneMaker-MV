@@ -1,33 +1,26 @@
-//===============================================================================================================
+//==============================================================================================================
 // FoGsesipod - OneMaker MV Core
 // OneMakerMV-Core.js
-//===============================================================================================================
+//==============================================================================================================
 
-//===============================================================================================================
+//==============================================================================================================
 /*:
  * @plugindesc Core functionality for OneMakerMV
  * @author FoGsesipod | Sound
  * @help
- * ===============================================================================================================
+ * ==============================================================================================================
  * Adds core changes necessary for features that OneMaker MV adds.
- * ===============================================================================================================
+ * ==============================================================================================================
  * 
  * List of current additional feature:
  * - SelfVariable class necessary for using Self Variables.
  * - Modifies event page meetConditions to allow Script Page Condition.
  * - Increases the maximun parameters for enemies.
+ * - Adds Game_Interpreter command 1002, Sound Manager.
  * 
- * ===============================================================================================================
- * Additional features 
- * ===============================================================================================================
- * 
- * List of features that you can enable or disable:
- * - Option to pass the Event Id to the Game_Interpreter in Event Test,
- * Also allows you to select where the player is located before opening the game.
- * 
- * ===============================================================================================================
+ * ==============================================================================================================
  * Version History:
- * ===============================================================================================================
+ * ==============================================================================================================
  * 
  * 1.0.0 - Initial Release.
  * 
@@ -569,10 +562,6 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
     text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
         return $gameVariables.value(parseInt(arguments[1]));
     }.bind(this));
-    // Commenting this because it is a duplicate of the above command, no idea why they did this.
-    //text = text.replace(/\x1bV\[(\d+)\]/gi, function() {
-    //    return $gameVariables.value(parseInt(arguments[1]));
-    //}.bind(this));
     text = text.replace(/\x1bSV\[(\d+)\]/gi, function() {
         return $gameMap.selfVariableValue(parseInt(arguments[1]));
     }.bind(this));
@@ -586,7 +575,99 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
     return text;
 };
 
-// region Extra Functionality
+// region Extra Functions
 
-class OneMakerMV {}
-OneMakerMV.parameters = PluginManager.parameters(`OneMakerMV-Core`);
+// Sound Manager
+Game_Interpreter.prototype.command1002 = function() {
+    switch (this._params[0]) {
+        // Bgm
+        case 0:
+            switch (this._params[1]) {
+                // Stop Sound
+                case 0:
+                    AudioManager.stopBgm();
+                    break;
+                // Save Sound
+                case 1:
+                    $gameSystem[`_savedBgm${this._params[2]}`];
+                    break;
+                // Replay Sound
+                case 2:
+                    if ($gameSystem[`_savedBgm${this._params[2]}`]) {
+                        AudioManager.replayBgm($gameSystem[`_savedBgm${this._params[2]}`])
+                    }
+                    break;
+                // Fade Out Bgm
+                case 3:
+                    AudioManager.fadeOutBgm(this._params[2]);
+                    break;
+                // Play Bgm
+                case 4:
+                    AudioManager.playBgm(this._params[2]);
+                    // Fade In Bgm
+                    if (this._params[3]) {
+                        AudioManager.fadeInBgm(this._params[3]);
+                    }
+                    break;
+            }
+            break;
+        // Bgs
+        case 1:
+            switch (this._params[1]) {
+                // Stop Sound
+                case 0:
+                    AudioManager.stopBgs();
+                    break;
+                // Save Sound
+                case 1:
+                    $gameSystem[`_savedBgs${this._params[2]}`];
+                    break;
+                // Replay Sound
+                case 2:
+                    if ($gameSystem[`_savedBgs${this._params[2]}`]) {
+                        AudioManager.replayBgs($gameSystem[`_savedBgs${this._params[2]}`])
+                    }
+                    break;
+                // Fade Out Bgs
+                case 3:
+                    AudioManager.fadeOutBgs(this._params[2]);
+                    break;
+                // Play Bgs
+                case 4:
+                    AudioManager.playBgs(this._params[2]);
+                    // Fade In Bgm
+                    if (this._params[3]) {
+                        AudioManager.fadeInBgs(this._params[3]);
+                    }
+                    break;
+            }
+            break;
+        // Me
+        case 2:
+            switch (this._params[1]) {
+                // Stop Sound
+                case 0:
+                    AudioManager.stopMe();
+                    break;
+                // Play Me
+                case 1:
+                    AudioManager.playMe(this._params[2]);
+                    break;
+            }
+            break;
+        // Se
+        case 3:
+            switch (this._params[1]) {
+                // Stop Sound
+                case 0:
+                    AudioManager.stopSe();
+                    break;
+                case 1:
+                    AudioManager.playSe(this._params[2]);
+                    break;
+            }
+            break;
+    }
+
+    return true;
+}

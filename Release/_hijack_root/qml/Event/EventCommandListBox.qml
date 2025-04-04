@@ -30,11 +30,11 @@ ListBox {
     property int mapX: 0
     property int mapY: 0
 
-    readonly property int eventCodeThreshold: 400
+    readonly property var eventCodeThreshold: [400, 1000] // [OneMaker MV] - allow codes above 1000
     readonly property var currentItem: list[selectionStart]
-    readonly property int currentCode: currentItem ? currentItem.code : eventCodeThreshold
-    readonly property bool validItemSelected: currentCode > 0 && currentCode < eventCodeThreshold
-    readonly property bool creationEnabled: currentCode < eventCodeThreshold
+    readonly property int currentCode: currentItem ? currentItem.code : eventCodeThreshold[0]
+    readonly property bool validItemSelected: currentCode > 0 && currentCode < eventCodeThreshold[0] || currentCode > eventCodeThreshold[1] // [OneMaker MV] - Append eventCodeThreshold Chanes
+    readonly property bool creationEnabled: currentCode < eventCodeThreshold[0] || currentCode > eventCodeThreshold[1] // [OneMaker MV] - Append eventCodeThreshold Chanes
 
     property int maxItemWidth: 0
 
@@ -278,7 +278,7 @@ ListBox {
 
     onMoveCursorUp: {
         var index = currentIndex;
-        while (index > 0 && list[index].code >= eventCodeThreshold) {
+        while (index > 0 && (list[index].code >= eventCodeThreshold[0] || list[index].code <= eventCodeThreshold[1])) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
             index--;
         }
         currentIndex = index;
@@ -286,7 +286,7 @@ ListBox {
 
     onMoveCursorDown: {
         var index = currentIndex;
-        while (index < list.length - 1 && list[index].code >= eventCodeThreshold) {
+        while (index < list.length - 1 && (list[index].code >= eventCodeThreshold[0] || list[index].code <= eventCodeThreshold[1])) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
             index++;
         }
         currentIndex = index;
@@ -340,7 +340,7 @@ ListBox {
 
             var startIndex = -1;
             for (i = minIndex; i <= maxIndex; i++) {
-                if (list[i].code < eventCodeThreshold && list[i].indent === minIndent) {
+                if ((list[i].code < eventCodeThreshold[0] || list[i].code > eventCodeThreshold[1]) && list[i].indent === minIndent) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
                     startIndex = i;
                     break;
                 }
@@ -349,7 +349,7 @@ ListBox {
             var endIndex = startIndex;
             for (i = maxIndex; i >= minIndex; i--) {
                 if (!(i < list.length - 1 && list[i].code === 0) &&
-                        list[i].code < eventCodeThreshold && list[i].indent === minIndent) {
+                        (list[i].code < eventCodeThreshold[0] || list[i].code > eventCodeThreshold[1]) && list[i].indent === minIndent) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
                     endIndex = i;
                     while (endIndex < list.length - 2) {
                         var code = list[endIndex + 1].code;
@@ -357,7 +357,7 @@ ListBox {
                         if (indent < minIndent) {
                             break;
                         }
-                        if (indent === minIndent && code < eventCodeThreshold) {
+                        if (indent === minIndent && (code < eventCodeThreshold[0] || code > eventCodeThreshold[1])) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
                             break;
                         }
                         endIndex++;
@@ -381,7 +381,7 @@ ListBox {
         }
         var indent = currentItem.indent;
         for (var i = selectionStart + 1; i <= selectionEnd; i++) {
-            if (list[i].code < eventCodeThreshold && list[i].indent === indent) {
+            if ((list[i].code < eventCodeThreshold[0] || list[i].code > eventCodeThreshold[1]) && list[i].indent === indent) {  // [OneMaker MV] - Append eventCodeThreshold Chanes
                 return false;
             }
         }

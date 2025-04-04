@@ -85,7 +85,7 @@ ModalWindow {
                         text: qsTr("Remove Action Patterns")
                     }
                     CheckBox {
-                        text: qsTr("Bigger Enemey Note Box")
+                        text: qsTr("Bigger Enemy Note Box")
                         hint: qsTr("")
                         checked: actionPatternsCurrentState
 
@@ -137,7 +137,7 @@ ModalWindow {
                                 else {
                                     OneMakerMVSettings.setSetting("workingMode", "customEventCommands", true);
                                 }
-                                textPreviewFontCurrentState = checked;
+                                customEventCommandsCurrentState = checked;
                             }
                         }
                     }

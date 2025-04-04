@@ -34,8 +34,4 @@ GroupBox {
             MenuItem_PluginHelpEverywhere { }
         }
     }
-
-    Component.onCompleted: {
-        console.log(item.itemWidth)
-    }
 }

@@ -30,7 +30,7 @@ QtObject {
     }
 
     function symbolText(data) {
-        return data.code < 400 ? diamond : colon;
+        return data.code < 400 || data.code > 1000 ? diamond : colon; // [OneMaker MV] - Change to use diamond if code is over 1000
     }
 
     function commandText(data) {
@@ -1223,5 +1223,112 @@ QtObject {
     // Plugin Command
     function commandParamText356(params) {
         return colorChangeText("navy") + params[0];
+    }
+
+    // [OneMaker MV] - Sound Manager
+    function commandParamText1002(params) {
+        var text;
+        switch (params[0]) {
+            // Bgm
+            case 0:
+                text = "BGM - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Save Bgm
+                    case 1:
+                        text += "Save to slot: " + params[2];
+                        break;
+                    // Replay Bgm
+                    case 2:
+                        text += "Replay from slot: " + params[2];
+                        break;
+                    // Fade Out Bgm
+                    case 3:
+                        text += "Fade Out over " + params[2] + " seconds";
+                        break;
+                    // Play Bgm
+                    case 4:
+                        var endText = "";
+                        if (!params[3]) {
+                            text += "Play ";
+                        }
+                        // Fade Out
+                        else {
+                            text += "Fade In ";
+                            endText = " over " + params[3] + " seconds";
+                        }
+                        text += Constants.audioText(params[2]) + endText;
+                        break;
+                }
+                break;
+            // Bgs
+            case 1:
+                text = "BGS - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Save Bgs
+                    case 1:
+                        text += "Save to slot: " + params[2];
+                        break;
+                    // Replay Bgs
+                    case 2:
+                        text += "Replay from slot: " + params[2];
+                        break;
+                    // Fade Out Bgs
+                    case 3:
+                        text += "Fade Out over " + params[2] + " seconds";
+                        break;
+                    // Play Bgs
+                    case 4:
+                        var endText = "";
+                        if (!params[3]) {
+                            text += "Play ";
+                        }
+                        // Fade Out
+                        else {
+                            text += "Fade In ";
+                            endText = " over " + params[3] + " seconds";
+                        }
+                        text += Constants.audioText(params[2]) + endText;
+                        break;
+                }
+                break;
+            // Me
+            case 2:
+                text = "ME - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Play Me
+                    case 1:
+                        text += "Play " + Constants.audioText(params[2]);
+                        break;
+                }
+                break;
+            // Se
+            case 3:
+                text = "SE - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Play Se
+                    case 1:
+                        text += "Play " + Constants.audioText(params[2]);
+                        break;
+                }
+                break;
+        }
+
+        return text;
     }
 }
