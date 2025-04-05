@@ -201,6 +201,12 @@ EventCommandBase {
         if (eventData) {
             var params = eventData[0].parameters;
             var cases = params[0];
+
+            if (cases[cases.length - 1] === "default") {
+                cases.pop();
+                defaultCheckBox.checked = true;
+            }
+
             caseSpinBox.value = cases.length;
             
             for (var i = 0; i < cases.length; i++) {

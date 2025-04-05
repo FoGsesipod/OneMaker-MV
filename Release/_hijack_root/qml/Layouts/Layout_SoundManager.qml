@@ -39,7 +39,7 @@ DialogBoxRow {
                 width: 200
                 height: expandedInformation ? 402 : 522
                 allowedSuffixes: ["ogg"]
-                folder: DataManager.projectUrl + "audio/" + subFolder
+                folder: DataManager.projectUrl + "audio/" + subFolder.toLowerCase()
 
                 onCurrentBaseNameChanged: root.updateAudioName()
                 onDoubleClicked: root.play()
@@ -219,15 +219,15 @@ DialogBoxRow {
             pitch: audioPitch,
             pan: audioPan
         };
-        if (subFolder === 'se') {
-            AudioPlayer.stop(subFolder);
+        if (subFolder.toLowerCase() === 'se') {
+            AudioPlayer.stop(subFolder.toLowerCase());
         }
-        AudioPlayer.play(subFolder, audio);
+        AudioPlayer.play(subFolder.toLowerCase(), audio);
         playingAudioName = audioName;
     }
 
     function stop() {
-        AudioPlayer.stop(subFolder);
+        AudioPlayer.stop(subFolder.toLowerCase());
         playingAudioName = "";
     }
 
