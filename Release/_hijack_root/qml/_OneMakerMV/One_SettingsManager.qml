@@ -153,4 +153,18 @@ QtObject {
     function detectCorePluginActivationStatus() {
         return corePluginDetected;
     }
+
+    function enableEventCommands(code) {
+        var ids = [1002];
+
+        for (var i = 0; i < ids.length; i++) {
+            if (code === ids[i]) {
+                if (!corePluginDetected) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }

@@ -14,7 +14,7 @@
  * 
  * List of current additional feature:
  * - SelfVariable class necessary for using Self Variables.
- * - Modifies event page meetConditions to allow Script Page Condition.
+ * - Modifies event page meetsConditions to allow Script Page Condition.
  * - Increases the maximun parameters for enemies.
  * - Adds Game_Interpreter command 1002, Sound Manager.
  * 
@@ -196,7 +196,7 @@ Game_Event.prototype.meetsConditions = function (page) {
   }
   if (c.selfVariableValid) {
       var key = [this._mapId, this._eventId, c.selfVariableId ? c.selfVariableId : 0];
-      if (!c.selfVariableValue) c.selfVariableValue = 0;
+      if (!c.selfVariableValue) {c.selfVariableValue = 0;};
       switch (c.selfVariableOperator) {
         case 0: // Greater than or Equal to
             if ($gameSelfVariables.value(key) < c.selfVariableValue) {
@@ -228,7 +228,7 @@ Game_Event.prototype.meetsConditions = function (page) {
                 return false;
             }
             break;
-        default: // Default to Greater than or equal to
+        default: // Default to Greater than or Equal to
             if ($gameSelfVariables.value(key) < c.selfVariableValue) {
                 return false;
             }
@@ -576,6 +576,137 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
 };
 
 // region Extra Functions
+
+Game_Troop.prototype.meetsConditions = function(page) {
+    var c = page.conditions;
+    if (!c.turnEnding && !c.turnValid && !c.enemyValid && !c.actorValid && !c.switchValid && !c.variableValid && !c.stateValid && !c.partyValid && !c.scriptValid) {
+        return false;  // Conditions not set
+    }
+    if (c.turnEnding) {
+        if (!BattleManager.isTurnEnd()) {
+            return false;
+        }
+    }
+    if (c.turnValid) {
+        var n = this._turnCount;
+        var a = c.turnA;
+        var b = c.turnB;
+        if ((b === 0 && n !== a)) {
+            return false;
+        }
+        if ((b > 0 && (n < 1 || n < a || n % b !== a % b))) {
+            return false;
+        }
+    }
+    if (c.enemyValid) {
+        var enemy = $gameTroop.members()[c.enemyIndex];
+        if (!enemy || enemy.hpRate() * 100 > c.enemyHp) {
+            return false;
+        }
+    }
+    if (c.actorValid) {
+        var actor = $gameActors.actor(c.actorId);
+        if (!actor || actor.hpRate() * 100 > c.actorHp) {
+            return false;
+        }
+    }
+    if (c.switchValid) {
+        if (!$gameSwitches.value(c.switchId)) {
+            return false;
+        }
+    }
+    if (c.variableValid) {
+        var key = c.variableId ? c.variableId : 0;
+        if (!c.variableValue) {c.variableValue = 0;};
+        switch (c.variableOperator) {
+            case 0: // Greater then or Equal to
+                if ($gameVariables.value(key) < c.variableValue) {
+                    return false;
+                }
+                break;
+            case 1: // Greater than
+                if ($gameVariables.value(key) <= c.variableValue) {
+                    return false;
+                }
+                break;
+            case 2: // Equal to
+                if ($gameVariables.value(key) != c.variableValue) {
+                    return false;
+                }
+                break;
+            case 3: // Less than
+                if ($gameVariables.value(key) >= c.variableValue) {
+                    return false;
+                }
+                break;
+            case 4: // Less than or Equal to
+                if ($gameVariables.value(key) > c.variableValue) {
+                    return false;
+                }
+                break;
+            case 5: // Not Equals to
+                if ($gameVariables.value(key) === c.variableValue) {
+                    return false;
+                }
+                break;
+            default: // Default to Greater than or Equal to
+                if ($gameVariables.value(key) < c.variableValue) {
+                    return false;
+                }
+                break;
+        }
+    }
+    if (c.stateValid) {
+        if (!c.stateActorId) {c.stateActorId = 1;};
+        if (!c.stateValue) {c.stateValue = 1;};
+        
+        if (!c.stateCharacter) {
+            if (!$gameActors.actor(c.stateActorId).isStateAffected(c.stateValue)) {
+                return false;
+            }
+        }
+        else {
+            if (!$gameTroop.members()[c.stateEnemyIndex].isStateAffected(c.stateValue)) {
+                return false;
+            }
+        }
+    }
+    if (c.partyValid) {
+        if (!c.partyId) {c.partyId = 1;};
+
+        switch (c.partyType) {
+            case 0:
+                if (!$gameParty.hasItem($dataItems[c.partyId])) {
+                    return false
+                }
+                break;
+            case 1:
+                if (!$gameParty.hasItem($dataWeapons[c.partyId])) {
+                    return false
+                }
+                break;
+            case 2:
+                if (!$gameParty.hasItem($dataArmors[c.partyId])) {
+                    return false;
+                }
+                break;
+        }
+    }
+    if (c.scriptValid) {
+        try {
+            var run = false;
+            var script = eval(c.script);
+            if (!run) {
+                return false
+            }
+        }
+        catch (e) {
+            SceneManager.onError(e);
+            return false;
+        }
+    }
+    return true;
+}
 
 // Sound Manager
 Game_Interpreter.prototype.command1002 = function() {

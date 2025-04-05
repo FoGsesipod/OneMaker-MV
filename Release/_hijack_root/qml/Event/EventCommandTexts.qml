@@ -1331,4 +1331,9 @@ QtObject {
 
         return text;
     }
+
+    // [OneMaker MV] - Transfer Player Script
+    function commandParamText1003(params) {
+        
+    }
 }
