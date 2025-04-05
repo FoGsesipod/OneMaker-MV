@@ -200,7 +200,7 @@ DialogBoxRow {
                     model: OneMakerMVSettings.getSetting("soundSlotNaming", "namingScheme")
                     currentIndex: root.saveSlot
                     itemWidth: 187
-                    y: -26
+                    y: -24
                     enabled: root.saveSound || root.replaySound
 
                     onCurrentIndexChanged: {

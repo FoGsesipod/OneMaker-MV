@@ -45,7 +45,7 @@ ModalWindow {
         TabView {
             id: tabView
             width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
-            height: 596 + 30 // [OneMaker MV] - Add + 30 to account for increased height for Control Self Variable
+            height: 596 + 35 // [OneMaker MV] - Add + 35 to account for increased height for Control Self Variable
             visible: !OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             Tab {
@@ -181,7 +181,7 @@ ModalWindow {
         TabView {
             id: tabView1
             width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
-            height: 596 + 30 // [OneMaker MV] - Add + 30 to account for increased height
+            height: 596 + 35 // [OneMaker MV] - Add + 35 to account for increased height
             visible: OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             // [OneMaker MV] - Removed the other Tab's and converted it into one giant tab if the Single Event Command Select Page Constant is enabled

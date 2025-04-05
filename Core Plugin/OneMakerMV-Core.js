@@ -763,8 +763,6 @@ Game_Interpreter.prototype.command358 = function() {
 
 // Case
 Game_Interpreter.prototype.command658 = function() {
-    console.log("Param:", this._params[1])
-    console.log("Branch:", this._branch[this._indent])
     if (this._branch[this._indent] !== this._params[1]) {
         this.skipBranch();
     }

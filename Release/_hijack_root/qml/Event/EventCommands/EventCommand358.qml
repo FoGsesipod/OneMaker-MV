@@ -219,7 +219,7 @@ EventCommandBase {
                 case 2: // Inventory
                     radioButton3.checked = true;
                     itemTypeBox.currentIndex = params[2];
-                    itemValueBox.currentId = params[3];
+                    itemValueBox.setCurrentId(params[3]);
                     break;
                 case 3: // Character Direction
                     radioButton4.checked = true;
