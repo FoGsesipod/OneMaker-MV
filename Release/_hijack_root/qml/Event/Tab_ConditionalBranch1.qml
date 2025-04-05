@@ -164,6 +164,7 @@ Tab {
                 value: 14
                 width: radioButtonWidth
                 height: radioButtonHeight
+                enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
             }
             ControlsColumn {
                 enabled: radioButton5.checked

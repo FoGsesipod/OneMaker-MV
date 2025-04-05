@@ -458,6 +458,52 @@ QtObject {
         return text;
     }
 
+    // [OneMaker MV] - Switch Statement
+    function commandParamText358(params) {
+        var text = "";
+        switch (params[1]) {
+            case 0: // Variable
+                text += "Value of variable: " + DataManager.variableNameOrId(params[2]);
+                break;
+            case 1: // Self Variable
+                text += "Value of self variable: " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[2]];
+                break;
+            case 2: // Inventory
+                switch (params[2]) {
+                    case 0: // Items
+                        text += "Amount of " + DataManager.itemNameOrId(params[3])
+                        break;
+                    case 1: // Weapons
+                        text += "Amount of " + DataManager.weaponNameOrId(params[3])
+                        break;
+                    case 2: // Armors
+                        text += "Amount of " + DataManager.armorNameOrId(params[3])
+                        break;
+                }
+                break;
+            case 3: // Character Direction
+                text += "Direction of " + characterName(params[2])
+                break;
+            case 4: // Script
+                text += params[2];
+                break;
+        }
+        return text;
+    }
+
+    function commandParamText658(params) {
+        var text = "";
+        var text1 = qsTr("Case ", "Case ** (before the text)");
+        var text2 = qsTr(" ", "Case ** (after the text)");
+        if (text1 !== " ") {
+            text += text1;
+        }
+        text += params[1];
+        text += text2;
+
+        return text;
+    }
+
     // Common Event
     function commandParamText117(params) {
         return DataManager.commonEventNameOrId(params[0]);

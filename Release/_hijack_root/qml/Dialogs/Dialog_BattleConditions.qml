@@ -6,6 +6,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -192,6 +193,7 @@ ModalWindow {
                             hint: qsTr("Starts when the specified variable is greater then or equal to the value.")
                             width: conditionsGroup.checkBoxWidth
                             height: conditionsGroup.itemHeight
+                            enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
                         }
                         GameVariableBox {
                             id: variableIdBox
@@ -232,6 +234,7 @@ ModalWindow {
                             hint: qsTr("Starts if an Actor/Enemy is affected by a state")
                             width: conditionsGroup.checkBoxWidth
                             height: conditionsGroup.itemHeight
+                            enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
                         }
                         ObjComboBox {
                             id: stateCharacterBox
@@ -285,6 +288,7 @@ ModalWindow {
                             hint: qsTr("Starts if the party has a item/armor/weapon.")
                             width: conditionsGroup.checkBoxWidth
                             height: conditionsGroup.itemHeight
+                            enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
                         }
                         ObjComboBox {
                             id: itemTypeBox
@@ -316,6 +320,7 @@ ModalWindow {
                             hint: qsTr("Syntax: {run = boolean}\n\nStarts if run equals true.")
                             width: conditionsGroup.checkBoxWidth
                             height: conditionsGroup.itemHeight
+                            enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
                         }
                         ObjTextField {
                             id: scriptField

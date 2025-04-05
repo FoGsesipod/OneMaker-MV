@@ -15,8 +15,10 @@
  * List of current additional feature:
  * - SelfVariable class necessary for using Self Variables.
  * - Modifies event page meetsConditions to allow Script Page Condition.
+ * - Modifies troop Page meetsConditions for additional Conditions.
  * - Increases the maximun parameters for enemies.
  * - Adds Game_Interpreter command 1002, Sound Manager.
+ * - Adds Game_Interpreter commands 358 and 658, Switch Statement and Case.
  * 
  * ==============================================================================================================
  * Version History:
@@ -577,6 +579,7 @@ Window_Base.prototype.convertEscapeCharacters = function(text) {
 
 // region Extra Functions
 
+// Additional Troop Page Conditions
 Game_Troop.prototype.meetsConditions = function(page) {
     var c = page.conditions;
     if (!c.turnEnding && !c.turnValid && !c.enemyValid && !c.actorValid && !c.switchValid && !c.variableValid && !c.stateValid && !c.partyValid && !c.scriptValid) {
@@ -704,6 +707,66 @@ Game_Troop.prototype.meetsConditions = function(page) {
             SceneManager.onError(e);
             return false;
         }
+    }
+    return true;
+}
+
+// Switch Statement
+Game_Interpreter.prototype.command358 = function() {
+    var result;
+    switch (this._params[1]) {
+        case 0: // Variable
+            result = $gameVariables.value(this._params[2]);
+            break;
+        case 1: // Self Variable
+            result = $gameSelfVariables.value([this._mapId, this._eventId, this._params[2]]);
+            break;
+        case 2: // Inventory
+            switch (this._params[2]) {
+                case 0: // Items
+                    result = $gameParty.numItems($dataItems[this._params[3]]);
+                    break;
+                case 1: // Weapons
+                    result = $gameParty.numItems($dataWeapons[this._params[3]]);
+                    break;
+                case 2: // Armors
+                    result = $gameParty.numItems($dataArmors[this._params[3]]);
+                    break;
+            }
+            break;
+        case 3: // Character Direction
+            var character = this.character(this._params[2]);
+            if (character) {
+                result = character.direction();
+            }
+            break;
+        case 4: // Script
+            result = eval(this._params[2])
+            break;
+    }
+    var found;
+    for (var i = 0; i < this._params[0].length; i++) {
+        if (result == this._params[0][i]) {
+            this._branch[this._indent] = this._params[0][i];
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        if (this._params.indexOf("default")) {
+            this._branch[this._indent] = this._params[0][this._params[0].length - 1];
+        }
+    }
+    
+    return true;
+}
+
+// Case
+Game_Interpreter.prototype.command658 = function() {
+    console.log("Param:", this._params[1])
+    console.log("Branch:", this._branch[this._indent])
+    if (this._branch[this._indent] !== this._params[1]) {
+        this.skipBranch();
     }
     return true;
 }

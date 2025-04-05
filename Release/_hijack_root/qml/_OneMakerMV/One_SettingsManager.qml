@@ -155,13 +155,20 @@ QtObject {
     }
 
     function enableEventCommands(code) {
-        var ids = [1002];
+        var ids1 = [357, 358, 1000, 1002];
+        var ids2 = getWorkingModeSetting("customEventCommands") ? [] : [1001, 1003, 1004]
 
-        for (var i = 0; i < ids.length; i++) {
-            if (code === ids[i]) {
+        for (var i = 0; i < ids1.length; i++) {
+            if (code === ids1[i]) {
                 if (!corePluginDetected) {
                     return false;
                 }
+            }
+        }
+
+        for (var i = 0; i < ids2.length; i++) {
+            if (code === ids2[i]) {
+                return false;
             }
         }
 
