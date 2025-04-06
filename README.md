@@ -1,10 +1,13 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
-However, you can use this in other RPGMaker MV Projects, check the Working Mode menu, under OneMaker MV's tab.    
-HUGE Thanks to Rph, Draught, and SoundOfScooting!  
-Thanks to Saffron for the Splash Sprite!  
+However, you can use this in other RPGMaker MV Projects, check the Working Mode menu, under OneMaker MV's tab.  
 
 Built off of RPG Maker MV 1.6.3.  
+
+### Credit:
+Thanks to Rph, Draught, and SoundOfScooting for creating the hijacker and linux versions.  
+Thanks to Bajamaid for the Splash Sprite.  
+
 ## Features:
 Resizable window sizes, such as the Database and Event Viewer.  
 Event Page Conditions now have variable operator selection, Self Variables, and Self Switches E-Z are available.  
