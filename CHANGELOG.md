@@ -11,6 +11,7 @@ Expanded Event Test to obtain the event's id, and allow selection of where the p
 Added the ability to reset your OneMaker MV's settings with a new menu.  
 Massively upgraded the Event Searcher for more intricate searching.  
 Improved the Installer for better handling of Image Packs, it will also notify you if a new version of OneMakerMV-Core is available in the future.  
+Also added a `Custom` selection for Image Packs, which by default contains no images, this is for if you would like non-public modifications, that OneMakerMV won't overwrite on updates.  
 
 ### Note:
 Due to changes in 1.2, you will probably need to modify the `Group Note Database Width` setting in the `Window Sizes Menu`, alternativily, reset your settings.
