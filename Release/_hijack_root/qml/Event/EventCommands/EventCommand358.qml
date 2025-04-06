@@ -22,7 +22,7 @@ EventCommandBase {
 
     GroupBox {
         width: 400
-        height: 220
+        height: 190
         ControlsColumn {
             y: -14
             ControlsRow {

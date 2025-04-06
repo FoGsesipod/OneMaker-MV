@@ -14,7 +14,7 @@ Improved the Installer for better handling of Image Packs, it will also notify y
 Also added a `Custom` selection for Image Packs, which by default contains no images, this is for if you would like non-public modifications, that OneMakerMV won't overwrite on updates.  
 
 ### Note:
-Due to changes in 1.2, you will probably need to modify the `Group Note Database Width` setting in the `Window Sizes Menu`, alternativily, reset your settings.
+Due to changes in 1.2, you will probably need to modify the `Group Note Database Width` setting in the `Window Sizes Menu`, alternatively, reset your settings.
 
 ## Version 1.1.2
 Added Linux support with thanks to Rph and SoundOfScooting!  
