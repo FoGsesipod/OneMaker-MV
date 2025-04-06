@@ -43,8 +43,6 @@ function Get-LatestVersion {
 function Get-ManifestVersion {
     if ($oldInstall) {
         try {
-            $manifestPath = Join-Path -Path $hijackRoot -ChildPath "manifest.json"
-
             if (-not (Test-Path -Path $manifestPath)) {
                 return $null
             }
@@ -53,27 +51,36 @@ function Get-ManifestVersion {
             $manifest = ConvertFrom-Json -InputObject $manifestContent
 
             if ($manifest.PSObject.properties.Name -contains "version") {
-                return $manifest.version
+                $manifestResultVersion = $manifest.version
             }
             else {
-                return $null
+                $manifestResultVersion =  $null
+            }
+
+            if ($manifest.PSObject.properties.Name -contains "coreversion") {
+                $manifestResultCoreVersion += $manifest.coreversion
+            }
+            else {
+                $manifestResultCoreVersion += $null
             }
         }
         catch {
             Write-Error "Error fetching current installations version information: $_"
             return $null
         }
+
+        return $manifestResultsVersion, $manifestResultCoreVersion
     }
 }
 
 function Compare-Versions {
-    if (-not $latestVersion -or -not $currentVersion) {
+    if (-not $latestVersion -or -not $currentVersion[0]) {
         return "Unknown"
     }
 
     try {
         $latestObject = [version]$latestVersion
-        $currentObject = [version]$currentVersion
+        $currentObject = [version]$currentVersion[0]
 
         if ($currentObject -lt $latestObject) {
             return "Outdated"
@@ -275,6 +282,58 @@ function Install-ResourceRedirects {
     }
 }
 
+function Get-CoreVersions {
+    try {
+        if (-not (Test-Path -Path $latestManifestPath)) {
+            return $null
+        }
+
+        $manifestContent = Get-Content -Path $latestManifestPath -Raw
+        $manifest = ConvertFrom-Json -InputObject $manifestContent
+
+        if ($manifest.PSObject.properties.Name -contains "coreversion") {
+            return $manifest.coreversion
+        }
+        else {
+            return $null
+        }
+    }
+    catch {
+        Write-Error "Error fetching current installations version information: $_"
+        return $null
+    }
+}
+
+function Compare-CoreVersions {
+    if (-not $latestCoreVersion -or -not $currentVersion[1]) {
+        return "Unknown"
+    }
+
+    try {
+        $latestObject = [version]$latestCoreVersion
+        $currentObject = [version]$currentVersion[1]
+
+        if ($currentObject -lt $latestObject) {
+            return "Outdated"
+        }
+        elseif ($currentObject -gt $latestObject) {
+            return "Newer"
+        }
+        else {
+            return "Match"
+        }
+    }
+    catch {
+        return "Unknown"
+    }
+}
+
+function Show-CoreUpdatePrompt {
+    if ($compareCoreResults -eq "Outdated" -or $compareCoreResults -eq "Unknown") {
+        Write-Host "There is a newer version of the OneMakerMV-Core.js Plugin, please make sure you update your projects OneMakerMV-Core."
+    }
+}
+
 function Clear-Working {
     Remove-Item -Path $workingDirectory -Recurse -Force
 }
@@ -292,6 +351,9 @@ $rpgMakerRoot = Get-RpgMaker-Installation
 # Setup the destination `_hijack_root`. Detect if OneMaker MV is already installed.
 $hijackRoot = Join-Path -Path $rpgMakerRoot -ChildPath "_hijack_root"
 $oldInstall = Test-Path -Path $hijackRoot
+
+# Setup the currently installed manifest path.
+$manifestPath = Join-Path -Path $hijackRoot -ChildPath "manifest.json"
 
 # Obtain the latest version from Github and the installed version
 $latestVersion = Get-LatestVersion
@@ -339,6 +401,16 @@ $imagePacks = Get-ChildItem -Path $newImageFolder -Directory
 # Remove all qml files, and the Font/Splash/Images folder if the user specified. Then Install the new versions.
 Remove-ResourceRedirects
 Install-ResourceRedirects
+
+# Setup the latest manifest path.
+$latestManifestPath = Join-Path -Path $newHijackRoot -ChildPath "manifest.json"
+
+# Obtain the version of the OneMakerMV-Core plugin
+$latestCoreVersion = Get-CoreVersions
+
+# Compare the core versions, if the versions are outdated or unknown, prompt the user to update the plugin
+$compareCoreResults = Compare-CoreVersions
+Show-CoreUpdatePrompt
 
 # Cleanup the Working directory.
 Clear-Working
