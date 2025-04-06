@@ -2,6 +2,7 @@
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
 However, you can use this in other RPGMaker MV Projects, check the Working Mode menu, under OneMaker MV's tab.    
 HUGE Thanks to Rph, Draught, and SoundOfScooting!  
+Thanks to Saffron for the Splash Sprite!  
 
 Built off of RPG Maker MV 1.6.3.  
 ## Features:
