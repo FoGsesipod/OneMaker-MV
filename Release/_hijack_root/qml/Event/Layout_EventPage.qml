@@ -6,6 +6,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBoxRow {
     id: root
@@ -158,8 +159,8 @@ GroupBoxRow {
         ControlsRow {
             EventCommandListBox {
                 list: dataObject ? dataObject.list : []
-                width: 638 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                height: 522 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                width: 638 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 522 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
             }
         }
     }

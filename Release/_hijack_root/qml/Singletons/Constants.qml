@@ -325,6 +325,12 @@ QtObject {
         qsTr("="), qsTr("\u2265"), qsTr("\u2264"),
         qsTr(">"), qsTr("<"), qsTr("\u2260")
     ]
+    // [OneMaker MV] - Event Page Condition operator array
+    // ≥, >, ==, <, ≤, ≠ 
+    readonly property var eventConditionOperatorArray: [
+        qsTr("\u2265"), qsTr(">"), qsTr("="),
+        qsTr("<"), qsTr("\u2264"), qsTr("\u2260")
+    ]
     // >=, <=
     readonly property var timerConditionOperatorArray: [
         qsTr("\u2265"), qsTr("\u2264")

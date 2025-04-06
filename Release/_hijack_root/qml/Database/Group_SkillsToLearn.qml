@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Dialogs"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBox {
     id: root
@@ -43,7 +44,7 @@ GroupBox {
             hint: root.hint
             hintComponent: root.hintComponent
             width: 390
-            height: 318 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+            height: 318 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
             dragDrop: true
 
             ListBoxColumn {

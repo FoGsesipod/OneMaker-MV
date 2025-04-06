@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Layouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ControlsRow {
     id: root
@@ -78,8 +79,8 @@ ControlsRow {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseWidth") // [OneMaker MV] - Group Note Width and Position Changed
-            x: OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseX") // [OneMaker MV] - Group Note Width and Position Changed
+            itemWidth: 320 + OneMakerMVSettings.getWindowSetting("groupNoteDatabaseWidth") // [OneMaker MV] - Group Note Width and Position Changed
+            x: OneMakerMVSettings.getWindowSetting("groupNoteDatabaseX") // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }

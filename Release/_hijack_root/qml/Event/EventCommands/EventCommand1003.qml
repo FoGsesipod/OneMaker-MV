@@ -9,6 +9,7 @@ import "../../ObjControls"
 import "../../Map"
 import "../../Singletons"
 
+// Transfer Player Script
 EventCommandBase {
     id: root
 

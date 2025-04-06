@@ -7,6 +7,7 @@ import "../../Controls"
 import "../../Layouts"
 import "../../ObjControls"
 import "../../Singletons"
+import "../../_OneMakerMV"
 
 // Script
 EventCommandBase {
@@ -19,20 +20,21 @@ EventCommandBase {
         id: textArea
         title: qsTr("Script")
         hint: qsTr("JavaScript code to be evaluated.")
-        width: 400 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        height: fittingHeight(maximumLineCount)
+        width: 400 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        height: fittingHeight(Math.min(Math.max(lineCount, 6), 18)) // [OneMaker MV] - Dynamically scale from 6 to 18 lines, afterwords add a scrollbar
         selectAllOnFocus: false
-        maximumLineCount: 36 // [OneMaker MV] - Increased by 24
+        //maximumLineCount: 12 [OneMaker MV] - Removed to allow infinite comment size.
 
-        onKeyPressed: {
-            if (event.key === Qt.Key_Return && isFinalLine()) {
-                root.ok();
-            }
-        }
+        // [OneMaker MV] - Removed to allow infinite comment size.
+        //onKeyPressed: {
+        //    if (event.key === Qt.Key_Return && isFinalLine()) {
+        //        root.ok();
+        //    }
+        //}
 
-        function isFinalLine() {
-            return currentLineIndex === maximumLineCount - 1;
-        }
+        //function isFinalLine() {
+        //    return currentLineIndex === maximumLineCount - 1;
+        //}
 
         contextMenu: TextEditPopupMenu {
             MenuSeparator { }

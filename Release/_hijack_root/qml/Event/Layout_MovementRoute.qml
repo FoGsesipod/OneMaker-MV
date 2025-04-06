@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Map"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBoxRow {
     id: root
@@ -28,21 +29,21 @@ GroupBoxRow {
     signal triggered(var code)
 
     GroupBoxColumn {
-        width: 220 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        width: 220 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
         ControlsRow { // [OneMaker MV] - Append to a Control Row
             CharacterSelectBox {
                 id: characterSelectBox
                 title: qsTr("Character")
                 hint: qsTr("Character to be assigned the movement route.")
                 labelVisible: false
-                itemWidth: (200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease")) / 1.45 // [OneMaker MV] - Divide width to account for new button
+                itemWidth: (200 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease")) / 1.45 // [OneMaker MV] - Divide width to account for new button
             }
             // [OneMaker MV] - Add Show Map Button
             Button {
                 id: showMapButton
                 text: qsTr("Show Map")
                 hint: qsTr("")
-                width: (200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease")) / 3
+                width: (200 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease")) / 3
                 onClicked: root.toggleMap()
             }
         }
@@ -116,8 +117,8 @@ GroupBoxRow {
             MapEditorBaseView {
                 id: mapView
                 editMode: 1
-                width: 665 + (OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") * 2)
-                height: 224 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease")
+                width: 665 + (OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") * 2)
+                height: 224 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease")
                 tileScale: 1/2
                 mapId: DataManager.currentMapId
                 visible: showMap

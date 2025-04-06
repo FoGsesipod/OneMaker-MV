@@ -1,7 +1,12 @@
 # OneMaker-MV
 Injects UI modifications to RPGMaker MV, designed for modding OMORI.  
-However, you can use this in other RPGMaker MV Projects, disable `Expected Context` in the Working Mode menu, under OneMaker MV's tab.    
-HUGE Thanks to Rph, Draught, and SoundOfScooting!  
+However, you can use this in other RPGMaker MV Projects, check the Working Mode menu, under OneMaker MV's tab.  
+
+Built off of RPG Maker MV 1.6.3.  
+
+### Credit:
+Thanks to Rph, Draught, and SoundOfScooting for creating the hijacker and linux versions.  
+Thanks to Bajamaid for the Splash Sprite.  
 
 ## Features:
 Resizable window sizes, such as the Database and Event Viewer.  
@@ -14,11 +19,14 @@ Comments and Script Commands can now have way more lines.
 And other smaller improvements.  
 
 ## To Install:  
-### Windows  
+### Windows:  
 Run `Run Installer.bat` after extracting the contents of Installer.7z
 
 ### Linux + Manual:  
 Place the contents of OneMaker-MV.zip into the `steam/steamapps/common/RPGMaker MV/` folder.  
+
+### Plugin:  
+Add `OneMakerMV-Core.js` to the **very top** of the plugin manager, while this is not required some features of OneMaker MV will be disabled unless this plugin is present.  
 
 ## Tiled Map Display:
 To get maps to display without using parallaxes, use [The Omori Map Renderer](https://github.com/rphsoftware/omori-map-preview-renderer/actions/runs/13727034987) (You want the file with `.exe` in its name, but it is an archive).  
@@ -105,9 +113,8 @@ Navigate to `Source/Linux`, and run `./run.sh`
 
 ## To Build hijack.rcc Yourself
 ### Windows: 
-Requirements: [Python](https://www.python.org/downloads/).  
 Clone this repository.  
-Navigate to `Source/Resource Creation/`.  
+Navigate to `Source/Hijack Resource Creation/`.  
 Run `Create Resource.bat`.  
 
 ## Screenshots

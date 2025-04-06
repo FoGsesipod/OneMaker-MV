@@ -8,6 +8,7 @@ import "../Layouts"
 import "../Dialogs"
 import "../Event"
 import "../Singletons"
+import "../_OneMakerMV"
 import "../Scripts/JsonTemplates.js" as JsonTemplates
 
 GroupBox {
@@ -45,8 +46,8 @@ GroupBox {
 
         TabView {
             id: tabView
-            width: 630 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-            height: 326 + OneMakerMVSettings.getSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+            width: 630 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+            height: 326 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
 
             TabColumn {
                 spacing: 12
@@ -58,7 +59,7 @@ GroupBox {
                         title: qsTr("Conditions")
                         hint: qsTr("Conditions to start the event. The contents will be run only when all the set conditions have been met. If there are multiple event pages meeting conditions, the contents will be run in order from lower to higher numbered page.")
                         horizontal: true
-                        itemWidth: 348
+                        itemWidth: 348 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
                         onClicked: conditionsDialog.open();
                     }
                     ObjComboBox {
@@ -73,8 +74,8 @@ GroupBox {
                 }
                 EventCommandListBox {
                     id: eventListBox
-                    width: 612 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                    height: 242 + OneMakerMVSettings.getSetting("windowSizes", "alternativeHeightIncrease") // [OneMaker MV] - Window Increased
+                    width: 612 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                    height: 242 + OneMakerMVSettings.getWindowSetting("alternativeHeightIncrease") // [OneMaker MV] - Window Increased
                     troopId: root.troopId
                 }
             }
@@ -192,6 +193,53 @@ GroupBox {
                 text += ", ";
             }
             text += "{" + DataManager.switchNameOrId(c.switchId) + "}";
+        }
+        // [OneMaker MV] - Added More Conditions
+        if (c.variableValid) {
+            if (text.length) {
+                text += ", ";
+            }
+            var id = c.variableId ? c.variableId : 1;
+            var value = c.variableValue ? c.variableValue : 0;
+            text += "{" + DataManager.variableNameOrId(id) + " " + Constants.eventConditionOperatorArray[c.variableOperator] + " " + value + "}";
+        }
+        if (c.stateValid) {
+            if (text.length) {
+                text += ", ";
+            }
+            var id = c.stateActorId ? c.stateActorId : 1;
+            var value = c.stateValue ? c.stateValue : 1;
+            if (!c.stateCharacter) {
+                text += "Actor " + DataManager.actorName(id) + " ";
+            }
+            else {
+                text += "Enemy " + DataManager.troopMemberName(c.stateEnemyIndex) + " ";
+            }
+            text += "is affected by State: " + DataManager.stateName(value);
+        }
+        if (c.partyValid) {
+            if (text.length) {
+                text += ", ";
+            }
+            var id = c.partyId ? c.partyId : 1;
+            text += "Party has ";
+            switch (c.partyType) {
+                case 0:
+                    text += DataManager.itemName(id);
+                    break;
+                case 1:
+                    text += DataManager.weaponName(id)
+                    break;
+                case 2:
+                    text += DataManager.armorName(id);
+                    break;
+            }
+        }
+        if (c.scriptValid) {
+            if (text.length) {
+                text += ", ";
+            }
+            text += "Script: " + c.script;
         }
         if (!text.length) {
             text = qsTr("Don't Run");

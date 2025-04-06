@@ -11,217 +11,73 @@ EventCommandBase {
     id: root
 
     property string audioName: ""
-    property int volume: 90
-    property int pitch: 100
-    property int pan: 0
+    property int audioVolume: 90
+    property int audioPitch: 100
+    property int audioPan: 0
     property bool stopSound: false
-    
-    property int fadeBgmInValue: 0
-    property int fadeBgmOutValue: 0
-    property bool saveBgmSound: false
-    property bool replayBgmSound: false
-    property int saveBgmSlot: 0
 
-    property int fadeBgsInValue: 0
-    property int fadeBgsOutValue: 0
-    property bool saveBgsSound: false
-    property bool replayBgsSound: false
-    property int saveBgsSlot: 0
+    property int fadeInValue: 0
+    property int fadeOutValue: 0
+    property bool saveSound: false
+    property bool replaySound: false
+    property int saveSlot: 0
 
     TabView {
         id: tabView
         width: 352
-        height: 592
-
+        height: 576
         Tab {
             id: bgmTab
             title: "BGM"
             TabColumn {
-                id: tabColumn
                 Layout_SoundManager {
                     id: bgmSelector
-                    subFolder: "bgm"
-                    restoreLast: true
-                    fadeable: true
-                    disable: saveBgm.checked || replayBgm.checked || fadeOut.value
-
-                    Component.onCompleted: {
-                        var item = nextItemInFocusChain();
-                        item.forceActiveFocus();
-                    }
+                    subFolder: "Bgm"
+                    audioName: root.audioName
+                    audioVolume: root.audioVolume
+                    audioPitch: root.audioPitch
+                    audioPan: root.audioPan
+                    stopSound: root.stopSound
+                    fadeInValue: root.fadeInValue
+                    fadeOutValue: root.fadeOutValue
+                    saveSound: root.saveSound
+                    replaySound: root.replaySound
+                    saveSlot: root.saveSlot
 
                     onModified: {
-                        root.audioName = audioName;
-                        root.volume = volume;
-                        root.pitch = pitch;
-                        root.pan = pan;
-                        root.stopSound = stopSound
+                        updateData(this, key);
+                    }
+
+                    Component.onCompleted: {
+                        firstLoadFix(this, true)
                     }
                 }
-
-                ControlsRow {
-                    Group_SoundManagerDuration {
-                        id: fadeIn
-                        title: qsTr("Fade In Duration")
-                        hint: qsTr("Duration of the Fade In in seconds.")
-                        unit: qsTr("seconds")
-                        value: 0
-                        enabled: !fadeOut.value && !saveBgm.checked && !replayBgm.checked && !stopSound
-
-                        onValueChanged: {
-                            root.fadeBgmInValue = value
-                        }
-                    }
-
-                    Group_SoundManagerDuration {
-                        id: fadeOut
-                        title: qsTr("Fade Out Duration")
-                        hint: qsTr("Duration of the Fade Out in seconds.")
-                        unit: qsTr("seconds")
-                        value: 0
-                        enabled: !fadeIn.value && !saveBgm.checked && !replayBgm.checked && !stopSound
-                        
-                        onValueChanged: {
-                            root.fadeBgmOutValue = value
-                        }
-                    }
-                }
-                ControlsRow {
-                    GroupBox {
-                        height: 60
-                        ObjCheckBox {
-                            id: saveBgm
-                            text: qsTr("Save Bgm")
-                            hint: qsTr("")
-                            y: -18
-                            x: 2
-                            enabled: !fadeIn.value && !fadeOut.value && !replayBgm.checked && !stopSound
-
-                            onCheckedChanged: {
-                                root.saveBgmSound = checked
-                            }
-                        }
-                        ObjCheckBox {
-                            id: replayBgm
-                            text: qsTr("Replay Bgm")
-                            hint: qsTr("")
-                            y: 8
-                            x: 2
-                            enabled: !fadeIn.value && !fadeOut.value && !saveBgm.checked && !stopSound
-
-                            onCheckedChanged: {
-                                root.replayBgmSound = checked
-                            }
-                        }
-                    }
-                    GroupBox {
-                        width: 207
-                        height: 60
-                        ObjComboBox {
-                            id: saveSlot
-                            title: qsTr("Save Slot")
-                            hint: qsTr("")
-                            model: OneMakerMVSettings.getSetting("soundSlotNaming", "namingScheme")
-                            itemWidth: 187
-                            y: -21
-                            enabled: saveBgm.checked || replayBgm.checked
-
-                            onCurrentIndexChanged: {
-                                root.saveBgmSlot = currentIndex
-                            }
-                        }
-                    }
-                }
-            }   
+            }
         }
         Tab {
             id: bgsTab
             title: "BGS"
             TabColumn {
                 Layout_SoundManager {
-                    id: bgsSelector
-                    subFolder: "bgs"
-                    restoreLast: true
-                    disable: saveBgs.checked || replayBgs.checked || fadeOut.value
+                    id: bgmSelector
+                    subFolder: "Bgs"
+                    audioName: root.audioName
+                    audioVolume: root.audioVolume
+                    audioPitch: root.audioPitch
+                    audioPan: root.audioPan
+                    stopSound: root.stopSound
+                    fadeInValue: root.fadeInValue
+                    fadeOutValue: root.fadeOutValue
+                    saveSound: root.saveSound
+                    replaySound: root.replaySound
+                    saveSlot: root.saveSlot
 
                     onModified: {
-                        root.audioName = audioName;
-                        root.volume = volume;
-                        root.pitch = pitch;
-                        root.pan = pan;
-                        root.stopSound = stopSound
-                    }
-                }
-
-                ControlsRow {
-                    Group_SoundManagerDuration {
-                        id: fadeIn
-                        title: qsTr("Fade In Duration")
-                        hint: qsTr("Duration of the Fade In in seconds.")
-                        value: 0
-                        enabled: !fadeOut.value && !saveBgs.checked && !replayBgs.checked && !stopSound
-
-                        onValueChanged: {
-                            root.fadeBgsInValue = value
-                        }
+                        updateData(this, key);
                     }
 
-                    Group_SoundManagerDuration {
-                        id: fadeOut
-                        title: qsTr("Fade Out Duration")
-                        hint: qsTr("Duration of the Fade Out in seconds.")
-                        value: 0
-                        enabled: !fadeIn.value && !saveBgs.checked && !replayBgs.checked && !stopSound
-
-                        onValueChanged: {
-                            root.fadeBgsOutValue = value
-                        }
-                    }
-                }
-                ControlsRow {
-                    GroupBox {
-                        height: 60
-                        ObjCheckBox {
-                            id: saveBgs
-                            text: qsTr("Save Bgs ")
-                            hint: qsTr("")
-                            y: -18
-                            x: 2
-                            enabled: !fadeIn.value && !fadeOut.value && !replayBgs.checked && !stopSound
-
-                            onCheckedChanged: {
-                                root.saveBgsSound = checked
-                            }
-                        }
-                        ObjCheckBox {
-                            id: replayBgs
-                            text: qsTr("Replay Bgs ")
-                            hint: qsTr("")
-                            y: 8
-                            x: 2
-                            enabled: !fadeIn.value && !fadeOut.value && !saveBgs.checked && !stopSound
-
-                            onCheckedChanged: {
-                                root.saveBgsSound = checked
-                            }
-                        }
-                    }
-                    GroupBox {
-                        width: 207
-                        height: 60
-                        ObjComboBox {
-                            id: saveSlot
-                            title: qsTr("Save Slot")
-                            hint: qsTr("")
-                            model: OneMakerMVSettings.getSetting("soundSlotNaming", "namingScheme")
-                            itemWidth: 187
-                            y: -21
-                            enabled: saveBgs.checked || replayBgs.checked
-
-                            onCurrentIndexChanged: {
-                                root.saveBgsSlot = currentIndex
-                            }
-                        }
+                    Component.onCompleted: {
+                        firstLoadFix(this, true)
                     }
                 }
             }
@@ -231,19 +87,22 @@ EventCommandBase {
             title: "ME"
             TabColumn {
                 Layout_SoundManager {
-                    id: meSelector
-                    subFolder: "me"
-                    restoreLast: true
+                    id: bgmSelector
+                    subFolder: "Me"
+                    audioName: root.audioName
+                    audioVolume: root.audioVolume
+                    audioPitch: root.audioPitch
+                    audioPan: root.audioPan
+                    stopSound: root.stopSound
 
                     onModified: {
-                        root.audioName = audioName;
-                        root.volume = volume;
-                        root.pitch = pitch;
-                        root.pan = pan;
-                        root.stopSound = stopSound
+                        updateData(this, key);
+                    }
+
+                    Component.onCompleted: {
+                        firstLoadFix(this, false)
                     }
                 }
-                
             }
         }
         Tab {
@@ -251,16 +110,20 @@ EventCommandBase {
             title: "SE"
             TabColumn {
                 Layout_SoundManager {
-                    id: seSelector
-                    subFolder: "se"
-                    restoreLast: true
+                    id: bgmSelector
+                    subFolder: "Se"
+                    audioName: root.audioName
+                    audioVolume: root.audioVolume
+                    audioPitch: root.audioPitch
+                    audioPan: root.audioPan
+                    stopSound: root.stopSound
 
                     onModified: {
-                        root.audioName = audioName;
-                        root.volume = volume;
-                        root.pitch = pitch;
-                        root.pan = pan;
-                        root.stopSound = stopSound
+                        updateData(this, key);
+                    }
+
+                    Component.onCompleted: {
+                        firstLoadFix(this, false)
                     }
                 }
             }
@@ -269,135 +132,267 @@ EventCommandBase {
         onCurrentIndexChanged: {
             switch (currentIndex) {
                 case 0:
-                    root.audioName = bgmTab.children[0].children[0].audioName;
-                    root.volume = bgmTab.children[0].children[0].volume;
-                    root.pitch = bgmTab.children[0].children[0].pitch;
-                    root.pan = bgmTab.children[0].children[0].pan;
-                    root.stopSound = bgmTab.children[0].children[0].stopSound;
+                    obtainTabData(bgmTab, true);
                     break;
                 case 1:
-                    root.audioName = bgsTab.children[0].children[0].audioName;
-                    root.volume = bgsTab.children[0].children[0].volume;
-                    root.pitch = bgsTab.children[0].children[0].pitch;
-                    root.pan = bgsTab.children[0].children[0].pan;
-                    root.stopSound = bgsTab.children[0].children[0].stopSound;
+                    obtainTabData(bgsTab, true);
                     break;
                 case 2:
-                    root.audioName = meTab.children[0].children[0].audioName;
-                    root.volume = meTab.children[0].children[0].volume;
-                    root.pitch = meTab.children[0].children[0].pitch;
-                    root.pan = meTab.children[0].children[0].pan;
-                    root.stopSound = meTab.children[0].children[0].stopSound;
+                    obtainTabData(meTab, false);
                     break;
                 case 3:
-                    root.audioName = seTab.children[0].children[0].audioName;
-                    root.volume = seTab.children[0].children[0].volume;
-                    root.pitch = seTab.children[0].children[0].pitch;
-                    root.pan = seTab.children[0].children[0].pan;
-                    root.stopSound = seTab.children[0].children[0].stopSound;
+                    obtainTabData(seTab, false);
+                    break;
+            }
+        }
+    }
+
+    onLoad: {
+        if (eventData) {
+            var params = eventData[0].parameters;
+            switch (params[0]) {
+                case 0:
+                    tabView.currentIndex = 0;
+                    var control = bgmTab.children[0].children[0];
+                    switch (params[1]) {
+                        case 0:
+                            control.stopSound = true;
+                            break;
+                        case 1:
+                            control.saveSound = true;
+                            control.saveSlot = params[2];
+                            break;
+                        case 2:
+                            control.replaySound = true;
+                            control.saveSlot = params[2];
+                            break;
+                        case 3:
+                            control.fadeOutValue = params[2];
+                            break;
+                        case 4:
+                            var audio = params[2];
+                            control.audioName = audio.name;
+                            control.audioVolume = audio.volume;
+                            control.audioPitch = audio.pitch;
+                            control.audioPan = audio.pan;
+
+                            if (params[3]) {
+                                control.fadeInValue = params[3];
+                            }
+                            break;
+                    }
+                    updateData(control, true);
+                    break;
+                case 1:
+                    tabView.currentIndex = 1;
+                    var control = bgsTab.children[0].children[0];
+                    switch (params[1]) {
+                        case 0:
+                            control.stopSound = true;
+                            break;
+                        case 1:
+                            control.saveSound = true;
+                            control.saveSlot = params[2];
+                        case 2:
+                            control.replaySound = true;
+                            control.saveSlot = params[2];
+                        case 3:
+                            control.fadeOutValue = params[2];
+                            break;
+                        case 4:
+                            var audio = params[2];
+                            control.audioName = audio.name;
+                            control.audioVolume = audio.volume;
+                            control.audioPitch = audio.pitch;
+                            control.audioPan = audio.pan;
+
+                            if (params[3]) {
+                                control.fadeInValue = params[3];
+                            }
+                            break;
+                    }
+                    updateData(control, true);
+                    break;
+                case 2:
+                    tabView.currentIndex = 2;
+                    var control = meTab.children[0].children[0];
+                    switch (params[1]) {
+                        case 0:
+                            control.stopSound = true;
+                            break;
+                        case 1:
+                            var audio = params[2];
+                            control.audioName = audio.name;
+                            control.audioVolume = audio.volume;
+                            control.audioPitch = audio.pitch;
+                            control.audioPan = audio.pan;
+                            break;
+                    }
+                    updateData(control, false)
+                    break;
+                case 3:
+                    tabView.currentIndex = 3;
+                    var control = seTab.children[0].children[0];
+                    switch (params[1]) {
+                        case 0: 
+                            control.stopSound = true;
+                            break;
+                        case 1:
+                            var audio = params[2];
+                            control.audioName = audio.name;
+                            control.audioVolume = audio.volume;
+                            control.audioPitch = audio.pitch;
+                            control.audioPan = audio.pan;
+                            break;
+                    }
+                    updateData(control, false)
                     break;
             }
         }
     }
 
     onSave: {
-        var params
-        var scriptCommandText = "AudioManager."
-        var ignore = false
-        eventData = []
+        makeSimpleEventData();
 
-        eventData.push( makeCommand(355, 0, []) );
-        params = eventData[0].parameters;
-
+        var params = eventData[0].parameters;
         switch (tabView.currentIndex) {
             case 0:
-                if (stopSound) {
-                    scriptCommandText += "stopBgm()";
+                params[0] = 0;
+                if (root.stopSound) {
+                    params[1] = 0;
                 }
-                else if (saveBgmSound) {
-                    scriptCommandText = "$gameSystem._savedBgm" + saveBgmSlot + " = AudioManager.saveBgm()";
+                else if (root.saveSound) {
+                    params[1] = 1;
+                    params[2] = root.saveSlot;
                 }
-                else if (replayBgmSound) {
-                    eventData.push( makeCommand(655, 0, []) );
-                    eventData.push( makeCommand(655, 0, []) );
-                    params = eventData[1].parameters;
-                    scriptCommandText = "if ($gameSystem._savedBgm" + saveBgmSlot + ") {";
-                    params[0] = "  AudioManager.replayBgm($gameSystem._savedBgm" + saveBgmSlot + ")";
-                    params = eventData[2].parameters;
-                    params[0] = "}";
-
-                    params = eventData[0].parameters;
+                else if (root.replaySound) {
+                    params[1] = 2;
+                    params[2] = root.saveSlot;
+                }
+                else if (root.fadeOutValue > 0) {
+                    params[1] = 3;
+                    params[2] = root.fadeOutValue;
                 }
                 else {
-                    if (fadeBgmOutValue > 0) {
-                        scriptCommandText += "fadeOutBgm(" + fadeBgmOutValue + ")";
-                    }
-                    else {
-                        scriptCommandText += "playBgm( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    params[1] = 4;
+                    var audio = {};
+                    audio.name = root.audioName;
+                    audio.volume = root.audioVolume;
+                    audio.pitch = root.audioPitch;
+                    audio.pan = root.audioPan;
+                    params[2] = audio;
 
-                        if (fadeBgmInValue > 0) {
-                            eventData.push( makeCommand(655, 0, []) );
-                            params = eventData[1].parameters;
-                            params[0] = "AudioManager.fadeInBgm(" + fadeBgmInValue + ")";
-
-                            params = eventData[0].parameters;
-                        }
+                    if (root.fadeInValue > 0) {
+                        params[3] = root.fadeInValue;
                     }
                 }
                 break;
             case 1:
-                if (stopSound) {
-                    scriptCommandText += "stopBgs()";
+                params[0] = 1;
+                if (root.stopSound) {
+                    params[1] = 0;
                 }
-                else if (saveBgsSound) {
-                    scriptCommandText = "$gameSystem._savedBgs" + saveBgsSlot + " = AudioManager.saveBgs()";
+                else if (root.saveSound) {
+                    params[1] = 1;
+                    params[2] = root.saveSlot;
                 }
-                else if (replayBgsSound) {
-                    eventData.push( makeCommand(655, 0, []) );
-                    eventData.push( makeCommand(655, 0, []) );
-                    params = eventData[1].parameters;
-                    params[0] = "  AudioManager.replayBgs($gameSystem._savedBgs" + saveBgsSlot + ")";
-                    scriptCommandText = "if ($gameSystem._savedBgs" + saveBgsSlot + ") {";
-                    params = eventData[2].parameters;
-                    params[0] = "}";
-
-                    params = eventData[0].parameters;
+                else if (root.replaySound) {
+                    params[1] = 2;
+                    params[2] = root.saveSlot;
+                }
+                else if (root.fadeOutValue > 0) {
+                    params[1] = 3;
+                    params[2] = root.fadeOutValue;
                 }
                 else {
-                    if (fadeBgsOutValue > 0) {
-                        scriptCommandText += "fadeOutBgs(" + fadeBgsOutValue + ")";
-                    }
-                    else {
-                        scriptCommandText += "playBgs( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    params[1] = 4;
+                    var audio = {};
+                    audio.name = root.audioName;
+                    audio.volume = root.audioVolume;
+                    audio.pitch = root.audioPitch;
+                    audio.pan = root.audioPan;
+                    params[2] = audio;
 
-                        if (fadeBgsInValue > 0 && !ignore) {
-                            eventData.push( makeCommand(655, 0, []) );
-                            params = eventData[1].parameters;
-                            params[0] = "AudioManager.fadeInBgs(" + fadeBgsInValue + ")";
-
-                            params = eventData[0].parameters;
-                        }
+                    if (root.fadeInValue > 0) {
+                        params[3] = root.fadeInValue;
                     }
                 }
                 break;
             case 2:
-                if (stopSound) {
-                    scriptCommandText += "stopMe()";
+                params[0] = 2;
+                if (root.stopSound) {
+                    params[1] = 0;
                 }
                 else {
-                    scriptCommandText += "playMe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    params[1] = 1;
+                    var audio = {};
+                    audio.name = root.audioName;
+                    audio.volume = root.audioVolume;
+                    audio.pitch = root.audioPitch;
+                    audio.pan = root.audioPan;
+                    params[2] = audio;
                 }
                 break;
             case 3:
-                if (stopSound) {
-                    scriptCommandText += "stopSe()";
+                params[0] = 3;
+                if (root.stopSound) {
+                    params[1] = 0;
                 }
                 else {
-                    scriptCommandText += "playSe( {name: '" + audioName + "', volume: " + volume + ", pitch: " + pitch + ", pan: " + pan + "} )";
+                    params[1] = 1;
+                    var audio = {};
+                    audio.name = root.audioName;
+                    audio.volume = root.audioVolume;
+                    audio.pitch = root.audioPitch;
+                    audio.pan = root.audioPan;
+                    params[2] = audio;
                 }
                 break;
         }
+    }
 
-        params[0] = scriptCommandText;
+    function firstLoadFix(control, extraInfo) {
+        if (control.loaded) {
+            return
+        };
+        var properties = ["audioName", "audioVolume", "audioPitch", "audioPan", "stopSound"];
+        var defaultData = ["", 90, 100, 0, false];
+        if (extraInfo) {
+            properties.push("fadeInValue", "fadeOutValue", "saveSound", "replaySound", "saveSlot");
+            defaultData.push(0, 0, false, false, 0);
+        };
+
+        for (var i = 0; i < properties.length; i++) {
+            control[properties[i]] = defaultData[i];
+        };
+        control.loaded = true;
+    }
+
+    function obtainTabData(tab, extraInfo) {
+        var properties = ["audioName", "audioVolume", "audioPitch", "audioPan", "stopSound"];
+        if (extraInfo) {
+            properties.push("fadeInValue", "fadeOutValue", "saveSound", "replaySound", "saveSlot");
+        };
+
+        var control = tab.children[0].children[0];
+
+        if (control.loaded) {
+            return;
+        };
+
+        for (var i = 0; i < properties.length; i++) {
+            root[properties[i]] = control[properties[i]];
+        };
+    }
+
+    function updateData(control, key) {
+        var properties = ["audioName", "audioVolume", "audioPitch", "audioPan", "stopSound", "fadeInValue", "fadeOutValue", "saveSound", "replaySound", "saveSlot"];
+
+        for (var i = 0; i < properties.length; i++) {
+            var currentObject = properties[i];
+            if (currentObject === key) {
+                root[key] = control[key];
+            };
+        };
     }
 }

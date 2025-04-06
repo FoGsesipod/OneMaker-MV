@@ -5,6 +5,7 @@ import "../BasicControls"
 import "../BasicLayouts"
 import "../Controls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -23,8 +24,8 @@ ModalWindow {
             DialogBoxRow {
                 ListBox {
                     id: pluginList
-                    width: 200 + (OneMakerMVSettings.getSetting("windowSizes", "alternativeWidthIncrease") * 2)
-                    height: 360 + (OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") * 2)
+                    width: 200 + (OneMakerMVSettings.getWindowSetting("alternativeWidthIncrease") * 2)
+                    height: 360 + (OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") * 2)
 
                     headerVisible: false
                     multiSelect: false
@@ -119,8 +120,8 @@ ModalWindow {
 
                 TextArea {
                     id: pluginHelp
-                    width: 200 + (OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") * 2)
-                    height: 360 + (OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") * 2)
+                    width: 200 + (OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") * 2)
+                    height: 360 + (OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") * 2)
                     readOnly: true
                     selectAllOnFocus: false
                 }

@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import "../BasicControls"
 import "../BasicLayouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -44,7 +45,7 @@ ModalWindow {
         TabView {
             id: tabView
             width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
-            height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
+            height: 596 + 35 // [OneMaker MV] - Add + 35 to account for increased height for Control Self Variable
             visible: !OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             Tab {
@@ -65,7 +66,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Flow Control")
-                            codeList: [111, 112, 113, 115, 117, 118, 119, 108]
+                            codeList: [111, 358, 112, 113, 115, 117, 118, 119, 108]// [OneMaker MV] - Add Switch Statement
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -118,7 +119,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Audio & Video")
-                            codeList: [241, 242, 243, 244, 245, 246, 249, 250, 251, 261]
+                            codeList: [1002, 241, 242, 243, 244, 245, 246, 249, 250, 251, 261]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -169,7 +170,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003, 1004]
+                            codeList: [1001, 1003, 1004]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -180,7 +181,7 @@ ModalWindow {
         TabView {
             id: tabView1
             width: OneMakerMVSettings.getSetting("eventCommandSelect", "width") // [OneMaker MV] - Changed to use Constants width
-            height: 596 + 15 // [OneMaker MV] - Add + 15 to account for increased height for Control Self Variable
+            height: 596 + 35 // [OneMaker MV] - Add + 35 to account for increased height
             visible: OneMakerMVSettings.getSetting("eventCommandSelect", "combinedEnabled") // [OneMaker MV] - Added visibility based on Constants
 
             // [OneMaker MV] - Removed the other Tab's and converted it into one giant tab if the Single Event Command Select Page Constant is enabled
@@ -202,7 +203,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Flow Control")
-                            codeList: [111, 112, 113, 115, 117, 118, 119, 108]
+                            codeList: [111, 358, 112, 113, 115, 117, 118, 119, 108]// [OneMaker MV] - Add Switch Statement
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -248,7 +249,7 @@ ModalWindow {
                         }
                         EventCommandGroup {
                             title: qsTr("Audio & Video")
-                            codeList: [241, 242, 243, 244, 245, 246, 249, 250, 251, 261]
+                            codeList: [1002, 241, 242, 243, 244, 245, 246, 249, 250, 251, 261]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }
@@ -285,7 +286,7 @@ ModalWindow {
                     GroupBoxColumn {
                         EventCommandGroup {
                             title: qsTr("Custom Advanced")
-                            codeList: [1001, 1002, 1003, 1004]
+                            codeList: [1001, 1003, 1004]
                             onTriggered: dialogBox.triggered(code)
                         }
                     }

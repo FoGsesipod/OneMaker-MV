@@ -1,6 +1,6 @@
 import os
 
-directory = ".\ResourceFolder"
+directory = ".\hijackrcc"
 output_qrc = "resources.qrc"
 
 with open(output_qrc, "w") as qrc_file:

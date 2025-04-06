@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Layouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ControlsRow {
     id: root
@@ -110,7 +111,7 @@ ControlsRow {
                     title: equipGroup.title
                     hint: equipGroup.hint
                     width: 390
-                    height: 206 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                    height: 206 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 }
             }
         }

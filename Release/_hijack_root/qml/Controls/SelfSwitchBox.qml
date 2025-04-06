@@ -4,6 +4,7 @@ import "../Dialogs"
 import "../BasicControls"
 import "../BasicLayouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 LabeledComboBox {
     id: root

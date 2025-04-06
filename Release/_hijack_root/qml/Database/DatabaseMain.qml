@@ -4,6 +4,7 @@ import Tkool.rpg 1.0
 import "../BasicControls"
 import "../Controls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -34,8 +35,8 @@ ModalWindow {
 
             TabView {
                 id: databaseTabView
-                width: 1028 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-                height: 658 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                width: 1028 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+                height: 658 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
                 tabsVisible: false
 
                 Tab_DBStandard {

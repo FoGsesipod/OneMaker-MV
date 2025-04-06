@@ -100,6 +100,7 @@ ApplicationWindow {
         onOneMakerMV_ImageSelection: openImageSelection()
         onOneMakerMV_WindowSizes: openWindowSizes()
         onOneMakerMV_WorkingMode: openWorkingMode()
+        onOneMakerMV_ResetSettings: openResetSettings()
 
         onSteamWindow: openSteamWindow()
         onTutorial: openTutorial()
@@ -183,6 +184,9 @@ ApplicationWindow {
     }
     OneMakerMV_WorkingMode {
         id: one_WorkingMode
+    }
+    OneMakerMV_ResetSettings {
+        id: one_ResetSettings
     }
 
     Dialog_GamePlayer {
@@ -412,6 +416,12 @@ ApplicationWindow {
     function openWorkingMode() {
         heavy.run(function() {
             one_WorkingMode.open()
+        })
+    }
+
+    function openResetSettings() {
+        heavy.run(function() {
+            one_ResetSettings.open()
         })
     }
 

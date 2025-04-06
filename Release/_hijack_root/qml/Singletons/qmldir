@@ -7,4 +7,3 @@ singleton MovementCommands MovementCommands.qml
 singleton PluginParser PluginParser.qml
 singleton SettingsManager SettingsManager.qml
 singleton AppendSettings AppendSettings.qml
-singleton OneMakerMVSettings One_SettingsManager.qml

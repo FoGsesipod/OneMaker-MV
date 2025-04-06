@@ -5,11 +5,12 @@ import "../BasicLayouts"
 import "../ObjControls"
 import "../Dialogs"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ObjImageBox {
     id: root
 
-    readonly property bool savedBool: OneMakerMVSettings.getSetting("workingMode", "expectedContext")
+    readonly property bool savedBool: OneMakerMVSettings.getWorkingModeSetting("faceImageBoxChange")
 
     subFolder: "faces"
     imageScale: 2/3

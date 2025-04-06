@@ -4,6 +4,7 @@ import "../BasicControls"
 import "../BasicLayouts"
 import "../Controls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -19,11 +20,13 @@ ModalWindow {
             DataManager.backupPlugins();
         }
         onOk: {
+            OneMakerMVSettings.findCorePlugin(); // [OneMaker MV] - re-detect the first plugin
             DataManager.pluginsModified = true;
             DataManager.backupPlugins();
             TutorialManager.onOkDialog("PluginManager", root);
         }
         onApply: {
+            OneMakerMVSettings.findCorePlugin(); // [OneMaker MV] - re-detect the first plugin
             DataManager.pluginsModified = true;
             DataManager.backupPlugins();
             applyEnabled = false;
@@ -100,7 +103,7 @@ ModalWindow {
             title: qsTr("Plugin List")
             hint: qsTr("Components that extend the standard game system.")
             width: 760
-            height: 542 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+            height: 542 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
             object: null
             member: "plugins"
             dragDrop: true

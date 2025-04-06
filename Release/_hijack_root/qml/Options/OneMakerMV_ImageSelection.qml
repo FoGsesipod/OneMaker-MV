@@ -7,6 +7,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ModalWindow {
     id: root
@@ -22,12 +23,12 @@ ModalWindow {
 
         ControlsColumn {
             GroupBox {
-                height: 55
-                width: 250
+                height: 95
+                width: 285
                 LabeledComboBox {
                     title: qsTr("Image Pack - Changes on Restart")
                     hint: qsTr("")
-                    model: ["Default", "MZ", "Koffin", "Krypt"]
+                    model: ["Default", "MZ", "Koffin", "Krypt", "Custom"]
                     currentIndex: currentSelection
                     itemWidth: 100
                     y: -25
@@ -39,6 +40,10 @@ ModalWindow {
                             currentSelection = currentIndex
                         }
                     }
+                }
+                Label {
+                    text: qsTr("The Custom Selection is for custom packs.\nBy default it contains no images.")
+                    y: 35
                 }
             }
         }

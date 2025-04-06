@@ -1,6 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import "../Singletons"
+import "../_OneMakerMV"
 
 QtObject {
     id: root
@@ -29,7 +30,7 @@ QtObject {
     }
 
     function symbolText(data) {
-        return data.code < 400 ? diamond : colon;
+        return data.code < 400 || data.code > 1000 ? diamond : colon; // [OneMaker MV] - Change to use diamond if code is over 1000
     }
 
     function commandText(data) {
@@ -445,7 +446,7 @@ QtObject {
             if (params[2] === 0) {
                 text += params[3]
             }
-            // [OneMaker MV] - Commented because there is code for checking if a Self Variable is the same as another Self Variable in rpg_objects.js but for consistency with condition variables I'm going to disallow that.
+            // [OneMaker MV] - Removed because there is code for checking if a Self Variable is the same as another Self Variable in rpg_objects.js but for consistency with condition variables I'm going to disallow that.
             //else if (params[2] === 1) {
             //    text += qsTr("Self Variable") + " " + params[3];
             //}
@@ -454,6 +455,56 @@ QtObject {
             }
             break;
         }
+        return text;
+    }
+
+    // [OneMaker MV] - Switch Statement
+    function commandParamText358(params) {
+        var text = "";
+        switch (params[1]) {
+            case 0: // Variable
+                text += "Value of variable: " + DataManager.variableNameOrId(params[2]);
+                break;
+            case 1: // Self Variable
+                text += "Value of self variable: " + OneMakerMVSettings.getSetting("selfVariableNaming", "namingScheme")[params[2]];
+                break;
+            case 2: // Inventory
+                switch (params[2]) {
+                    case 0: // Items
+                        text += "Amount of " + DataManager.itemNameOrId(params[3])
+                        break;
+                    case 1: // Weapons
+                        text += "Amount of " + DataManager.weaponNameOrId(params[3])
+                        break;
+                    case 2: // Armors
+                        text += "Amount of " + DataManager.armorNameOrId(params[3])
+                        break;
+                }
+                break;
+            case 3: // Character Direction
+                text += "Direction of " + characterName(params[2])
+                break;
+            case 4: // Script
+                text += params[2];
+                break;
+        }
+        return text;
+    }
+
+    // [OneMaker MV] - Case
+    function commandParamText658(params) {
+        var text = "";
+        var text1 = qsTr("Case ", "Case ** (before the text)");
+        var text2 = qsTr(" ", "Case ** (after the text)");
+        if (typeof params[1] === "undefined") {
+            text += "Default";
+        }
+        else if (text1 !== " ") {
+            text += text1;
+            text += params[1];
+        }
+        text += text2;
+
         return text;
     }
 
@@ -1222,5 +1273,117 @@ QtObject {
     // Plugin Command
     function commandParamText356(params) {
         return colorChangeText("navy") + params[0];
+    }
+
+    // [OneMaker MV] - Sound Manager
+    function commandParamText1002(params) {
+        var text;
+        switch (params[0]) {
+            // Bgm
+            case 0:
+                text = "BGM - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Save Bgm
+                    case 1:
+                        text += "Save to slot: " + params[2];
+                        break;
+                    // Replay Bgm
+                    case 2:
+                        text += "Replay from slot: " + params[2];
+                        break;
+                    // Fade Out Bgm
+                    case 3:
+                        text += "Fade Out over " + params[2] + " seconds";
+                        break;
+                    // Play Bgm
+                    case 4:
+                        var endText = "";
+                        if (!params[3]) {
+                            text += "Play ";
+                        }
+                        // Fade Out
+                        else {
+                            text += "Fade In ";
+                            endText = " over " + params[3] + " seconds";
+                        }
+                        text += Constants.audioText(params[2]) + endText;
+                        break;
+                }
+                break;
+            // Bgs
+            case 1:
+                text = "BGS - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Save Bgs
+                    case 1:
+                        text += "Save to slot: " + params[2];
+                        break;
+                    // Replay Bgs
+                    case 2:
+                        text += "Replay from slot: " + params[2];
+                        break;
+                    // Fade Out Bgs
+                    case 3:
+                        text += "Fade Out over " + params[2] + " seconds";
+                        break;
+                    // Play Bgs
+                    case 4:
+                        var endText = "";
+                        if (!params[3]) {
+                            text += "Play ";
+                        }
+                        // Fade Out
+                        else {
+                            text += "Fade In ";
+                            endText = " over " + params[3] + " seconds";
+                        }
+                        text += Constants.audioText(params[2]) + endText;
+                        break;
+                }
+                break;
+            // Me
+            case 2:
+                text = "ME - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Play Me
+                    case 1:
+                        text += "Play " + Constants.audioText(params[2]);
+                        break;
+                }
+                break;
+            // Se
+            case 3:
+                text = "SE - ";
+                switch (params[1]) {
+                    // Stop Sound
+                    case 0:
+                        text += "Stop Sound";
+                        break;
+                    // Play Se
+                    case 1:
+                        text += "Play " + Constants.audioText(params[2]);
+                        break;
+                }
+                break;
+        }
+
+        return text;
+    }
+
+    // [OneMaker MV] - Transfer Player Script
+    function commandParamText1003(params) {
+        
     }
 }

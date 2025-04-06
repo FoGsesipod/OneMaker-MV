@@ -386,42 +386,42 @@ EventCommandBase {
 
         if (checkBox1.checked) {
             scriptCommandTextBeginning += "const WalkOne = { name: '" + characterImageBox1.imageName + "', index: " + characterImageBox1.imageIndex + " };\n" +
-                                          "const RunOne = '" + characterImageBox2.imageName + "';\n";
+                                          "const RunOne = { name: '" + characterImageBox2.imageName + "', index: " + characterImageBox2.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox1.currentId].id  + ").setMovementGraphics(WalkOne, WalkOne, RunOne);\n"
         }
         if (checkBox2.checked) {
             scriptCommandTextBeginning += "const WalkTwo = { name: '" + characterImageBox3.imageName + "', index: " + characterImageBox3.imageIndex + " };\n" +
-                                          "const RunTwo = '" + characterImageBox4.imageName + "';\n";
+                                          "const RunTwo = { name: '" + characterImageBox4.imageName + "', index: " + characterImageBox4.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox2.currentId].id  + ").setMovementGraphics(WalkTwo, WalkTwo, RunTwo);\n"
         }
         if (checkBox3.checked) {
             scriptCommandTextBeginning += "const WalkThree = { name: '" + characterImageBox5.imageName + "', index: " + characterImageBox5.imageIndex + " };\n" +
-                                          "const RunThree = '" + characterImageBox6.imageName + "';\n";
+                                          "const RunThree = { name: '" + characterImageBox6.imageName + "', index: " + characterImageBox6.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox3.currentId].id  + ").setMovementGraphics(WalkThree, WalkThree, RunThree);\n"
         }
         if (checkBox4.checked) {
             scriptCommandTextBeginning += "const WalkFour = { name: '" + characterImageBox7.imageName + "', index: " + characterImageBox7.imageIndex + " };\n" +
-                                          "const RunFour = '" + characterImageBox8.imageName + "';\n";
+                                          "const RunFour = { name: '" + characterImageBox8.imageName + "', index: " + characterImageBox8.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox4.currentId].id  + ").setMovementGraphics(WalkFour, WalkFour, RunFour);\n"
         }
         if (checkBox5.checked) {
             scriptCommandTextBeginning += "const WalkFive = { name: '" + characterImageBox9.imageName + "', index: " + characterImageBox9.imageIndex + " };\n" +
-                                          "const RunFive = '" + characterImageBox10.imageName + "';\n";
+                                          "const RunFive = { name: '" + characterImageBox10.imageName + "', index: " + characterImageBox10.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox5.currentId].id  + ").setMovementGraphics(WalkFive, WalkFive, RunFive);\n"
         }
         if (checkBox6.checked) {
             scriptCommandTextBeginning += "const WalkSix = { name: '" + characterImageBox11.imageName + "', index: " + characterImageBox11.imageIndex + " };\n" +
-                                          "const RunSix = '" + characterImageBox12.imageName + "';\n";
+                                          "const RunSix = { name: '" + characterImageBox12.imageName + "', index: " + characterImageBox12.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox6.currentId].id  + ").setMovementGraphics(WalkSix, WalkSix, RunSix);\n"
         }
         if (checkBox7.checked) {
-            scriptCommandTextBeginning += "const WalkSeven = { name: '" + characterImageBox9.imageName + "', index: " + characterImageBox9.imageIndex + " };\n" +
-                                          "const RunSeven = '" + characterImageBox10.imageName + "';\n";
+            scriptCommandTextBeginning += "const WalkSeven = { name: '" + characterImageBox13.imageName + "', index: " + characterImageBox13.imageIndex + " };\n" +
+                                          "const RunSeven = { name: '" + characterImageBox14.imageName + "', index: " + characterImageBox14.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox5.currentId].id  + ").setMovementGraphics(WalkSeven, WalkSeven, RunSeven);\n"
         }
         if (checkBox8.checked) {
-            scriptCommandTextBeginning += "const WalkEight = { name: '" + characterImageBox11.imageName + "', index: " + characterImageBox11.imageIndex + " };\n" +
-                                          "const RunEight = '" + characterImageBox12.imageName + "';\n";
+            scriptCommandTextBeginning += "const WalkEight = { name: '" + characterImageBox15.imageName + "', index: " + characterImageBox15.imageIndex + " };\n" +
+                                          "const RunEight = { name: '" + characterImageBox16.imageName + "', index: " + characterImageBox16.imageIndex + " };\n";
             scriptCommandTextEnd += "$gameActors.actor(" + DataManager.actors[actorSelectBox6.currentId].id  + ").setMovementGraphics(WalkEight, WalkEight, RunEight);\n"
         }
         

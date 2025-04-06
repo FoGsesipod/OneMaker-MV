@@ -79,7 +79,7 @@ GroupBox {
                         title: qsTr("Operator")
                         hint: qsTr("Variable Operator to use")
                         itemWidth: 75
-                        model: EventPageConditionOperators.eventConditionOperatorArray
+                        model: Constants.eventConditionOperatorArray
                         labelVisible: false
                     }
                     ObjSpinBox {
@@ -115,22 +115,15 @@ GroupBox {
 
         // [OneMaker MV] - Add Self Variable event page conditions
         ControlsRow {
+            visible: !OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
             ObjCheckBox {
                 id: checkBox7
                 member: "conditions.selfVariableValid"
                 text: qsTr("Self Variable")
-                hint: qsTr("")
+                hint: qsTr("Appears when the specified self variable is greater than or equal to the given value.")
                 width: root.checkBoxWidth
                 height: root.itemHeight
-
-                onCheckedChanged: {
-                    if (!dataObject.hasOwnProperty("conditions.selfVariableId")) {
-                        DataManager.setObjectValue(dataObject, "conditions.selfVariableId", 0);
-                    }
-                    if (!dataObject.hasOwnProperty("conditions.selfVariableOperator")) {
-                        DataManager.setObjectValue(dataObject, "conditions.selfVariableOperator", 0);
-                    }
-                }
+                enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
             }
             ControlsColumn {
                 enabled: checkBox7.checked
@@ -149,7 +142,7 @@ GroupBox {
                         hint: qsTr("Self Variable Operator to use")
                         labelVisible: false
                         itemWidth: 75
-                        model: EventPageConditionOperators.eventConditionOperatorArray
+                        model: Constants.eventConditionOperatorArray
                     }
                     ObjSpinBox {
                         member: "conditions.selfVariableValue"
@@ -204,6 +197,7 @@ GroupBox {
 
         // [OneMaker MV] - Added script event page condition
         ControlsRow {
+            visible: !OneMakerMVSettings.getSetting("windowSizes", "globalDisable")
             ObjCheckBox {
                 id: checkBox8
                 member: "conditions.scriptValid"
@@ -211,6 +205,7 @@ GroupBox {
                 hint: qsTr("")
                 width: root.checkBoxWidth
                 height: root.itemHeight
+                enabled: OneMakerMVSettings.detectCorePluginActivationStatus()
             }
             ObjTextField {
                 member: "conditions.script"

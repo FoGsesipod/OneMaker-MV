@@ -19,6 +19,8 @@ QtObject {
         111: [ "blue",       1, qsTr("If"), qsTr("Conditional Branch") ],
         411: [ "blue",       0, qsTr("Else") ],
         412: [ "blue",       0, qsTr("End", "Branch End") ],
+        358: [ "blue",       1, qsTr("Switch Statement") ], // [OneMaker MV] - Added Switch Statement
+        658: [ "blue",       2, "" ], // [OneMaker MV] - Add Case Placeholder
         112: [ "blue",       0, qsTr("Loop") ],
         413: [ "blue",       0, qsTr("Repeat Above") ],
         113: [ "blue",       0, qsTr("Break Loop") ],
@@ -146,6 +148,7 @@ QtObject {
         357: qsTr("Changes the numeric value stored in a self variable."), // [OneMaker MV] - Added Self Variable hint
         124: qsTr("Starts or stops the timer."),
         111: qsTr("Creates a portion to be run only when specific conditions are met."),
+        358: qsTr("Creates a portion to jump to a specific value based on the input"), // [OneMaker MV] - Added Switch Statement Hint
         112: qsTr("Creates a portion to be run repeatedly."),
         113: qsTr("Escapes the innermost loop."),
         115: qsTr("Ends running events."),
@@ -241,10 +244,10 @@ QtObject {
         340: qsTr("Exits the battle."),
         355: qsTr("Evaluates text as JavaScript."),
         356: qsTr("Send a command to a plugin."),
-        1001:qsTr("Auto-create yaml related plugin commands with a GUI."), // [OneMaker MV] - Added hint for yaml selector
-        1002:qsTr("Various sound related commands."), // [OneMaker MV] - Added Sound Manager
-        1003:qsTr("The Teleport Script with a GUI."), // [OneMaker MV] - Added Transfer Player Script
-        1004:qsTr("Create Actor Movement Animation scripts.") // [OneMaker MV] - Added Actor Movement Animations
+        1001:qsTr("Auto-create yaml related plugin commands with a GUI."), // [OneMaker MV] - Added Yaml Selector Hint
+        1002:qsTr("Various sound related commands."), // [OneMaker MV] - Added Sound Manager Hint
+        1003:qsTr("The Teleport Script with a GUI."), // [OneMaker MV] - Added Transfer Player Script Hint
+        1004:qsTr("Create Actor Movement Animation scripts.") // [OneMaker MV] - Added Actor Movement Animations Hint
     }
 
     function get(code) {

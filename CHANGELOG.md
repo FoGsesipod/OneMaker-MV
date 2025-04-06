@@ -1,4 +1,21 @@
 # Changelog
+## Versions 1.2
+Changes to Working Mode and window sizing, allowing individual toggles and a global disable to UI sizing to fix users who have screen resolutions lower then 900p.  
+Added Switch Statement Event Command, Additional Troop Conditions, and converted the Sound Manager to use real Event Commands.  
+Added a `OneMakerMV-Core.js` Plugin, which is now required for using certain features that would not work otherwise in-game.  
+- This plugin **must** be placed at the very very top, in the **first** slot of the plugin manager *and* be enabled, to enable these additional features.  
+
+Expanded Event Test to obtain the event's id, and allow selection of where the player should appear on the map.  
+- This requires the `Geo_ImprovedEventTest.js` Plugin, which is available in the `Plugins.7z` file in OneMaker MV's release.  
+
+Added the ability to reset your OneMaker MV's settings with a new menu.  
+Massively upgraded the Event Searcher for more intricate searching.  
+Improved the Installer for better handling of Image Packs, it will also notify you if a new version of OneMakerMV-Core is available in the future.  
+Also added a `Custom` selection for Image Packs, which by default contains no images, this is for if you would like non-public modifications, that OneMakerMV won't overwrite on updates.  
+
+### Note:
+Due to changes in 1.2, you will probably need to modify the `Group Note Database Width` setting in the `Window Sizes Menu`, alternativily, reset your settings.
+
 ## Version 1.1.2
 Added Linux support with thanks to Rph and SoundOfScooting!  
 Changed F1 hotkey to open the plugin help menu, almost everywhere.  

@@ -6,6 +6,7 @@ import "../Controls"
 import "../Layouts"
 import "../ObjControls"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBox {
     id: root
@@ -205,7 +206,7 @@ GroupBox {
         // [OneMaker MV] - Added case 5, self variables 
         case 5:
             radioButton6.checked = true;
-            selfVariableBox.value = operandValue1;
+            selfVariableBox.currentIndex = operandValue1;
             break;
         }
     }

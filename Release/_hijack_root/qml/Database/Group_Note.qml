@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Dialogs"
 import "../Singletons"
+import "../_OneMakerMV"
 
 GroupBox {
     id: root
@@ -23,8 +24,8 @@ GroupBox {
         title: root.title
         hint: root.hint
         hintComponent: root.hintComponent
-        itemWidth: 320 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Window Increased
-        itemHeight: 175 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease") // [OneMaker MV] - Window Increased
+        itemWidth: 320 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
+        itemHeight: 175 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
         maximumLineCount: 0
         selectAllOnFocus: false // [OneMaker MV] - Changed to false
 

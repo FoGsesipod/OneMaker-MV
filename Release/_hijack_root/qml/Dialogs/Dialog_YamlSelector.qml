@@ -43,8 +43,8 @@ ModalWindow {
             FileListBox {
                 id: listBox
 
-                width: 200 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease")
-                height: 402 + OneMakerMVSettings.getSetting("windowSizes", "defaultHeightIncrease")
+                width: 200 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease")
+                height: 402 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease")
 
                 folder: root.folder
                 allowedSuffixes: ["yaml"]

@@ -6,6 +6,7 @@ import "../Controls"
 import "../ObjControls"
 import "../Layouts"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ControlsRow {
     id: root
@@ -168,15 +169,15 @@ ControlsRow {
             }
         }
         Group_ActionPatterns {
-            visible: !OneMakerMVSettings.getSetting("workingMode", "expectedContext") // [OneMaker MV] - Changed visibility depending on Expected Context
+            visible: !OneMakerMVSettings.getWorkingModeSetting("removeActionPatterns") // [OneMaker MV] - Changed visibility depending on Expected Context
         }
     }
     GroupBoxColumn {
         Group_Traits {
         }
         Group_Note {
-            itemWidth: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseWidth") : 320 + OneMakerMVSettings.getSetting("windowSizes", "defaultWidthIncrease") // [OneMaker MV] - Group Note Width and Position Changed
-            x: OneMakerMVSettings.getSetting("workingMode", "expectedContext") ? OneMakerMVSettings.getSetting("windowSizes", "groupNoteDatabaseX") : 0 // [OneMaker MV] - Group Note Width and Position Changed
+            itemWidth: OneMakerMVSettings.getWorkingModeSetting("removeActionPatterns") ? 320 + OneMakerMVSettings.getWindowSetting("groupNoteDatabaseWidth") : 320 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Group Note Width and Position Changed
+            x: OneMakerMVSettings.getWorkingModeSetting("removeActionPatterns") ? OneMakerMVSettings.getWindowSetting("groupNoteDatabaseX") : 0 // [OneMaker MV] - Group Note Width and Position Changed
         }
     }
 }
