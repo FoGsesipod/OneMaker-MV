@@ -747,14 +747,14 @@ Game_Interpreter.prototype.command358 = function() {
     var found;
     for (var i = 0; i < this._params[0].length; i++) {
         if (result == this._params[0][i]) {
-            this._branch[this._indent] = this._params[0][i];
+            this._branch[this._indent] = i;
             found = true;
             break;
         }
     }
     if (!found) {
-        if (this._params[0].indexOf("default")) {
-            this._branch[this._indent] = this._params[0][this._params[0].length - 1];
+        if (this._params[this._params.length - 1][0] === "Default") {
+            this._branch[this._indent] = this._params[0].length;
         }
     }
     
@@ -763,7 +763,7 @@ Game_Interpreter.prototype.command358 = function() {
 
 // Case
 Game_Interpreter.prototype.command658 = function() {
-    if (this._branch[this._indent] !== this._params[1]) {
+    if (this._branch[this._indent] !== this._params[0]) {
         this.skipBranch();
     }
     return true;
