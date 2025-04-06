@@ -202,8 +202,7 @@ EventCommandBase {
             var params = eventData[0].parameters;
             var cases = params[0];
 
-            if (cases[cases.length - 1] === "default") {
-                cases.pop();
+            if (params[params.length - 1][0] === "Default") {
                 defaultCheckBox.checked = true;
             }
 
@@ -249,12 +248,7 @@ EventCommandBase {
         }
 
         var params = [];
-        params[0] = cases;
-        
-        if (defaultCheckBox.checked) {
-            params[0].push("default")
-        }
-
+        params[0] = cases.slice();
         var type = conditionTypeGroup.current.value;
 
         switch (type) {
@@ -281,15 +275,26 @@ EventCommandBase {
                 break;
         }
 
-        eventData = []
-        eventData.push( makeCommand(eventCode, topIndent, params) )
-
-        for (var i = 0; i < cases.length; i++) {
-            eventData.push( makeCommand(eventCodeCase, topIndent, [i, cases[i]]) )
-            eventData = eventData.concat(blockArray[i]);
+        if (defaultCheckBox.checked) {
+            params.push(["Default", true]);
+            cases.push(null);
         }
 
-        eventData.push( makeCommand(eventCodeEnd, topIndent, []))
+        eventData = [];
+        eventData.push( makeCommand(eventCode, topIndent, params) );
+
+        for (var i = 0; i < cases.length; i++) {
+            if (cases[i] !== null) {
+                eventData.push( makeCommand(eventCodeCase, topIndent, [i, cases[i]]) );
+                eventData = eventData.concat(blockArray[i]);
+            }
+            else {
+                eventData.push( makeCommand(eventCodeCase, topIndent, [i]) );
+                eventData = eventData.concat(blockArray[i]);
+            }
+        }
+
+        eventData.push( makeCommand(eventCodeEnd, topIndent, []) );
     }
 
     function makeBlockArray() {

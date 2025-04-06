@@ -499,7 +499,12 @@ QtObject {
         if (text1 !== " ") {
             text += text1;
         }
-        text += params[1];
+        if (typeof params[1] === "undefined") {
+            text += "Default";
+        }
+        else {
+            text += params[1];
+        }
         text += text2;
 
         return text;
