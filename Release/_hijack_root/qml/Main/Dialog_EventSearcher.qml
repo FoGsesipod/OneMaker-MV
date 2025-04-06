@@ -92,6 +92,9 @@ ModelessWindow {
             ["getValue", [331, 332, 342],
                 [[2,1], 3],
             ],
+            ["getValue", [358],
+                [[1,0], 2],
+            ],
         ],
     }
 
@@ -112,6 +115,8 @@ ModelessWindow {
     // [OneMaker MV] - Added script codes
     readonly property int scriptCode: 355
     readonly property int scriptDataCode: 655
+    // [OneMaker MV] - Added switch codes
+    readonly property int switchStatementCode: 358
 
     readonly property int variableMode: 1
     readonly property int switchMode: 2
@@ -451,6 +456,28 @@ ModelessWindow {
                         }
 
 
+                        // [OneMaker MV] - Added Troops to search
+                        _data = [];
+                        if (radioButton1.checked) {
+                            _data = root.searchTroops(switchMode, switchId, { getValue: optionGetValue.checked, setValue: optionSetValue.checked });
+                        }
+                        if (radioButton2.checked) {
+                            _data = root.searchTroops(variableMode, variableId, { getValue: optionGetValue.checked, setValue: optionSetValue.checked });
+                        }
+                        if (radioButton3.checked) {
+                            _data = root.searchTroops('', eventName.text, { exact: optionTextExact.checked, case: optionTextCase.checked });
+                        }
+                        if (radioButtonComment.checked) {
+                            _data = root.searchTroops(commentMode, commentInput.text, { exact: optionTextExact.checked, case: optionTextCase.checked });
+                        }
+                        if (radioButtonScript.checked) {
+                            _data = root.searchTroops(scriptMode, scriptInput.text, { exact: optionTextExact.checked, case: optionTextCase.checked });
+                        }
+                        for (i = 0, max = _data.length; i < max; i++) {
+                            data.push(_data[i]);
+                        }
+
+
                         // all maps
                         DataManager.loadAllMaps();
                         maps = DataManager.getDataSet('mapInfos');
@@ -625,6 +652,38 @@ ModelessWindow {
     //    return searchCommonEvents(variableMode, variableId);
     //}
 
+    // [OneMaker MV] - Added Troops to search
+    function searchTroops(mode, id) {
+        var options = arguments[2] || {};
+        var i, j, max, _event;
+        var troops = DataManager.getDataSet('troops');
+        var results = [];
+        for (i = 1, max = troops.length; i < max; i++) {
+            _event = troops[i];
+
+            // search by event name
+            if (mode === '') {
+                if (compareSearchText(_event.name, id, options)) {
+                    results.push(_createResult('Troop', '-', {}, _event));
+                }
+                continue;
+            }
+
+            // search pages
+            for (j = 0; j < _event.pages.length; j++) {
+                _search({
+                    'event': _event,
+                    'list': _event.pages[j].list,
+                    'mode': mode,
+                    'id': id,
+                    'mapId': 'Troop',
+                    'page': (j + 1).toString(),
+                }, results, options);
+            }
+        }
+        return results;
+    }
+
     function searchEvents(mapId, mode, idOrName) {
         var options = arguments[3] || {}; // [OneMaker MV] - Added options argument
         var map = DataManager.maps[mapId];
@@ -704,43 +763,73 @@ ModelessWindow {
 
         // [OneMaker MV] - Added search for switches in page conditions
         if (!dupulicated && mode === switchMode && options.getValue) {
-            if (page === "-") {
-                if (event.trigger !== 0 && event.switchId === id) {
-                    results.push(_createResult(mapId, page, info, event));
-                    dupulicated = true;
-                }
-            } else {
-                var eventPage = event.pages[page-1];
-                if (eventPage.conditions.switch1Valid && eventPage.conditions.switch1Id === id ||
-                    eventPage.conditions.switch2Valid && eventPage.conditions.switch2Id === id
-                ) {
-                    results.push(_createResult(mapId, page, info, event));
-                    dupulicated = true;
-                }
+            switch (mapId) {
+                case "Common":
+                    if (event.trigger !== 0 && event.switchId === id) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
+                case "Troop":
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.switchValid && pageData.conditions.switchId === id) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
+                default: // Map
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.switch1Valid && pageData.conditions.switch1Id === id ||
+                        pageData.conditions.switch2Valid && pageData.conditions.switch2Id === id
+                    ) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
             }
         }
         // [OneMaker MV] - Added search for variables in page conditions
         if (!dupulicated && mode === variableMode && options.getValue) {
-            if (page === "-") {
-                // no var
-            } else {
-                var eventPage = event.pages[page-1];
-                if (eventPage.conditions.variableValid && eventPage.conditions.variableId === id) {
-                    results.push(_createResult(mapId, page, info, event));
-                    dupulicated = true;
-                }
+            switch (mapId) {
+                case "Common":
+                    // no variables
+                    break;
+                case "Troop":
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.variableValid && pageData.conditions.variableId === id) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
+                default: // Map
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.variableValid && pageData.conditions.variableId === id) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
             }
         }
-        // [OneMaker MV] - Added search for script in page conditions
+        // [OneMaker MV] - Added search for scripts in page conditions
         if (!dupulicated && mode === scriptMode) {
-            if (page === "-") {
-                // no script
-            } else {
-                var eventPage = event.pages[page-1];
-                if (eventPage.conditions.scriptValid && compareSearchText(eventPage.conditions.script, id, options)) {
-                    results.push(_createResult(mapId, page, info, event));
-                    dupulicated = true;
-                }
+            switch (mapId) {
+                case "Common":
+                    // no scripts
+                    break;
+                case "Troop":
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.scriptValid && compareSearchText(pageData.conditions.script, id, options)) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
+                default: // Map
+                    var pageData = event.pages[page-1];
+                    if (pageData.conditions.scriptValid && compareSearchText(pageData.conditions.script, id, options)) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                    }
+                    break;
             }
         }
 
@@ -919,6 +1008,19 @@ ModelessWindow {
                     }
                 }
 
+                // for switch statement code
+                if (list[i].code === switchStatementCode) {
+                    parameters = list[i].parameters;
+                    if (parameters[1] !== 4) {
+                        continue;
+                    }
+                    if (compareSearchText(parameters[2], id, options)) {
+                        results.push(_createResult(mapId, page, info, event));
+                        dupulicated = true;
+                        continue;
+                    }
+                }
+
                 // for set movement route code
                 if (list[i].code === setMovementRouteCode) {
                     parameters = list[i].parameters;
@@ -979,12 +1081,18 @@ ModelessWindow {
 
     function _createResult(mapId, page, info, event) {
         var result = {
-            'event': _padding3(event.id) + ': ' + event.name, // [OneMaker MV] Changed ':' to ': '
+            'event': _padding3(event.id) + ': ' + event.name, // [OneMaker MV] - Changed ':' to ': '
             'page': page
         };
-        if (mapId !== 'Common') {
-            result.map = _padding3(mapId) + ': ' + info.name; // [OneMaker MV] Changed ':' to ': '
+        // [OneMaker MV] - Changed to add troops
+        //if (mapId !== 'Common') {
+        if (typeof mapId === "number") {
+            result.map = _padding3(mapId) + ': ' + info.name; // [OneMaker MV] - Changed ':' to ': '
             result.coordinate = '(' + event.x + ',' + event.y + ')';
+        }
+        else { // [OneMaker MV] - Changed to add troops
+            result.map = mapId;
+            result.coordinate = mapId;
         }
         return result;
     }
