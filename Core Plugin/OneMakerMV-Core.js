@@ -3,6 +3,8 @@
 // OneMakerMV-Core.js
 //==============================================================================================================
 
+//onemaker-bundletool-special: 100
+
 //==============================================================================================================
 /*:
  * @plugindesc Core functionality for OneMakerMV
@@ -30,6 +32,9 @@
 //===============================================================================================================
 
 // region Core Functions
+
+if (!window.OneMakerMVCoreLoaded) {
+window.OneMakerMVCoreLoaded = true
 
 //-----------------------------------------------------------------------------
 // DataManager
@@ -864,3 +869,4 @@ Game_Interpreter.prototype.command1002 = function() {
 
     return true;
 }
+} // window.OneMakerMVCoreLoaded End
