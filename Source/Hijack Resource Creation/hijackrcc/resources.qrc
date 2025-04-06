@@ -14,6 +14,7 @@
     <file>qml/Event/EventCommands/EventCommand1003.qml</file>
     <file>qml/Event/EventCommands/EventCommand1004.qml</file>
     <file>qml/Event/EventCommands/EventCommand357.qml</file>
+    <file>qml/Event/EventCommands/EventCommand358.qml</file>
     <file>qml/Fonts/OMORI_GAME2.ttf</file>
     <file>qml/Layouts/Layout_SoundManager.qml</file>
     <file>qml/ObjControls/ObjYamlEllipsisBox.qml</file>
@@ -22,6 +23,7 @@
     <file>qml/Options/OneMakerMV_EventCommandSelectPage.qml</file>
     <file>qml/Options/OneMakerMV_ImageSelection.qml</file>
     <file>qml/Options/OneMakerMV_MaxLimits.qml</file>
+    <file>qml/Options/OneMakerMV_ResetSettings.qml</file>
     <file>qml/Options/OneMakerMV_WindowSizes.qml</file>
     <file>qml/Options/OneMakerMV_WorkingMode.qml</file>
     <file>qml/Singletons/One_SettingsManager.qml</file>

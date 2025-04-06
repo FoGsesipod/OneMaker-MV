@@ -17,7 +17,7 @@ GroupBox {
             model: codeList.length
             GroupButton {
                 property int eventCode: codeList[index]
-                enabled: OneMakerMVSettings.enableEventCommands(eventCode);
+                enabled: OneMakerMVSettings.enableEventCommands(eventCode); // [OneMaker MV] - Detect if Button should be disabled or not.
 
                 width: 220
                 height: 25

@@ -34,6 +34,9 @@ QtObject {
             case "Krypt":
                 selectedImagePack = "../Images/Krypt/";
                 break;
+            case "Custom":
+                selectedImagePack = "../Images/Custom/";
+                break;
             default:
                 selectedImagePack = "../Images/";
                 break;
@@ -52,6 +55,9 @@ QtObject {
                 selectedImagePackSize = [40, 40];
                 break;
             case "Krypt":
+                selectedImagePackSize = [40, 40];
+                break;
+            case "Custom":
                 selectedImagePackSize = [40, 40];
                 break;
             default:
