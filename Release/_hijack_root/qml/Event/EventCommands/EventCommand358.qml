@@ -276,7 +276,7 @@ EventCommandBase {
         }
 
         if (defaultCheckBox.checked) {
-            params.push(["Default"]);
+            params.push(["Default", true]);
             cases.push(null);
         }
 

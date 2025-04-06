@@ -753,7 +753,8 @@ Game_Interpreter.prototype.command358 = function() {
         }
     }
     if (!found) {
-        if (this._params[this._params.length - 1][0] === "Default") {
+        var defaultcase = this._params[this._params.length - 1]
+        if (defaultcase[0] === "Default" && defaultcase[1] === true) {
             this._branch[this._indent] = this._params[0].length;
         }
     }

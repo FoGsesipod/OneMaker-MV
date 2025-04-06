@@ -496,13 +496,11 @@ QtObject {
         var text = "";
         var text1 = qsTr("Case ", "Case ** (before the text)");
         var text2 = qsTr(" ", "Case ** (after the text)");
-        if (text1 !== " ") {
-            text += text1;
-        }
         if (typeof params[1] === "undefined") {
             text += "Default";
         }
-        else {
+        else if (text1 !== " ") {
+            text += text1;
             text += params[1];
         }
         text += text2;
