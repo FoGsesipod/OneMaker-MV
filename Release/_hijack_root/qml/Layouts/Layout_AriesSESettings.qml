@@ -87,7 +87,7 @@ ControlsRow {
             case 4: // Wave SE
                 array = ["Intensity", "Width", null];
                 break;
-            case 5:
+            case 5: // Distortion SE
                 array = ["Intensity", "Density", "Seperation"]
                 break;
         }
