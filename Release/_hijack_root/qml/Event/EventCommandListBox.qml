@@ -495,7 +495,7 @@ ListBox {
         var dataArray = DataManager.plugins;
 
         for (var i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].name === "Geo_ImprovedEventTest" && dataArray[i].status) {
+            if (OneMakerMVSettings.detectPluginActivationStatus("Geo_ImprovedEventTest")) {
                 dialogLocation.mapId = mapId;
                 dialogLocation.mapX = object["x"];
                 dialogLocation.mapY = object["y"];
