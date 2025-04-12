@@ -27,9 +27,12 @@ var beesList_oldLodaDatabase = DataManager.loadDatabase;
 DataManager.loadDatabase = function() {
   // Run Original Function
   beesList_oldLodaDatabase.call(this);
+  const _mapLoader = DataManager._mapLoader;
+  DataManager._mapLoader = (function() { /* prevents error message */ });
   if (DataManager.isEventTest()) {
     DataManager.loadDataFile('$testEventExtra', 'Test_EventExtra.json');
   };
+  DataManager._mapLoader = _mapLoader;
 };
 
 Game_Map.prototype.setupTestEvent = function() {
