@@ -29,6 +29,7 @@ EventCommandBase {
     property bool add5: false
 
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox1
             text: qsTr("AddChoice?")
@@ -63,6 +64,7 @@ EventCommandBase {
     }
     
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox2
             text: qsTr("AddChoice?")
@@ -97,6 +99,7 @@ EventCommandBase {
     }
 
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox3
             text: qsTr("AddChoice?")
@@ -131,6 +134,7 @@ EventCommandBase {
     }
 
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox4
             text: qsTr("AddChoice?")
@@ -165,6 +169,7 @@ EventCommandBase {
     }
 
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox5
             text: qsTr("AddChoice?")
@@ -197,6 +202,7 @@ EventCommandBase {
     }
     
     ControlsRow {
+        visible: !checkBox11.checked
         ObjCheckBox {
             id: checkBox10
             text: qsTr("ShowChoices")
@@ -215,78 +221,144 @@ EventCommandBase {
         }
     }
 
+    ControlsColumn {
+        ControlsRow {
+            ObjCheckBox {
+                id: checkBox11
+                text: qsTr("Loop Messages")
+                hint: qsTr("")
+                width: checkBox1.width
+                height: checkBox1.height;
+            }
+        }
+        ControlsRow {
+            visible: checkBox11.checked
+            ObjYamlEllipsisBox {
+                id: loopSelectionBox
+                title: qsTr("Loop Start File Name")
+                hint: qsTr("")
+                subFolder: "languages/en"
+                itemWidth: 240
+                hideMessageNames: true
+            }
+            LabeledTextField {
+                id: loopTextPrefix
+                title: qsTr("Message Prefix")
+                hint: qsTr("")
+                text: qsTr("message_")
+                width: 130
+                itemWidth: 120
+                y: 1
+            }
+            LabeledTextField {
+                id: loopTextStart
+                title: qsTr("Start number")
+                hint: qsTr("")
+                width: loopTextPrefix.width
+                itemWidth: 120
+                y: 1
+            }
+            LabeledTextField {
+                id: loopTextEnd
+                title: qsTr("End Number")
+                hint: qsTr("")
+                width: loopTextPrefix.width
+                itemWidth: 120
+                y: 1
+            }
+        }
+    }
+
     onSave: {
         var params
         var pluginCommandText
         var dataLength
         eventData = []
 
-        if (add1) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            if (!checkBox1.checked) {
-                pluginCommandText = "ShowMessage " + yamlSelectionBox1.fileName + "." + yamlSelectionBox1.messageName;
+        if (checkBox11.checked) {
+            var scriptCommandText = "let list = [];\n" +
+                                    "for (let i = " + loopTextStart.text + "; i <= " + loopTextEnd.text + "; i++) {\n" +
+                                    "  list.push({ code: 356, indent: 0, parameters: [`ShowMessage " + loopSelectionBox.fileName + "." + loopTextPrefix.text + "${i}`] });\n" +
+                                    "};\n" +
+                                    "this.setupChild(list, this._eventId);";
+            var lines = scriptCommandText.split("\n");
+            
+            while (lines.length > 1 && lines[lines.length - 1].length === 0) {
+                lines.pop();
             }
-            else {
-                pluginCommandText = "AddChoice " + yamlSelectionBox1.fileName + "." + yamlSelectionBox1.messageName + " " + textField1.text;
+            for (var i = 0; i < lines.length; i++) {
+                var code = (i === 0 ? 355 : 655);
+                eventData.push( makeCommand(code, 0, [lines[i]]) );
             }
-            params[0] = pluginCommandText;
         }
-        if (add2) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            if (!checkBox2.checked) {
-                pluginCommandText = "ShowMessage " + yamlSelectionBox2.fileName + "." + yamlSelectionBox2.messageName;
+        else {
+            if (add1) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                if (!checkBox1.checked) {
+                    pluginCommandText = "ShowMessage " + yamlSelectionBox1.fileName + "." + yamlSelectionBox1.messageName;
+                }
+                else {
+                    pluginCommandText = "AddChoice " + yamlSelectionBox1.fileName + "." + yamlSelectionBox1.messageName + " " + textField1.text;
+                }
+                params[0] = pluginCommandText;
             }
-            else {
-                pluginCommandText = "AddChoice " + yamlSelectionBox2.fileName + "." + yamlSelectionBox2.messageName + " " + textField2.text;
+            if (add2) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                if (!checkBox2.checked) {
+                    pluginCommandText = "ShowMessage " + yamlSelectionBox2.fileName + "." + yamlSelectionBox2.messageName;
+                }
+                else {
+                    pluginCommandText = "AddChoice " + yamlSelectionBox2.fileName + "." + yamlSelectionBox2.messageName + " " + textField2.text;
+                }
+                params[0] = pluginCommandText;
             }
-            params[0] = pluginCommandText;
-        }
-        if (add3) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            if (!checkBox3.checked) {
-                pluginCommandText = "ShowMessage " + yamlSelectionBox3.fileName + "." + yamlSelectionBox3.messageName;
+            if (add3) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                if (!checkBox3.checked) {
+                    pluginCommandText = "ShowMessage " + yamlSelectionBox3.fileName + "." + yamlSelectionBox3.messageName;
+                }
+                else {
+                    pluginCommandText = "AddChoice " + yamlSelectionBox3.fileName + "." + yamlSelectionBox3.messageName + " " + textField3.text;
+                }
+                params[0] = pluginCommandText;
             }
-            else {
-                pluginCommandText = "AddChoice " + yamlSelectionBox3.fileName + "." + yamlSelectionBox3.messageName + " " + textField3.text;
+            if (add4) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                if (!checkBox4.checked) {
+                    pluginCommandText = "ShowMessage " + yamlSelectionBox4.fileName + "." + yamlSelectionBox4.messageName;
+                }
+                else {
+                    pluginCommandText = "AddChoice " + yamlSelectionBox4.fileName + "." + yamlSelectionBox4.messageName + " " + textField4.text;
+                }
+                params[0] = pluginCommandText;
             }
-            params[0] = pluginCommandText;
-        }
-        if (add4) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            if (!checkBox4.checked) {
-                pluginCommandText = "ShowMessage " + yamlSelectionBox4.fileName + "." + yamlSelectionBox4.messageName;
+            if (add5) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                if (!checkBox5.checked) {
+                    pluginCommandText = "ShowMessage " + yamlSelectionBox5.fileName + "." + yamlSelectionBox5.messageName;
+                }
+                else {
+                    pluginCommandText = "AddChoice " + yamlSelectionBox5.fileName + "." + yamlSelectionBox5.messageName + " " + textField5.text;
+                }
+                params[0] = pluginCommandText;
             }
-            else {
-                pluginCommandText = "AddChoice " + yamlSelectionBox4.fileName + "." + yamlSelectionBox4.messageName + " " + textField4.text;
+            if (checkBox10.checked) {
+                eventData.push( makeCommand(356, 0, []) );
+                dataLength = eventData.length - 1;
+                params = eventData[dataLength].parameters;
+                pluginCommandText = "ShowChoices " + comboBox.currentText;
+                params[0] = pluginCommandText;
             }
-            params[0] = pluginCommandText;
-        }
-        if (add5) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            if (!checkBox5.checked) {
-                pluginCommandText = "ShowMessage " + yamlSelectionBox5.fileName + "." + yamlSelectionBox5.messageName;
-            }
-            else {
-                pluginCommandText = "AddChoice " + yamlSelectionBox5.fileName + "." + yamlSelectionBox5.messageName + " " + textField5.text;
-            }
-            params[0] = pluginCommandText;
-        }
-        if (checkBox10.checked) {
-            eventData.push( makeCommand(356, 0, []) );
-            dataLength = eventData.length - 1;
-            params = eventData[dataLength].parameters;
-            pluginCommandText = "ShowChoices " + comboBox.currentText;
-            params[0] = pluginCommandText;
         }
     }
 }

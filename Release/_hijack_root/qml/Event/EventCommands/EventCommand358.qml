@@ -228,7 +228,7 @@ EventCommandBase {
                     break;
                 case 3: // Character Direction
                     radioButton4.checked = true;
-                    characterSelectBox.currentIndex = params[2];
+                    characterSelectBox.setCurrentId(params[2]);
                     break;
                 case 4: // Script
                     radioButton5.checked = true;
@@ -267,7 +267,7 @@ EventCommandBase {
                 break;
             case 3: // Character Direction
                 params[1] = 3;
-                params[2] = characterSelectBox.currentIndex;
+                params[2] = characterSelectBox.currentId;
                 break;
             case 4: // Script
                 params[1] = 4;

@@ -18,6 +18,7 @@ LabeledEllipsisBox {
     property string displayName: ""
     property string savedFileName: ""
     property string savedMessageName: ""
+    property bool hideMessageNames: false
 
     readonly property string folder: DataManager.projectUrl + subFolder
 
@@ -30,6 +31,7 @@ LabeledEllipsisBox {
     Dialog_YamlSelector {
         id: dialog
         folder: root.folder
+        hideMessageNames: root.hideMessageNames
 
         onOk: {
             root.fileName = fileName;
