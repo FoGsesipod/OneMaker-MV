@@ -161,6 +161,9 @@ GroupBoxRow {
                 list: dataObject ? dataObject.list : []
                 width: 638 + OneMakerMVSettings.getWindowSetting("defaultWidthIncrease") // [OneMaker MV] - Window Increased
                 height: 522 + OneMakerMVSettings.getWindowSetting("defaultHeightIncrease") // [OneMaker MV] - Window Increased
+                // [OneMaker MV] - Add Map ID and Event ID for Event Test Improvement.
+                mapId: root.mapId
+                eventId: eventId
             }
         }
     }

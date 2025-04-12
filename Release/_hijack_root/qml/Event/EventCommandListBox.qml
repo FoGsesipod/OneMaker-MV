@@ -8,6 +8,7 @@ import "../ObjControls"
 import "../Dialogs"
 import "../Map"
 import "../Singletons"
+import "../_OneMakerMV"
 
 ListBox {
     id: root
@@ -26,6 +27,9 @@ ListBox {
     // [OneMaker MV] - Detect if Improved Event Test plugin is enabled
     property bool improveEventTest: false
 
+    // [OneMaker MV] - Add Map ID and Event ID for Event Test Improvement.
+    property int mapId: DataManager.currentMapId
+    property int eventId: 0
     // [OneMaker MV] - Add Cursor Map X/Y for Event Test Improvement.
     property int mapX: 0
     property int mapY: 0
@@ -492,17 +496,14 @@ ListBox {
 
     function test() {
         // [OneMaker MV] - Detect if the Event Test Fixes plugin is installed
-        var dataArray = DataManager.plugins;
-
-        for (var i = 0; i < dataArray.length; i++) {
-            if (OneMakerMVSettings.detectPluginActivationStatus("Geo_ImprovedEventTest")) {
-                dialogLocation.mapId = mapId;
-                dialogLocation.mapX = object["x"];
-                dialogLocation.mapY = object["y"];
-                dialogLocation.open();
-                improveEventTest = true;
-                return;
-            }
+        if (OneMakerMVSettings.detectPluginActivationStatus("Geo_ImprovedEventTest")) {
+            dialogLocation.mapId = mapId;
+            var object2 = (typeof object === "undefined") ? {} : object;
+            dialogLocation.mapX = object2["x"] || 0;
+            dialogLocation.mapY = object2["y"] || 0;
+            dialogLocation.open();
+            improveEventTest = true;
+            return;
         }
 
         runTest();
