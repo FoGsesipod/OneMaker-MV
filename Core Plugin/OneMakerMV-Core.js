@@ -37,7 +37,7 @@
 if (!window.OneMakerMVCoreLoaded) {
     if (!$plugins[0].name.match(/OneMakerMV-Core/)) {
         setTimeout(function() {
-            const error = new Error(`OneMakerMV-Core.js must be placed at the very top of the plugin manager!`);
+            const error = new Error(`The OneMakerMV-Core.js plugin must be placed at the very top of the plugin manager!`);
             SceneManager.catchException(error);
             SceneManager.stop();
         }, 1000);
