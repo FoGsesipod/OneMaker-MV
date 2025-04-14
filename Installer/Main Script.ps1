@@ -69,7 +69,7 @@ function Get-ManifestVersion {
             return $null
         }
 
-        return $manifestResultsVersion, $manifestResultCoreVersion
+        return $manifestResultVersion, $manifestResultCoreVersion
     }
 }
 

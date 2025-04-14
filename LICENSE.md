@@ -1,5 +1,5 @@
 # Licensing:
-See individual LICENSE files in `Licenses` for full license terms.
+See individual LICENSE files in `Licensing` for full license terms.
 
 This repository is muilt-licensed under the following terms:
 1. **MIT License** - Applies to all files in `Core Plugin\`, and `Source\Linux\` apart from `Source\Linux\qresource_5.5.1.cpp`

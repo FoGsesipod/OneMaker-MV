@@ -154,6 +154,18 @@ QtObject {
         return corePluginDetected;
     }
 
+    function detectPluginActivationStatus(name) {
+        var dataArray = DataManager.plugins;
+
+        for (var i = 0; i < dataArray.length; i++) {
+            if (dataArray[i].name === name && dataArray[i].status) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     function enableEventCommands(code) {
         var ids1 = [357, 358, 1000, 1002];
         var ids2 = getWorkingModeSetting("customEventCommands") ? [] : [1001, 1003, 1004]

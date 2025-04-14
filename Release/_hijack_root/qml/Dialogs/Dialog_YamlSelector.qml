@@ -28,6 +28,8 @@ ModalWindow {
     property string indexTextTitle: ""
     property string indexTextHint: ""
 
+    property bool hideMessageNames: false
+
     DialogBox {
         applyVisible: false
 
@@ -127,7 +129,16 @@ ModalWindow {
             }
         }
         
-        
+        Component.onCompleted: {
+            if (hideMessageNames) {
+                var controls = [yamlListBox, label, scrollView, textPreview];
+                for (var key in controls) {
+                    controls[key].visible = false;
+                    controls[key].width = 0;
+                    controls[key].height = 0;
+                }
+            }
+        }
     }
 
     function isExcluded(thing) {

@@ -4,6 +4,7 @@
     <file>qml/Controls/FindManagerPopupMenu.qml</file>
     <file>qml/Controls/YamlFileListBox.qml</file>
     <file>qml/Controls/YamlTextPreview.qml</file>
+    <file>qml/Dialogs/Dialog_AriesSEEffectSelector.qml</file>
     <file>qml/Dialogs/Dialog_YamlSelector.qml</file>
     <file>qml/Event/EventCommandListBox.qml</file>
     <file>qml/Event/EventCommandSoundManager.qml</file>
@@ -16,7 +17,9 @@
     <file>qml/Event/EventCommands/EventCommand357.qml</file>
     <file>qml/Event/EventCommands/EventCommand358.qml</file>
     <file>qml/Fonts/OMORI_GAME2.ttf</file>
+    <file>qml/Layouts/Layout_AriesSESettings.qml</file>
     <file>qml/Layouts/Layout_SoundManager.qml</file>
+    <file>qml/ObjControls/ObjAriesSEEffects.qml</file>
     <file>qml/ObjControls/ObjYamlEllipsisBox.qml</file>
     <file>qml/Options/OneMakerMV_AnimationScreen.qml</file>
     <file>qml/Options/OneMakerMV_ArrayNames.qml</file>
