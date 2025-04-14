@@ -1,5 +1,15 @@
 # Changelog
-## Versions 1.2
+## Version 1.2.1
+Fixed Switch Statement Direction of not working properly in the editor.  
+Added control character hints for the `\SV[X]` text command (which was accidentally deleted).  
+Added a UI for `Aries001_AnimationScreenEffects` in the Animation Timing's UI.  
+Improved Event Test was fixed for Common Events and Troops.  
+Updated Yaml Selector to allow looping through messages.  
+- Instead of inserting 15 Plugin Command's to show 15 messages (message id 1 through id 15), you can place a single script command to loop through the messages instead.  
+
+Updated OneMakerMV-Core to not allow you to enter the game if the plugin is not in the very first slot of the plugin manager.  
+
+## Version 1.2
 Changes to Working Mode and window sizing, allowing individual toggles and a global disable to UI sizing to fix users who have screen resolutions lower then 900p.  
 Added Switch Statement Event Command, Additional Troop Conditions, and converted the Sound Manager to use real Event Commands.  
 Added a `OneMakerMV-Core.js` Plugin, which is now required for using certain features that would not work otherwise in-game.  
