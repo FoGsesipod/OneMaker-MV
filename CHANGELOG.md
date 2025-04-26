@@ -1,4 +1,8 @@
 # Changelog
+## Version 1.2.2
+Fixed Event Page notetags being inaccessible when using the global disable of OneMakers window sizing.
+Fixed Sound Manager not actually saving the sound.
+
 ## Version 1.2.1
 Fixed Switch Statement Direction of not working properly in the editor.  
 Added control character hints for the `\SV[X]` text command (which was accidentally deleted).  
