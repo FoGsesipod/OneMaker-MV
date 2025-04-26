@@ -365,7 +365,7 @@ ModalWindow {
                         }
                     }
                     Label {
-                        text: qsTr("Default: 460\n ")
+                        text: qsTr("Default: 270\n ")
                         width: 125
                         height: 20
                         y: -14

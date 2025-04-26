@@ -58,7 +58,7 @@ QtObject {
                 groupNoteDatabaseX: -420,
                 groupEffectsListBoxWidth: 116,
                 groupTraitsListBoxWidth: 116,
-                layoutEventEditorNoteWidth: 460,
+                layoutEventEditorNoteWidth: 270,
                 globalDisable: false
             },
             workingMode: {

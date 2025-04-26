@@ -3,7 +3,7 @@
 // OneMakerMV-Core.js
 //==============================================================================================================
 
-//onemaker-bundletool-special: 101
+//onemaker-bundletool-special: 102
 
 //==============================================================================================================
 /*:
@@ -26,8 +26,14 @@
  * Version History:
  * ==============================================================================================================
  * 
- * 1.0.1 - ...
- * 1.0.0 - Initial Release.
+ * 1.0.2:
+ * - Bugfix saving sounds with Sound Manager.
+ * 
+ * 1.0.1:
+ * - Display an error message and do not allow playing the game if OneMakerMV is not the first plugin loaded.
+ * 
+ * 1.0.0:
+ * - Initial Release.
  * 
 */
 //===============================================================================================================
@@ -795,7 +801,7 @@ if (!window.OneMakerMVCoreLoaded) {
                         break;
                     // Save Sound
                     case 1:
-                        $gameSystem[`_savedBgm${this._params[2]}`];
+                        $gameSystem[`_savedBgm${this._params[2]}`] = AudioManager.saveBgm();
                         break;
                     // Replay Sound
                     case 2:
@@ -826,7 +832,7 @@ if (!window.OneMakerMVCoreLoaded) {
                         break;
                     // Save Sound
                     case 1:
-                        $gameSystem[`_savedBgs${this._params[2]}`];
+                        $gameSystem[`_savedBgs${this._params[2]}`] = AudioManager.saveBgs();
                         break;
                     // Replay Sound
                     case 2:

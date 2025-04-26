@@ -36,7 +36,7 @@ ControlsColumn {
                 member: "note"
                 title: Constants.noteTitle
                 hint: Constants.noteHint
-                itemWidth: OneMakerMVSettings.getWindowSetting("layoutEventEditorNoteWidth") // [OneMaker MV] - Window Increased
+                itemWidth: 190 + OneMakerMVSettings.getWindowSetting("layoutEventEditorNoteWidth") // [OneMaker MV] - Window Increased
 
                 contextMenu: TextEditPopupMenu {
                     MenuSeparator { }
