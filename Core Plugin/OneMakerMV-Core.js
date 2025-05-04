@@ -3,7 +3,7 @@
 // OneMakerMV-Core.js
 //==============================================================================================================
 
-//onemaker-bundletool-special: 102
+//onemaker-bundletool-special: 103
 
 //==============================================================================================================
 /*:
@@ -26,6 +26,10 @@
  * Version History:
  * ==============================================================================================================
  * 
+ * 1.0.3
+ * - Bugfix default Variable Id for Troop Conditions
+ * - Bugfix regex being case sensitive for bundletool
+ * 
  * 1.0.2:
  * - Bugfix saving sounds with Sound Manager.
  * 
@@ -41,7 +45,7 @@
 // region Core Functions
 
 if (!window.OneMakerMVCoreLoaded) {
-    if (!$plugins[0].name.match(/OneMakerMV-Core/)) {
+    if (!$plugins[0].name.match(/OneMakerMV-Core/i)) {
         setTimeout(function() {
             const error = new Error(`The OneMakerMV-Core.js plugin must be placed at the very top of the plugin manager!`);
             SceneManager.catchException(error);
@@ -638,7 +642,7 @@ if (!window.OneMakerMVCoreLoaded) {
             }
         }
         if (c.variableValid) {
-            var key = c.variableId ? c.variableId : 0;
+            var key = c.variableId ? c.variableId : 1;
             if (!c.variableValue) {c.variableValue = 0;};
             switch (c.variableOperator) {
                 case 0: // Greater then or Equal to
